@@ -1,8 +1,8 @@
-﻿using TheDragonRune.MrNoble;
+﻿using Chasejyd.Rockstar;
 using Handelabra.Sentinels.Engine.Model;
 using NUnit.Framework;
 
-namespace TheDragonRuneTest
+namespace ChasejydTests
 {
     [SetUpFixture]
     public class Setup
@@ -10,7 +10,7 @@ namespace TheDragonRuneTest
         [OneTimeSetUp]
         public void DoSetup()
         {
-            ModHelper.AddAssembly("TheDragonRune", typeof(MrNobleCharacterCardController).Assembly);
+            ModHelper.AddAssembly("Chasejyd", typeof(RockstarCharacterCardController).Assembly);
         }
     }
 }

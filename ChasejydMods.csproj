@@ -26,7 +26,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="DeckLists\**\*.json">
-      <LogicalName>ChaseejydMods.DeckLists.%(EmbeddedResource.FileName).json</LogicalName>
+      <LogicalName>Chasejyd.DeckLists.%(EmbeddedResource.FileName).json</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 
