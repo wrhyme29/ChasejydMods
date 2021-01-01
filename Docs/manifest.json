@@ -1,0 +1,20 @@
+{
+	"title": "Chasejyd",
+	"author": "Chasejyd",
+	"description":[
+		"These decks are designed by Chasejyd and implemented by wrhyme29",
+	],
+	"version": "v1.0",
+	"credits": "",
+	"namespace": "Chasejyd",
+	"dll": "ChasejydMods.dll",
+	"decks": {
+		"heroes": [	
+		"Rockstar"
+		],
+		"villains": [
+		],
+		"environments": [
+		]
+	}
+}
