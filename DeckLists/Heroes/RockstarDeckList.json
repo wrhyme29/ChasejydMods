@@ -1,0 +1,528 @@
+{
+    "name": "Rockstar",
+    "kind": "Hero",
+    "expansionIdentifier": "Chaseyjd",
+    "initialCardIdentifiers": [
+        "RockstarCharacter"
+    ],
+    "cards": [
+        {
+            "identifier": "RockstarCharacter",
+            "count": 1,
+            "title": "Rockstar",
+            "body": "Fight Song",
+            "backgroundColor": "D1D2D4",
+            "foilBackgroundColor": "D1D2D4",
+            "hitpointColor": "EA7527",
+            "character": true,
+            "powers": [
+                "{Rockstar} deals 1 target 2 melee damage. Until the start of your next turn, increase HP recovery by {Rockstar} by 1."
+            ],
+            "icons": [
+                "HasPower",
+                "DealDamageMelee",
+                "IncreaseGainHP"
+            ],
+            "hitpoints": 31,
+            "nemesisIdentifiers": [
+                "Rockstar"
+            ],
+            "incapacitatedAbilities": [
+                "Increase HP Recovery by Heroes by 1 until the start of your next turn.",
+                "Select one Target. Reduce damage dealt by that Target by 1 until the start of your next turn.",
+                "Reduce damage to Hero Targets from the Environment by 1 until the start of your next turn."
+            ],
+            "flippedIcons": [
+                "IncreaseGainHP",
+                "ReduceDamageDealt",
+                "ReduceDamageTaken"
+            ],
+            "openingLines": {
+                "default": "Now playing: The Hammer's greatest hits!"
+            },
+            "complexity": 3
+        },
+        {
+            "identifier": "FrontWoman",
+            "count": 2,
+            "title": "Front Woman",
+            "keywords": [
+                "stage presence"
+            ],
+            "icons": [
+                "Destroy",
+                "ReduceDamageTaken",
+                "RedirectDamage"
+            ],
+            "body": [
+                "When this card enters play, destroy all other Stage Presence cards in play.",
+                "Reduce damage dealt  to {Rockstar} by Villain Character Cards by 1.",
+                "Any time a non-Hero card would deal damage to the Hero target with the highest HP, you may redirect that damage to {Rockstar}"
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "I'll keep the big guy occupied.{BR}You deal with the bugs."
+                }
+            ],
+            "flavorReference": "Rockstar, Daybreak #7"
+        },
+        {
+            "identifier": "PlayToTheCrowd",
+            "count": 2,
+            "title": "Play to the Crowd",
+            "keywords": [
+                "stage presence"
+            ],
+            "icons": [
+                "Destroy",
+                "ReduceDamageTaken",
+                "RedirectDamage"
+            ],
+            "body": [
+                "When this card enters play, destroy all other Stage Presence cards in play.",
+                "Reduce Melee and Projectile Damage dealt to {Rockstar} by 1.",
+                "Whenever a Non-Hero card would deal damage to the Hero Target with the lowest HP, or any Target with 3 or fewer HP, you may redirect that damage to {Rockstar}."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "I'll be your angel on call,{BR}I'll be on demand."
+                }
+            ],
+            "flavorReference": "Rockstar, Legacy #1"
+        },
+        {
+            "identifier": "OwnTheStage",
+            "count": 2,
+            "title": "Own the Stage",
+            "keywords": [
+                "stage presence"
+            ],
+            "icons": [
+                "Destroy",
+                "ReduceDamageTaken",
+                "RedirectDamage"
+            ],
+            "body": [
+                "When this card enters play, destroy all other Stage Presence cards in play.",
+                "Reduce damage to {Rockstar} from the environment by 2.",
+                "You may redirect damage from the environment to {Rockstar}."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "All in all,{BR}I'm just another brick in the wall."
+                }
+            ],
+            "flavorReference": "Rockstar, Legacy #1"
+        },
+        {
+            "identifier": "Intermission",
+            "count": 2,
+            "title": "Intermission",
+            "keywords": [
+                "one-shot"
+            ],
+            "icons": [
+                "GainHP",
+                "Manipulate"
+            ],
+            "body": [
+                "{Rockstar} gains 2 HP. Search your deck or your trash for a Stage Presence card and put it into play or into your hand. If you searched your deck, shuffle your deck."
+
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "So if the world should end tonight,{BR}I had a crazy, classic life."
+                }
+            ],
+            "flavorReference": "Rockstar, Daybreak #8"
+        },
+        {
+            "identifier": "Confident",
+            "count": 2,
+            "title": "Confident",
+            "keywords": [
+                "ongoing"
+            ],
+            "icons": [
+                "PlayCardNow",
+                "DrawCardNow"
+            ],
+            "body": [
+                "The first time each turn that one of {Rockstar}'s cards is destroyed, she may play a card.",
+                "The first time each turn that {Rockstar} is forced to discard, she may draw a card."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "Cause this is my ground,{BR}and I'm dangerous."
+                }
+            ],
+            "flavorReference": "Rockstar, Mystery Comics #711"
+        },
+        {
+            "identifier": "WickedSolo",
+            "count": 3,
+            "title": "Wicked Solo",
+            "keywords": [
+                "ongoing"
+            ],
+            "icons": [
+                "HasPower",
+                "DealDamageMelee",
+                "RedirectDamage",
+                "ReduceDamageDealt"
+            ],
+            "powers": [
+                "{Rockstar} deals one target 2 melee damage. If a target takes damage this way, redirect all damage dealt by that target to {Rockstar} and reduce damage dealt by that target by 1 until the start of your next turn."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "Shut up and dance with me."
+                }
+            ],
+            "flavorReference": "Rockstar, Legacy #2"
+        },
+        {
+            "identifier": "StandingOvation",
+            "count": 2,
+            "title": "Standing Ovation",
+            "keywords": [
+                "ongoing"
+            ],
+            "icons": [
+                "DrawCardNow"
+            ],
+            "body": [
+                "When a Non-Hero Target is destroyed outside of {Rockstar}'s turn, {Rockstar} may draw a card."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "YAAAAS Queen, Slay!"
+                },
+                {
+                    "identifier": "Aeon Girl",
+                    "text": "What?"
+                }
+            ],
+            "flavorReference": "Legacy #1"
+        },
+        {
+            "identifier": "PowerChord",
+            "count": 2,
+            "title": "Power Chord",
+            "keywords": [
+                "one-shot"
+            ],
+            "icons": [
+                "DealDamageMelee",
+                "DealDamageProjectile"
+            ],
+            "body": [
+                "Deal 1 Target Melee or Projectile Damage equal to the number of unique Ongoings {Rockstar} has in play, plus 2."
+            ],
+            "flavorText": "[b]** shake shake **[/b]{BR}“This feels empty. YEET!”",
+            "flavorReference": "Rockstar, Mystery Comics #712"
+        },
+        {
+            "identifier": "StarterGuitar",
+            "count": 1,
+            "title": "Starter Guitar",
+            "keywords": [
+                "equipment"
+            ],
+            "icons": [
+                "Indestructible",
+                "DealDamageSonic",
+                "DealDamageMelee"
+            ],
+            "body": [
+                "This card is Indestructible. It remains a valid target against effects which would destroy Equipment Cards."
+            ],
+            "powers": [
+                "Deal 1 Target 1 Sonic and 1 Melee Damage. Until the start of your Next turn treat this card as a 1 HP Hero Target."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Headlong",
+                    "text": "Super-strength, and learning to play...{BR}Have you seen what she puts that thing through?"
+                }
+            ],
+            "flavorReference": "Headlong, Daybreak #2"
+        },
+        {
+            "identifier": "Diva",
+            "count": 2,
+            "title": "Diva",
+            "keywords": [
+                "ongoing",
+                "limited"
+            ],
+            "icons": [
+                "Destroy"
+            ],
+            "body": [
+                "Non-Hero cards cannot prevent {Rockstar} from using Powers.",
+                "The first time per turn, outside of her own, a card allows {Rockstar} to play a card or use a power , {Rockstar} may first destroy an Ongoing, Device, or Environment Card."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Guise",
+                    "text": "What - ?"
+                }
+            ],
+            "flavorReference": "Guise, Mystery Comics #712"
+        },
+        {
+            "identifier": "IAmTitanium",
+            "count": 3,
+            "title": "I Am Titanium",
+            "keywords": [
+                "ongoing",
+                "limited"
+            ],
+            "icons": [
+                "ReduceDamageTaken",
+                "CounterDamage"
+            ],
+            "body": [
+                "Reduce damage dealt to {Rockstar} by 1.",
+                "When {Rockstar} is dealt Melee or Projectile Damage, she may also deal 1 damage of that type to one Non-Hero Target."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "Ricochet, you take your aim."
+                }
+            ],
+            "flavorReference": "Rockstar, Daybreak #8"
+        },
+        {
+            "identifier": "WreckingBall",
+            "count": 2,
+            "title": "Wrecking Ball",
+            "keywords": [
+                "one-shot"
+            ],
+            "icons": [
+                "DealDamageFire",
+                "Destroy",
+                "DealDamageMelee"
+            ],
+            "body": [
+                "Deal {Rockstar} 2 Irreducible Fire Damage. You may destroy up to 3 Ongoing or Environment Cards. ",
+                "{Rockstar} may deal one Target Melee Damage equal to the number of cards destroyed this turn."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "I came in like a wrecking ball!"
+                }
+            ],
+            "flavorReference": "Rockstar, Legacy #3"
+        },
+        {
+            "identifier": "RockstarRoar",
+            "count": 2,
+            "title": "Roar",
+            "keywords": [
+                "ongoing"
+            ],
+            "icons": [
+                "DealDamageMelee",
+                "GainHP"
+            ],
+            "body": [
+                "Non-Hero Cards cannot prevent {Rockstar} from playing cards.",
+                "The first time each turn that {Rockstar} destroys a Non-Hero card she may deal 1 Target 2 Melee Damage and gain 1 HP."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "You hear my voice,{BR}you hear that sound.{BR}Like thunder gonna shake the ground."
+                }
+            ],
+            "flavorReference": "Rockstar, Legacy #4"
+        },
+        {
+            "identifier": "ShakeItOff",
+            "count": 2,
+            "title": "Shake It Off",
+            "keywords": [
+                "ongoing"
+            ],
+            "icons": [
+                "DestroySelf",
+                "CancelledDamageGreen",
+                "DrawCardNow"
+            ],
+            "body": [
+                "When {Rockstar} would take 3 or more damage you may destroy this card. If you do, prevent that damage and you may draw a card."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "It's like I've got this music in my mind,{BR}saying it's gonna be all right."
+                }
+            ],
+            "flavorReference": "Rockstar, Legacy #5"
+        },
+        {
+            "identifier": "BallroomBlitz",
+            "count": 2,
+            "title": "Ballroom Blitz",
+            "keywords": [
+                "one-shot"
+            ],
+            "icons": [
+                "DestroyEnvironment",
+                "CannotPlayCards",
+                "DealDamageProjectile"
+            ],
+            "body": [
+                "Destroy an Environment Card. Select a Villain Deck. Until the start of {Rockstar}'s next turn, the target deck may not play cards.",
+                "The Villain target with the highest HP deals Rockstar 3 Irreducible Projectile Damage."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "I see a man in the back,{BR}as a matter of fact.{BR}His eyes are as red as the sun."
+                }
+            ],
+            "flavorReference": "Rockstar, Legacy #5"
+        },
+        {
+            "identifier": "SoWhat",
+            "count": 2,
+            "title": "So What?",
+            "keywords": [
+                "ongoing"
+            ],
+            "icons": [
+                "CancelledDamageGreen",
+                "GainHP",
+                "DrawCardNow"
+            ],
+            "body": [
+                "Whenever exactly 1 Damage would be dealt to {Rockstar}, prevent that damage."
+            ],
+            "powers":[
+                "{Rockstar} gains 2 HP and may draw a card."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "I got my rock moves,{BR}and I don't need you."
+                }
+            ],
+            "flavorReference": "Rockstar, Legacy #3"
+        },
+        {
+            "identifier": "Encore",
+            "count": 2,
+            "title": "Encore",
+            "keywords": [
+                "one-shot"
+            ],
+            "icons": [
+                "GainHP",
+                "Manipulate"
+            ],
+            "body": [
+                "{Rockstar} gains 2 HP. You may take an Ongoing from your Trash and put it on top of your deck."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "That's right, we're Daybreak.{BR}We're Awe – what's that, the shop?{BR}Contact the Freedom Five.{BR}They'll take care of it."
+                }
+            ],
+            "flavorReference": "Rockstar, Legacy #1"
+        },
+        {
+            "identifier": "HitMeBaby",
+            "count": 2,
+            "title": "Hit Me Baby",
+            "keywords": [
+                "ongoing"
+            ],
+            "icons": [
+                "GainHP",
+                "PlayCardNow    "
+            ],
+            "body": [
+                "When this card enters play, {Rockstar} gains 2 HP.",
+                "The first time per turn outside of her own that another Hero allows {Rockstar} to Use a Power or Play a Card, she may first Play a Card."
+            ],
+            "flavorText": "oO(I knew you had it in you.)",
+            "flavorReference": "Muse, Legacy #5"
+        },
+        {
+            "identifier": "BlondeAmbition",
+            "count": 3,
+            "title": "Blonde Ambition",
+            "keywords": [
+                "one-shot"
+            ],
+            "icons": [
+                "DealDamageMelee",
+                "DealDamageProjectile"
+            ],
+            "body": [
+                "Deal one Target 2 Melee damage. Deal a second target 2 Projectile Damage. Non-character-card targets dealt damage this way may not use any End of Turn abilities until the start of {Rockstar}'s next turn."
+            ],
+            "flavorQuotes": [
+                {
+                    "identifier": "Rockstar",
+                    "text": "Bela Lugosi's dead."
+                }
+            ],
+            "flavorReference": "Rockstar, Legacy #1"
+        }
+    ],
+    "promoCards": [
+        {
+            "identifier": "RockstarCharacter",
+            "promoIdentifier": "DaybreakRockstarCharacter",
+            "count": 1,
+            "title": "Rockstar",
+            "promoTitle": "Daybreak Rockstar",
+            "shortPromoTitle": "Daybreak Rockstar",
+            "body": "Bad Reputation",
+            "backgroundColor": "D1D2D4",
+            "foilBackgroundColor": "D1D2D4",
+            "hitpointColor": "EA7527",
+            "character": true,
+            "powers": [
+                "Reduce damage redirected to {Rockstar} by 1 until the start of your next turn. Gain 2 HP."
+            ],
+            "icons": [
+                "HasPower",
+                "ReduceDamageTaken",
+                "GainHP"
+            ],
+            "hitpoints": 29,
+            "nemesisIdentifiers": [
+                "Rockstar"
+            ],
+            "incapacitatedAbilities": [
+                "Up to 3 Hero Targets may gain 1 HP.",
+                "Each Player may shuffle a card from their trash into their deck.",
+                "Treat this card as a 1 HP, Indestructible Hero Target until the start of your next turn."
+            ],
+            "flippedIcons": [
+                "GainHP",
+                "Manipulate"
+            ],
+            "openingLines": {
+                "default": "Follow my lead, guys. We will, we will Rock You!"
+            },
+            "complexity": 3
+        }
+    ]
+}

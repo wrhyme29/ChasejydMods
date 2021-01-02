@@ -5,16 +5,28 @@
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
 	<Deterministic>true</Deterministic>
 	<DebugType>pdbonly</DebugType>
-	<RootNamespace>ChasejydMods</RootNamespace>
+	<RootNamespace>Chasejyd</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controller\Hero\**" />
+    <Compile Remove="Controller\Villains\CardSubClasses\**" />
+    <Compile Remove="Controller\Villains\Cards\**" />
+    <Compile Remove="Controller\Villains\CharacterCards\**" />
+    <EmbeddedResource Remove="Controller\Hero\**" />
+    <EmbeddedResource Remove="Controller\Villains\CardSubClasses\**" />
+    <EmbeddedResource Remove="Controller\Villains\Cards\**" />
+    <EmbeddedResource Remove="Controller\Villains\CharacterCards\**" />
+    <None Remove="Controller\Hero\**" />
+    <None Remove="Controller\Villains\CardSubClasses\**" />
+    <None Remove="Controller\Villains\Cards\**" />
+    <None Remove="Controller\Villains\CharacterCards\**" />
     <None Remove="DeckLists\**\*.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="DeckLists\**\*.json">
-      <LogicalName>TheDragonRune.DeckLists.%(EmbeddedResource.FileName).json</LogicalName>
+      <LogicalName>Chasejyd.DeckLists.%(EmbeddedResource.FileName).json</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 
@@ -51,9 +63,7 @@
 
   <ItemGroup>
     <Folder Include="Controller\Environments\" />
-    <Folder Include="Controller\Villains\CharacterCards\" />
-    <Folder Include="Controller\Villains\Cards\" />
-    <Folder Include="Controller\Villains\CardSubClasses\" />
+    <Folder Include="Controller\Villains\" />
     <Folder Include="Testing\Environments\" />
     <Folder Include="Testing\Villains\" />
   </ItemGroup>
@@ -62,7 +72,7 @@
   </Target>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy /Y &quot;$(TargetDir)$(TargetName).dll&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\mods\TheDragonRuneMods\$(TargetName).dll&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)manifest.json&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\mods\TheDragonRuneMods\manifest.json&quot;" />
+    <Exec Command="copy /Y &quot;$(TargetDir)$(TargetName).dll&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\mods\ChasejydMods\$(TargetName).dll&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)manifest.json&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\mods\ChasejydMods\manifest.json&quot;" />
   </Target>
 
 </Project>
