@@ -14,6 +14,15 @@ namespace Chasejyd.Rockstar
 
         }
 
+        public override bool AskIfCardMayPreventAction<T>(TurnTakerController ttc, CardController preventer)
+        {
+            //Non-Hero cards cannot prevent {Rockstar} from using Powers.
+            if (typeof(T) == typeof(UsePowerAction) && ttc == TurnTakerController && !preventer.Card.IsHero)
+            {
+                return false;
+            }
+            return true;
+        }
 
     }
 }
