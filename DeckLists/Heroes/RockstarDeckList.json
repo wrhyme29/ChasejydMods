@@ -38,9 +38,9 @@
                 "ReduceDamageTaken"
             ],
             "openingLines": {
-                "default": "Rockstar placeholder opening line"
+                "default": "Now playing: The Hammer's greatest hits!"
             },
-            "complexity": 2
+            "complexity": 3
         },
         {
             "identifier": "FrontWoman",
@@ -57,7 +57,7 @@
             "body": [
                 "When this card enters play, destroy all other Stage Presence cards in play.",
                 "Reduce damage dealt  to {Rockstar} by Villain Character Cards by 1.",
-                "Any time a non-Hero card would deal damage to the Hero target with the highest HP, you may redirect that damage to {Rockstar.}"
+                "Any time a non-Hero card would deal damage to the Hero target with the highest HP, you may redirect that damage to {Rockstar}"
             ],
             "flavorQuotes": [
                 {
@@ -206,7 +206,7 @@
                     "text": "YAAAAS Queen, Slay!"
                 },
                 {
-                    "identifier": "AeonGirl",
+                    "identifier": "Aeon Girl",
                     "text": "What?"
                 }
             ],
@@ -226,7 +226,7 @@
             "body": [
                 "Deal 1 Target Melee or Projectile Damage equal to the number of unique Ongoings {Rockstar} has in play, plus 2."
             ],
-            "flavorText": "[b]** shake shake **[b]{BR}“This feels empty. YEET!”",
+            "flavorText": "[b]** shake shake **[/b]{BR}“This feels empty. YEET!”",
             "flavorReference": "Rockstar, Mystery Comics #712"
         },
         {
@@ -273,7 +273,7 @@
             "flavorQuotes": [
                 {
                     "identifier": "Guise",
-                    "text": "What – ?"
+                    "text": "What - ?"
                 }
             ],
             "flavorReference": "Guise, Mystery Comics #712"
@@ -417,7 +417,7 @@
             "flavorQuotes": [
                 {
                     "identifier": "Rockstar",
-                    "text": "I got my rock moves, and I don't need you."
+                    "text": "I got my rock moves,{BR}and I don't need you."
                 }
             ],
             "flavorReference": "Rockstar, Legacy #3"
@@ -439,7 +439,7 @@
             "flavorQuotes": [
                 {
                     "identifier": "Rockstar",
-                    "text": "That's right, we're Daybreak.{BR}We're Awe – what's that, the shop?{BR}Contact the Freedom Five. They'll take care of it."
+                    "text": "That's right, we're Daybreak.{BR}We're Awe – what's that, the shop?{BR}Contact the Freedom Five.{BR}They'll take care of it."
                 }
             ],
             "flavorReference": "Rockstar, Legacy #1"
@@ -520,9 +520,9 @@
                 "Manipulate"
             ],
             "openingLines": {
-                "default": "Daybreak Rockstar placeholder opening line"
+                "default": "Follow my lead, guys. We will, we will Rock You!"
             },
-            "complexity": 2
+            "complexity": 3
         }
     ]
 }
