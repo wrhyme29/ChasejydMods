@@ -20,7 +20,7 @@ namespace Chasejyd.Rockstar
             //  Reduce damage dealt  to {Rockstar} by Villain Character Cards by 1.
             AddReduceDamageTrigger((DealDamageAction dd) => dd.DamageSource != null && dd.DamageSource.Card.IsVillainCharacterCard, 1, null, targetCriteria: (Card c) => c == CharacterCard);
             //  Any time a non-Hero card would deal damage to the Hero target with the highest HP, you may redirect that damage to {Rockstar}
-            Func<DealDamageAction, bool> criteria = (DealDamageAction dealDamage) => (!dealDamage.DamageSource.Card.IsHero && GameController.IsCardVisibleToCardSource(dealDamage.DamageSource.Card, GetCardSource())) && (dealDamage.Target.IsHero && GameController.IsCardVisibleToCardSource(dealDamage.Target, GetCardSource())) && CanCardBeConsideredHighestHitPoints(dealDamage.Target, (Card c) => c.IsHero && GameController.IsCardVisibleToCardSource(c, GetCardSource()));
+            Func<DealDamageAction, bool> criteria = (DealDamageAction dealDamage) => (!dealDamage.DamageSource.Card.IsHero && GameController.IsCardVisibleToCardSource(dealDamage.DamageSource.Card, GetCardSource())) && (dealDamage.Target.IsHero && dealDamage.Target != CharacterCard && GameController.IsCardVisibleToCardSource(dealDamage.Target, GetCardSource())) && CanCardBeConsideredHighestHitPoints(dealDamage.Target, (Card c) => c.IsHero && GameController.IsCardVisibleToCardSource(c, GetCardSource()));
             AddTrigger(criteria, RedirectDamageResponse, TriggerType.RedirectDamage, TriggerTiming.Before);
         }
 
