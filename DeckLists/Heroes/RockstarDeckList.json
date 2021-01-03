@@ -30,7 +30,7 @@
             "incapacitatedAbilities": [
                 "Increase HP Recovery by Heroes by 1 until the start of your next turn.",
                 "Select one Target. Reduce damage dealt by that Target by 1 until the start of your next turn.",
-                "Reduce damage to Hero Targets from the Environment by 1 until the start of your next turn."
+                "Reduce damage to Hero Targets from environment cards by 1 until the start of your next turn."
             ],
             "flippedIcons": [
                 "IncreaseGainHP",
