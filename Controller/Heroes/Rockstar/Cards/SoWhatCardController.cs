@@ -14,6 +14,33 @@ namespace Chasejyd.Rockstar
 
         }
 
+
+        public override IEnumerator UsePower(int index = 0)
+        {
+			//{Rockstar} gains 2 HP and may draw a card.
+			IEnumerator coroutine = GameController.GainHP(CharacterCard, 2, cardSource: GetCardSource());
+			if (UseUnityCoroutines)
+			{
+				yield return GameController.StartCoroutine(coroutine);
+			}
+			else
+			{
+				GameController.ExhaustCoroutine(coroutine);
+			}
+
+			coroutine = DrawCard(optional: true);
+			if (UseUnityCoroutines)
+			{
+				yield return GameController.StartCoroutine(coroutine);
+			}
+			else
+			{
+				GameController.ExhaustCoroutine(coroutine);
+			}
+
+			yield break;
+		}
+
 		public override void AddTriggers()
 		{
 			//Whenever exactly 1 Damage would be dealt to {Rockstar}, prevent that damage.
