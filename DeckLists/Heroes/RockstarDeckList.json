@@ -292,7 +292,7 @@
             ],
             "body": [
                 "Reduce damage dealt to {Rockstar} by 1.",
-                "When {Rockstar} is dealt Melee or Projectile Damage, she may also deal 1 damage of that type to one Non-Hero Target."
+                "When {Rockstar} is dealt Melee or Projectile Damage, she may deal 1 damage of that type to one Non-Hero Target."
             ],
             "flavorQuotes": [
                 {
