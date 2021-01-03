@@ -14,7 +14,9 @@ namespace Chasejyd.Rockstar
 		public override IEnumerator UsePower(int index = 0)
 		{
 			//{Rockstar} deals 1 target 2 melee damage.
-			IEnumerator coroutine = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, CharacterCard), 2, DamageType.Melee, 1, false, 1, cardSource: GetCardSource());
+			int powerNumeral = GetPowerNumeral(0, 1);
+			int powerNumeral2 = GetPowerNumeral(1, 2);
+			IEnumerator coroutine = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, CharacterCard), powerNumeral2, DamageType.Melee, powerNumeral, false, powerNumeral, cardSource: GetCardSource());
 			if (base.UseUnityCoroutines)
 			{
 				yield return base.GameController.StartCoroutine(coroutine);
