@@ -30,7 +30,7 @@
             "incapacitatedAbilities": [
                 "Increase HP Recovery by Heroes by 1 until the start of your next turn.",
                 "Select one Target. Reduce damage dealt by that Target by 1 until the start of your next turn.",
-                "Reduce damage to Hero Targets from the Environment by 1 until the start of your next turn."
+                "Reduce damage to Hero Targets from environment cards by 1 until the start of your next turn."
             ],
             "flippedIcons": [
                 "IncreaseGainHP",
@@ -130,7 +130,6 @@
             ],
             "body": [
                 "{Rockstar} gains 2 HP. Search your deck or your trash for a Stage Presence card and put it into play or into your hand. If you searched your deck, shuffle your deck."
-
             ],
             "flavorQuotes": [
                 {
@@ -292,7 +291,7 @@
             ],
             "body": [
                 "Reduce damage dealt to {Rockstar} by 1.",
-                "When {Rockstar} is dealt Melee or Projectile Damage, she may also deal 1 damage of that type to one Non-Hero Target."
+                "When {Rockstar} is dealt Melee or Projectile Damage, she may deal 1 damage of that type to one Non-Hero Target."
             ],
             "flavorQuotes": [
                 {

@@ -3,6 +3,7 @@ using Handelabra.Sentinels.Engine.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Chasejyd.Rockstar
 {
@@ -14,6 +15,16 @@ namespace Chasejyd.Rockstar
 
         }
 
+		protected bool IsStagePresence(Card card)
+		{
+			return card != null && base.GameController.DoesCardContainKeyword(card, "stage presence");
+		}
 
-    }
+	
+		protected int GetNumberOfStagePresenceInPlay()
+		{
+			return base.FindCardsWhere((Card c) => c.IsInPlayAndHasGameText && IsStagePresence(c)).Count();
+		}
+
+	}
 }
