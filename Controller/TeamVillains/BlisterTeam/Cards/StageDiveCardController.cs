@@ -11,7 +11,7 @@ namespace Chasejyd.BlisterTeam
 
         public StageDiveCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-
+            SpecialStringMaker.ShowHeroCharacterCardWithHighestHP(ranking: 2);
         }
 
         public override IEnumerator Play()
@@ -29,7 +29,7 @@ namespace Chasejyd.BlisterTeam
 
             //Deal the Hero with the Second Highest HP 2 Melee Damage and 2 Fire Damage.
             List<Card> storeHighest = new List<Card>();
-            coroutine = GameController.FindTargetWithHighestHitPoints(2, (Card c) => c.IsHero && c.IsTarget, storeHighest, cardSource: GetCardSource());
+            coroutine = GameController.FindTargetWithHighestHitPoints(2, (Card c) => c.IsHeroCharacterCard && !c.IsIncapacitatedOrOutOfGame, storeHighest, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);
