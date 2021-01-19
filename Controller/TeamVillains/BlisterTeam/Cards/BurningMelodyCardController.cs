@@ -11,7 +11,7 @@ namespace Chasejyd.BlisterTeam
 
         public BurningMelodyCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-
+            SpecialStringMaker.ShowHeroTargetWithHighestHP();
         }
 
         public override IEnumerator Play()

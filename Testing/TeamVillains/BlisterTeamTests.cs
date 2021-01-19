@@ -228,5 +228,24 @@ namespace ChasejydTests
 
         }
 
+        [Test()]
+        public void TestBurnItDown()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+            PreventEndOfTurnEffects(haka, blisterTeam.CharacterCard);
+
+            Card police = PlayCard("PoliceBackup");
+            PlayCard("BurnItDown");
+            //At the end of {Blister}'s turn, Destroy an Environment Card.
+            //Whenever an Environment Card is destroyed, {Blister} deals the Hero Target with the highest HP 2 Fire Damage.
+            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon);
+            GoToEndOfTurn(blisterTeam);
+            QuickHPCheck(0, -2, 0, 0, 0, 0);
+            AssertInTrash(police);
+
+        }
+
     }
 }
