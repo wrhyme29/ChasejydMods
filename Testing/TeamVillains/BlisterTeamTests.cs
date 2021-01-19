@@ -158,7 +158,7 @@ namespace ChasejydTests
             QuickHPStorage(haka);
             DealDamage(blisterTeam, haka, 5, DamageType.Fire);
             QuickHPCheck(-5);
-
+            PreventEndOfTurnEffects(haka, blisterTeam.CharacterCard);
             DecisionSelectTarget = blisterTeam.CharacterCard;
             DecisionAutoDecideIfAble = true;
             //Heroes damaged by Blister cannot use powers or play cards outside of their own turn until the Start of Blister's next turn
@@ -245,6 +245,42 @@ namespace ChasejydTests
             QuickHPCheck(0, -2, 0, 0, 0, 0);
             AssertInTrash(police);
 
+        }
+
+        [Test()]
+        public void TestFightFireWithFire()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+            PreventEndOfTurnEffects(haka, blisterTeam.CharacterCard);
+
+            Card police = PlayCard("PoliceBackup");
+            PlayCard("FightFireWithFire");
+            Card axe = PlayCard("BlazingAxe");
+            //The first time each turn that a Device is destroyed, destroy an Equipment Card and deal the Hero Target with the Highest HP 2 Fire Damage.
+            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon);
+            DestroyCard(axe, haka.CharacterCard);
+            QuickHPCheck(0, -2, 0, 0, 0, 0);
+            AssertInTrash(police);
+
+            //only once per turn
+            PlayCard(axe);
+            PlayCard(police);
+            SetAllTargetsToMaxHP();
+            QuickHPUpdate();
+            DestroyCard(axe, haka.CharacterCard);
+            QuickHPCheckZero();
+            AssertInPlayArea(env, police);
+
+            //resets next turn
+            GoToNextTurn();
+            PlayCard(axe);
+            SetAllTargetsToMaxHP();
+            QuickHPUpdate();
+            DestroyCard(axe, haka.CharacterCard);
+            QuickHPCheck(0, -2, 0, 0, 0, 0);
+            AssertInTrash(police);
         }
 
     }
