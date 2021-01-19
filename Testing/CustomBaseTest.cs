@@ -10,6 +10,11 @@ namespace ChasejydTests
 {
     public class CustomBaseTest : BaseTest
     {
+        //heroes
+        protected HeroTurnTakerController rockstar { get { return FindHero("Rockstar"); } }
+
+        //team villains
+        protected TurnTakerController blisterTeam { get { return FindVillainTeamMember("Blister"); } }
 
         protected void AddImmuneToDamageTrigger(TurnTakerController ttc, bool heroesImmune, bool villainsImmune)
         {

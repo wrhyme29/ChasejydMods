@@ -14,8 +14,23 @@ namespace Chasejyd.BlisterTeam
 
         public override IEnumerator StartGame()
         {
-            //Blazing Axe and Firestarter are put into play, and the villain deck is shuffled.
-            yield break;
+			//Blazing Axe and Firestarter are put into play, and the villain deck is shuffled.
+			IEnumerator coroutine = PutCardIntoPlay("BlazingAxe");
+			IEnumerator coroutine2 = PutCardIntoPlay("Firestarter");
+			IEnumerator coroutine3 = GameController.ShuffleLocation(TurnTaker.Deck, cardSource: CharacterCardController.GetCardSource());
+			if (base.UseUnityCoroutines)
+			{
+				yield return base.GameController.StartCoroutine(coroutine);
+				yield return base.GameController.StartCoroutine(coroutine2);
+				yield return base.GameController.StartCoroutine(coroutine3);
+			}
+			else
+			{
+				base.GameController.ExhaustCoroutine(coroutine);
+				base.GameController.ExhaustCoroutine(coroutine2);
+				base.GameController.ExhaustCoroutine(coroutine3);
+			}
+			yield break;
         }
 
     }

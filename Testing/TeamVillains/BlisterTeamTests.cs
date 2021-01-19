@@ -13,8 +13,6 @@ namespace ChasejydTests
     [TestFixture()]
     public class BlisterTeamTests : CustomBaseTest
     {
-        protected TurnTakerController blisterTeam { get { return FindVillainTeamMember("Blister"); } }
-
         [Test()]
         public void TestLoadBisterTeam()
         {
@@ -27,6 +25,101 @@ namespace ChasejydTests
             Assert.IsInstanceOf(typeof(BlisterTeamTurnTakerController), blisterTeam);
 
             Assert.AreEqual(23, blisterTeam.CharacterCard.HitPoints);
+        }
+
+        [Test()]
+        public void TestBisterTeamStartOfGame()
+        {
+            SetupGameController(new string[] { "Chasejyd.BlisterTeam", "Chasejyd.Rockstar", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, advanced: true);
+            StartGame();
+            Card ax = GetCard("BlazingAxe");
+            Card firestarter = GetCard("Firestarter");
+            AssertInPlayArea(blisterTeam, ax);
+            AssertInPlayArea(blisterTeam, firestarter);
+
+        }
+
+        [Test()]
+        public void TestBisterTeamFront()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Chasejyd.Rockstar", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis");
+            StartGame();
+
+            //{Blister} is immune to Fire Damage.
+            QuickHPStorage(blisterTeam);
+            DealDamage(rockstar, blisterTeam, 3, DamageType.Fire);
+            QuickHPCheckZero();
+
+            //not immune to other damage
+            QuickHPUpdate();
+            DealDamage(bunker, blisterTeam, 3, DamageType.Melee);
+            QuickHPCheck(-3);
+
+            //At the End of her Turn, {Blister} deals the two Non-Villain Targets with the Highest HP 1 Fire Damage.
+            QuickHPStorage(blisterTeam, rockstar, ermineTeam, bunker, operativeTeam, tachyon);
+            GoToEndOfTurn(blisterTeam);
+            QuickHPCheck(0, -2, 0, -1, 0, 0); //rockstar is nemesis
+
+            Card ax = GetCardInPlay("BlazingAxe");
+            DestroyCard(ax, rockstar.CharacterCard);
+            AssertInTrash(ax);
+
+        }
+
+        [Test()]
+        public void TestBisterTeamFrontAdvanced()
+        {
+            SetupGameController(new string[] { "Chasejyd.BlisterTeam", "Chasejyd.Rockstar", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, advanced: true, advancedIdentifiers: new string[] { "Chasejyd.BlisterTeam" });
+            StartGame();
+            Card ax = GetCardInPlay("BlazingAxe");
+            DestroyCard(ax, rockstar.CharacterCard);
+            AssertInPlayArea(blisterTeam, ax);
+
+        }
+
+        [Test()]
+        public void TestBisterTeamFrontChallenge()
+        {
+            SetupGameController(new string[] { "Chasejyd.BlisterTeam", "Chasejyd.Rockstar", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            StartGame();
+            //{Blister} is immune to Fire Damage.
+            QuickHPStorage(blisterTeam);
+            DealDamage(rockstar, blisterTeam, 3, DamageType.Fire);
+            QuickHPCheckZero();
+
+            //not immune to other damage
+            QuickHPUpdate();
+            DealDamage(bunker, blisterTeam, 3, DamageType.Melee);
+            QuickHPCheck(-3);
+
+            //At the End of her Turn, {Blister} deals the two Non-Villain Targets with the Highest HP 1 Fire Damage.
+            //When Blister would deal a Non-Villain Target Fire Damage, she also deals that Target 1 Toxic Damage.
+            QuickHPStorage(blisterTeam, rockstar, ermineTeam, bunker, operativeTeam, tachyon);
+            GoToEndOfTurn(blisterTeam);
+            QuickHPCheck(0, -4, 0, -2, 0, 0); //rockstar is nemesis
+
+        }
+
+        [Test()]
+        public void TestBisterTeamIncap()
+        {
+            SetupGameController("ErmineTeam", "Haka", "Chasejyd.BlisterTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "Megalopolis");
+            StartGame();
+
+            DealDamage(rockstar, blisterTeam, 1000, DamageType.Projectile, true);
+            AssertFlipped(blisterTeam);
+
+            Card police = PlayCard("PoliceBackup");
+            GoToEndOfTurn(haka);
+            //Destroy an Environment Card 
+            //and deal the Hero Target with the Highest HP 3 Fire Damage.
+
+            QuickHPStorage(ermineTeam, haka, rockstar, operativeTeam, tachyon);
+            GoToStartOfTurn(blisterTeam);
+            AssertInTrash(police);
+            QuickHPCheck(0, -3, 0, 0, 0);
+
+
         }
 
     }

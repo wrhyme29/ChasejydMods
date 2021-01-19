@@ -14,7 +14,6 @@ namespace ChasejydTests
     [TestFixture()]
     public class RockstarTeamTests : CustomBaseTest
     {
-        protected HeroTurnTakerController rockstar { get { return FindHero("Rockstar"); } }
 
         private void SetupIncap(TurnTakerController villain)
         {

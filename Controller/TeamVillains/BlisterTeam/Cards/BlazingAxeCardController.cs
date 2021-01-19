@@ -11,7 +11,13 @@ namespace Chasejyd.BlisterTeam
 
         public BlazingAxeCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
+            AddThisCardControllerToList(CardControllerListType.MakesIndestructible);
+        }
 
+        public override bool AskIfCardIsIndestructible(Card card)
+        {
+            
+            return card == Card && CharacterCardController.IsGameAdvanced && !CharacterCard.IsFlipped;
         }
 
 
