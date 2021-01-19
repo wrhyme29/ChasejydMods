@@ -45,6 +45,10 @@ namespace ChasejydTests
             SetupGameController("Chasejyd.BlisterTeam", "Chasejyd.Rockstar", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis");
             StartGame();
 
+            Card ax = GetCardInPlay("BlazingAxe");
+            DestroyCard(ax, rockstar.CharacterCard);
+            AssertInTrash(ax);
+
             //{Blister} is immune to Fire Damage.
             QuickHPStorage(blisterTeam);
             DealDamage(rockstar, blisterTeam, 3, DamageType.Fire);
@@ -60,9 +64,7 @@ namespace ChasejydTests
             GoToEndOfTurn(blisterTeam);
             QuickHPCheck(0, -2, 0, -1, 0, 0); //rockstar is nemesis
 
-            Card ax = GetCardInPlay("BlazingAxe");
-            DestroyCard(ax, rockstar.CharacterCard);
-            AssertInTrash(ax);
+            
 
         }
 
@@ -82,6 +84,8 @@ namespace ChasejydTests
         {
             SetupGameController(new string[] { "Chasejyd.BlisterTeam", "Chasejyd.Rockstar", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
             StartGame();
+            DestroyNonCharacterVillainCards();
+
             //{Blister} is immune to Fire Damage.
             QuickHPStorage(blisterTeam);
             DealDamage(rockstar, blisterTeam, 3, DamageType.Fire);
@@ -147,7 +151,7 @@ namespace ChasejydTests
         {
             SetupGameController("Chasejyd.BlisterTeam", "Haka","ErmineTeam" , "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "Megalopolis");
             StartGame();
-
+            DestroyNonCharacterVillainCards();
             // Damage from { Blister} is Irreducible.
             PlayCard("BlisteringSolo");
             AddReduceDamageTrigger(haka, true, false, 2);
@@ -185,6 +189,42 @@ namespace ChasejydTests
             QuickHPUpdate();
             UsePower(haka.CharacterCard);
             QuickHPCheck(-2);
+
+        }
+
+        [Test()]
+        public void TestBurningMelody()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card dominion = PlayCard("Dominion");
+            //Deal the Hero Target with the highest HP 2 Fire Damage.
+            //Destroy an Ongoing Card in that Hero's play area.
+
+            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon);
+            PlayCard("BurningMelody");
+            QuickHPCheck(0, -2, 0, 0, 0, 0);
+            AssertInTrash(dominion);
+
+        }
+
+        [Test()]
+        public void TestBurningMelody_DestroyWhenNoDamage()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card dominion = PlayCard("Dominion");
+            //Deal the Hero Target with the highest HP 2 Fire Damage.
+            //Destroy an Ongoing Card in that Hero's play area.
+            AddImmuneToDamageTrigger(haka, true, false);
+            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon);
+            PlayCard("BurningMelody");
+            QuickHPCheck(0, 0, 0, 0, 0, 0);
+            AssertInTrash(dominion);
 
         }
 
