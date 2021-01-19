@@ -399,6 +399,32 @@ namespace ChasejydTests
             DealDamage(haka, blisterTeam, 3, DamageType.Melee);
             QuickHPCheck(-3, -2, 0, 0, 0, 0, 0, 0);
         }
+        [Test()]
+        public void TestSetFireToTheRain_NoAx()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+            //Blister deals each Non-Villain Target 1 Fire Damage. 
+            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon, baronTeam, bunker);
+            PlayCard("SetFireToTheRain");
+            QuickHPCheck(0, -1, 0, -2, 0, -1, 0, -1); //rockstar is nemesis
+
+        }
+
+        [Test()]
+        public void TestSetFireToTheRain_WithAx()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+            //Blister deals each Non-Villain Target 1 Fire Damage. 
+            Card axe = PlayCard("BlazingAxe");
+            QuickHPStorage(blisterTeam.CharacterCard, haka.CharacterCard, ermineTeam.CharacterCard, rockstar.CharacterCard, operativeTeam.CharacterCard, tachyon.CharacterCard, baronTeam.CharacterCard, bunker.CharacterCard, axe);
+            PlayCard("SetFireToTheRain");
+            QuickHPCheck(0, -2, 0, -3, 0, -2, 0,-2, -3); //rockstar is nemesis
+
+        }
 
     }
 }
