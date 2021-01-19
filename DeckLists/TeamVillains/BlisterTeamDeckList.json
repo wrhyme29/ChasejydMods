@@ -1,0 +1,337 @@
+{
+   "name":"Blister",
+   "kind":"VillainTeam",
+   "initialCardIdentifiers":[  
+      "BlisterTeamCharacter"
+   ],
+   "cards":[  
+      {  
+         "identifier":"BlisterTeamCharacter",
+         "count":1,
+         "title":"Blister",
+         "keywords":[  
+            "villain"
+         ],
+         "icons":[  
+        
+         ],
+         "advancedIcons":[  
+           
+         ],
+         "body":"She's on Fire!",
+         "backgroundColor":"A4B5B8",
+         "foilBackgroundColor":"A2B3B7",
+         "character":true,
+         "hitpoints":23,
+         "nemesisIdentifiers":[  
+            "Rockstar"
+         ],
+         "setup":[  
+            "{Blister} starts the game 'She's On Fire!' side up.",
+            "Blazing Axe and Firestarter are put into play, and the villain deck is shuffled."
+         ],
+         "gameplay":[  
+            "{Blister} is immune to Fire Damage.",
+            "At the End of her Turn, {Blister} deals the two Non-Villain Targets with the Highest HP 1 Fire Damage."
+         ],
+         "advanced":"Blazing Axe is Indestructible.",
+         "flippedShowHitpoints":false,
+         "flippedBody":"Incapacitated",
+         "flippedKeywords":[
+         ],
+         "flippedGameplay":[  
+            "Destroy an Environment Card and deal the Hero Target with the Highest HP 3 Fire Damage."
+         ],
+         "flippedIcons":[  
+            
+         ],
+         "difficulty":2,
+         "challengeTitle":"When There's Fire, There's Smoke",
+		 "challengeText":"When {Blister} would deal a Non-Villain Target Fire Damage, she also deals that Target 1 Toxic Damage.",
+		 "challengeIcons":[
+		 ],
+         "openingLines":{  
+            "default":"Blister Placeholder Opening Line"
+         }
+      },
+      {  
+         "identifier":"BlazingAxe",
+         "count":1,
+         "title":"Blazing Axe",
+         "keywords":[  
+            "device"
+         ],
+         "icons":[  
+           
+         ],
+         "body":[  
+            "Increase Damage Dealt by {Blister} by 1.",
+            "Damage from {Blister} cannot be redirected."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister",
+         "hitpoints":10
+      },
+      {  
+         "identifier":"BlisteringSolo",
+         "count":1,
+         "title":"Blistering Solo",
+         "keywords":[  
+            "ongoing"
+         ],
+         "icons":[  
+           
+         ],
+         "body":[  
+            "Damage from {Blister} is Irreducible.",
+            "Heroes damaged by {Blister} cannot use Powers or Play Cards outside of their own turn."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister"
+      },
+      {  
+         "identifier":"BurningMelody",
+         "count":2,
+         "title":"Burning Melody",
+         "keywords":[  
+            "one-shot"
+         ],
+         "icons":[  
+           
+         ],
+         "body":[  
+            "Deal the Hero Target with the highest HP 2 Fire Damage.",
+            "Destroy an Ongoing Card in that Hero's play area."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister"
+      },
+      {  
+         "identifier":"SleepNowInTheFire",
+         "count":1,
+         "title":"Sleep Now in the Fire",
+         "keywords":[  
+            "ongoing"
+         ],
+         "icons":[  
+           
+         ],
+         "body":[  
+            "The first time each turn that {Blister} would deal Fire Damage, she also heals HP equal to the amount of Fire Damage dealt."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister"
+      },
+      {  
+         "identifier":"StageDive",
+         "count":2,
+         "title":"Stage Dive",
+         "keywords":[  
+            "one-shot"
+         ],
+         "icons":[  
+           
+         ],
+         "body":[  
+            "Destroy an Environment Card. Deal the Hero with the Second Highest HP 2 Melee Damage and 2 Fire Damage.",
+            "Play the top Card of the Environment Deck."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister"
+      },
+      {  
+         "identifier":"BurnItDown",
+         "count":2,
+         "title":"Burn It Down",
+         "keywords":[  
+            "ongoing"
+         ],
+         "icons":[  
+           
+         ],
+         "body":[  
+            "Whenever an Environment Card would be destroyed, {Blister} deals the Hero Target with the highest HP 2 Fire Damage.",
+            "At the end of {Blister}'s turn, Destroy an Environment Card."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister"
+      },
+       {  
+         "identifier":"BlisterRingOfFire",
+         "count":1,
+         "title":"Ring of Fire",
+         "keywords":[  
+            "ongoing"
+         ],
+         "icons":[  
+           
+         ],
+         "body":[  
+            "The first time each turn that {Blister} would be dealt damage, she first deals the source of that damage 2 Fire Damage."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister"
+      },
+      {  
+         "identifier":"SetFireToTheRain",
+         "count":2,
+         "title":"Set Fire to the Rain",
+         "keywords":[  
+            "one-shot"
+         ],
+         "icons":[  
+           
+         ],
+         "body":[  
+            "Deal each Non-Villain Target 1 Fire Damage. If Blazing Axe is in play, deal it 2 Fire Damage."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister"
+      },
+      {  
+         "identifier":"Firestarter",
+         "count":1,
+         "title":"Firestarter",
+         "keywords":[  
+            "ongoing"
+         ],
+         "icons":[  
+           
+         ],
+         "body":[  
+            "The first time each turn that a Hero Card is destroyed, Blister deals the Hero Target with the second highest HP 2 Fire Damage."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister"
+      },
+      {  
+         "identifier":"FightFireWithFire",
+         "count":1,
+         "title":"Fight Fire with Fire",
+         "keywords":[  
+            "ongoing"
+         ],
+         "icons":[  
+           
+         ],
+         "body":[  
+            "The first time each turn that a Device is destroyed, destroy an Equipment Card and deal the Hero Target with the Highest HP 2 Fire Damage."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister"
+      },
+      {  
+         "identifier":"Fireball",
+         "count":2,
+         "title":"Fireball",
+         "keywords":[  
+            "one-shot"
+         ],
+         "icons":[  
+           
+         ],
+         "body":[  
+            "Deal the Hero Target with the highest HP 3 Fire Damage. Destroy 1 Hero Ongoing and 1 of {Blister}'s Ongoings. Then deal Blazing Axe 2 Fire Damage."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister"
+      },
+      {  
+         "identifier":"FireAway",
+         "count":2,
+         "title":"Fire Away",
+         "keywords":[  
+            "one-shot"
+         ],
+         "icons":[  
+           
+         ],
+         "body":[  
+            "Deal the 3 Non-Villain Targets with the Highest HP 2 Fire Damage each."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister"
+      },
+      {  
+         "identifier":"SoloAct",
+         "count":2,
+         "title":"SoloAct",
+         "keywords":[  
+            "one-shot"
+         ],
+         "icons":[  
+           
+         ],
+         "body":[  
+            "Blister Deals the Hero Target with the Highest HP 1 Sonic Damage, 1 Fire Damage, and 1 Toxic Damage."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister"
+      }
+   ]
+}

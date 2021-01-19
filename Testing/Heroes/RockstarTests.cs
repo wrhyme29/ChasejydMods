@@ -12,7 +12,7 @@ using Chasejyd.Rockstar;
 namespace ChasejydTests
 {
     [TestFixture()]
-    public class RockstarTests : BaseTest
+    public class RockstarTeamTests : CustomBaseTest
     {
         protected HeroTurnTakerController rockstar { get { return FindHero("Rockstar"); } }
 
