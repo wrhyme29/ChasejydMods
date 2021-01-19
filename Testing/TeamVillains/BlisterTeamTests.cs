@@ -458,5 +458,18 @@ namespace ChasejydTests
             QuickHPCheck(0, -2, 0, 0, 0, 0, 0, 0);
         }
 
+        [Test()]
+        public void TestSoloAct()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+            //{Blister} deals the Hero Target with the Highest HP 1 Sonic Damage, 1 Fire Damage, and 1 Toxic Damage.
+            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon, baronTeam, bunker);
+            PlayCard("SoloAct");
+            QuickHPCheck(0, -3, 0, 0, 0, 0, 0, 0);
+
+        }
+
     }
 }
