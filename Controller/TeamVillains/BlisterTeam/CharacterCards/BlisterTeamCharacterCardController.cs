@@ -27,7 +27,7 @@ namespace Chasejyd.BlisterTeam
 				AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(TurnTaker, CharacterCard, (Card c) => c.IsNonVillainTarget, TargetType.HighestHP, 1, DamageType.Fire, numberOfTargets: 2));
 				if(TurnTaker.IsChallenge)
                 {
-					//When Blister would deal a Non-Villain Target Fire Damage, she also deals that Target 1 Toxic Damage.
+					//Whenever {Blister} deals a Non-Villain Target Fire Damage, she also deals that Target 1 Toxic Damage.
 					AddSideTrigger(AddTrigger((DealDamageAction dd) => dd.DamageSource != null && dd.DamageSource.IsSameCard(CharacterCard) && dd.DamageType == DamageType.Fire && dd.Target != null && dd.Target.IsNonVillainTarget, ChallengeDamageResponse, TriggerType.DealDamage, TriggerTiming.After));
 				}
 			}

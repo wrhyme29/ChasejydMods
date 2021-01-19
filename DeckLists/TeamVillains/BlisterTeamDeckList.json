@@ -47,7 +47,7 @@
          ],
          "difficulty":2,
          "challengeTitle":"When There's Fire, There's Smoke",
-		 "challengeText":"When {Blister} would deal a Non-Villain Target Fire Damage, she also deals that Target 1 Toxic Damage.",
+		 "challengeText":"Whenever {Blister} deals a Non-Villain Target Fire Damage, she also deals that Target 1 Toxic Damage.",
 		 "challengeIcons":[
 		 ],
          "openingLines":{  
