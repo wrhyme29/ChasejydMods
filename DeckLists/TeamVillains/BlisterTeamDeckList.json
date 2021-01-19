@@ -139,7 +139,7 @@
            "GainHP"
          ],
          "body":[  
-            "The first time each turn that {Blister} deals Fire Damage, she also heals HP equal to the amount of Fire Damage dealt."
+            "The first time each turn that {Blister} deals Fire Damage, she also gains HP equal to the amount of Fire Damage dealt."
          ],
          "flavorQuotes":[  
             {  
@@ -250,7 +250,7 @@
            "DealDamageFire"
          ],
          "body":[  
-            "The first time each turn that a Hero Card is destroyed, Blister deals the Hero Target with the second highest HP 2 Fire Damage."
+            "The first time each turn that a Hero Card is destroyed, {Blister} deals the Hero Target with the second highest HP 2 Fire Damage."
          ],
          "flavorQuotes":[  
             {  
