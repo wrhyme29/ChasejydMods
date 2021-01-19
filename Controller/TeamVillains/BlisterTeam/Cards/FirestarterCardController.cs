@@ -12,7 +12,7 @@ namespace Chasejyd.BlisterTeam
         public FirestarterCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
             SpecialStringMaker.ShowHeroTargetWithHighestHP(ranking: 2);
-
+            SpecialStringMaker.ShowHasBeenUsedThisTurn(FirstTimeHeroCardDestroyed);
         }
 
         public static readonly string FirstTimeHeroCardDestroyed = "FirstTimeHeroCardDestroyed";

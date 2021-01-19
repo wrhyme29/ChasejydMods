@@ -375,6 +375,30 @@ namespace ChasejydTests
             DestroyCard(dominion, blisterTeam.CharacterCard);
             QuickHPCheck(0, 0, 0, -3, 0, 0, 0, 0); //rockstar is nemesis
         }
+        [Test()]
+        public void TestRingOfFire()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            PlayCard("BlisterRingOfFire");
+            //The first time each turn that {Blister} would be dealt damage, she first deals the source of that damage 2 Fire Damage.
+            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon, baronTeam, bunker);
+            DealDamage(haka, blisterTeam, 3, DamageType.Melee);
+            QuickHPCheck(-3, -2, 0, 0, 0, 0, 0, 0);
+
+            //only first time
+            QuickHPUpdate();
+            DealDamage(haka, blisterTeam, 3, DamageType.Melee);
+            QuickHPCheck(-3, 0, 0, 0, 0, 0, 0, 0);
+
+            //resets next turn
+            GoToNextTurn();
+            QuickHPUpdate();
+            DealDamage(haka, blisterTeam, 3, DamageType.Melee);
+            QuickHPCheck(-3, -2, 0, 0, 0, 0, 0, 0);
+        }
 
     }
 }
