@@ -123,6 +123,26 @@ namespace ChasejydTests
         }
 
         [Test()]
+        public void TestBlazingAxe()
+        {
+            SetupGameController("ErmineTeam", "Haka", "Chasejyd.BlisterTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Legacy", "Megalopolis");
+            StartGame();
+
+            //Increase Damage Dealt by {Blister} by 1.
+            QuickHPStorage(haka);
+            DealDamage(blisterTeam, haka, 2, DamageType.Fire);
+            QuickHPCheck(-3);
+
+            //Damage from {Blister} cannot be redirected.
+            PlayCard("LeadFromTheFront");
+            DecisionYesNo = true;
+            QuickHPStorage(haka, rockstar, legacy);
+            DealDamage(blisterTeam, haka, 2, DamageType.Fire);
+            QuickHPCheck(-3, 0, 0);
+
+        }
+
+        [Test()]
         public void TestBisteringSolo()
         {
             SetupGameController("Chasejyd.BlisterTeam", "Haka","ErmineTeam" , "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "Megalopolis");
