@@ -1,6 +1,6 @@
 ﻿using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
-using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -13,6 +13,23 @@ namespace Chasejyd.BlisterTeam
         {
 
         }
+
+        public static readonly string BlazingAxeIdentifier = "BlazingAxe";
+
+        private IEnumerable<Card> FindBlazingAxe()
+        {
+            return base.FindCardsWhere(c => c.Identifier == BlazingAxeIdentifier);
+        }
+        protected Card FindBlazingAxeInPlay()
+        {
+            return FindBlazingAxe().Where(c => c.IsInPlayAndHasGameText).FirstOrDefault();
+        }
+
+        protected bool IsBlazingAxeInPlay()
+        {
+            return FindBlazingAxe().Where(c => c.IsInPlayAndHasGameText).Any();
+        }
+
 
 
     }
