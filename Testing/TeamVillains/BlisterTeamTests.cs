@@ -335,8 +335,45 @@ namespace ChasejydTests
             QuickHPCheck(0, -4, 0, 0, 0, 0, 0, 0, -3);
             AssertInTrash(heroOngoing);
             AssertInTrash(blisterOngoing);
+        }
 
+        [Test()]
+        public void TestFirestarter()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
 
+            Card dominion = PlayCard("Dominion");
+            Card police = PlayCard("PoliceBackup");
+            //The first time each turn that a Hero Card is destroyed, Blister deals the Hero Target with the second highest HP 2 Fire Damage.
+            PlayCard("Firestarter");
+
+            //don't trigger on non-hero
+            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon, baronTeam, bunker);
+            DestroyCard(police, haka.CharacterCard);
+            QuickHPCheckZero();
+
+            //triggers on first hero
+
+            QuickHPUpdate();
+            DestroyCard(dominion, blisterTeam.CharacterCard);
+            QuickHPCheck(0, 0, 0, -3, 0, 0, 0, 0); //rockstar is nemesis
+
+            //only first damage per turn
+            SetAllTargetsToMaxHP();
+            PlayCard(dominion);
+            QuickHPUpdate();
+            DestroyCard(dominion, blisterTeam.CharacterCard);
+            QuickHPCheckZero();
+
+            //resets next turn
+            GoToNextTurn();
+            SetAllTargetsToMaxHP();
+            PlayCard(dominion);
+            QuickHPUpdate();
+            DestroyCard(dominion, blisterTeam.CharacterCard);
+            QuickHPCheck(0, 0, 0, -3, 0, 0, 0, 0); //rockstar is nemesis
         }
 
     }
