@@ -41,7 +41,7 @@ namespace Chasejyd.BlisterTeam
                 base.GameController.ExhaustCoroutine(coroutine);
             }
             //{Blister} deals the Hero Target with the highest HP 2 Fire Damage.
-            coroutine = DealDamageToHighestHP(Card, 1, (Card c) => c.IsHero && c.IsTarget, (Card c) => 2, DamageType.Fire);
+            coroutine = DealDamageToHighestHP(CharacterCard, 1, (Card c) => c.IsHero && c.IsTarget, (Card c) => 2, DamageType.Fire);
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);

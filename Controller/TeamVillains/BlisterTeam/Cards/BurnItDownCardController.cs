@@ -25,7 +25,7 @@ namespace Chasejyd.BlisterTeam
         private IEnumerator EnvironmentDestroyedResponse(DestroyCardAction pca)
         {
             //{Blister} deals the Hero Target with the highest HP 2 Fire Damage.
-            IEnumerator coroutine = DealDamageToHighestHP(Card, 1, (Card c) => c.IsHero && c.IsTarget, (Card c) => 2, DamageType.Fire);
+            IEnumerator coroutine = DealDamageToHighestHP(CharacterCard, 1, (Card c) => c.IsHero && c.IsTarget, (Card c) => 2, DamageType.Fire);
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);

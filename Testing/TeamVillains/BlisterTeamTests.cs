@@ -291,10 +291,52 @@ namespace ChasejydTests
             StartGame();
             DestroyNonCharacterVillainCards();
 
-            //Deal the 3 Non-Villain Targets with the Highest HP 2 Fire Damage each.
+            //blister deals the 3 Non-Villain Targets with the Highest HP 2 Fire Damage each.
             QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon, baronTeam, bunker);
             PlayCard("FireAway");
-            QuickHPCheck(0, -2, 0, -2, 0, 0, 0, -2);
+            QuickHPCheck(0, -2, 0, -3, 0, 0, 0, -2); //rockstar is nemesis
+        }
+
+        [Test()]
+        public void TestFireball_NoAxe()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card heroOngoing = PlayCard("Dominion");
+            Card blisterOngoing = PlayCard("BlisteringSolo");
+            //Blister deals the Hero Target with the highest HP 3 Fire Damage. 
+            //Destroy 1 Hero Ongoing and 1 of {Blister}'s Ongoings. 
+            //Then if Blazing Axe is in play, Blister deals it 2 Fire Damage.
+            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon, baronTeam, bunker);
+            PlayCard("Fireball");
+            QuickHPCheck(0, -3, 0, 0, 0, 0, 0, 0);
+            AssertInTrash(heroOngoing);
+            AssertInTrash(blisterOngoing);
+
+        }
+
+        [Test()]
+        public void TestFireball_WithAxe()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card heroOngoing = PlayCard("Dominion");
+            Card blisterOngoing = PlayCard("BlisteringSolo");
+            Card axe = PlayCard("BlazingAxe");
+            //Blister deals the Hero Target with the highest HP 3 Fire Damage. 
+            //Destroy 1 Hero Ongoing and 1 of {Blister}'s Ongoings. 
+            //Then if Blazing Axe is in play, Blister deals it 2 Fire Damage.
+            QuickHPStorage(blisterTeam.CharacterCard, haka.CharacterCard, ermineTeam.CharacterCard, rockstar.CharacterCard, operativeTeam.CharacterCard, tachyon.CharacterCard, baronTeam.CharacterCard, bunker.CharacterCard, axe);
+            PlayCard("Fireball");
+            QuickHPCheck(0, -4, 0, 0, 0, 0, 0, 0, -3);
+            AssertInTrash(heroOngoing);
+            AssertInTrash(blisterOngoing);
+
+
         }
 
     }

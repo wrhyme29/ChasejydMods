@@ -110,7 +110,7 @@
            
          ],
          "body":[  
-            "Deal the Hero Target with the highest HP 2 Fire Damage.",
+            "{Blister} deals the Hero Target with the highest HP 2 Fire Damage.",
             "Destroy an Ongoing Card in that Hero's play area."
          ],
          "flavorQuotes":[  
@@ -281,7 +281,7 @@
            
          ],
          "body":[  
-            "Deal the Hero Target with the highest HP 3 Fire Damage. Destroy 1 Hero Ongoing and 1 of {Blister}'s Ongoings. Then deal Blazing Axe 2 Fire Damage."
+            "{Blister} deals the Hero Target with the highest HP 3 Fire Damage. Destroy 1 Hero Ongoing and 1 of {Blister}'s Ongoings. Then if Blazing Axe is in play, {Blister} deals it 2 Fire Damage."
          ],
          "flavorQuotes":[  
             {  
@@ -302,7 +302,7 @@
            
          ],
          "body":[  
-            "Deal the 3 Non-Villain Targets with the Highest HP 2 Fire Damage each."
+            "{Blister} deals the 3 Non-Villain Targets with the Highest HP 2 Fire Damage each."
          ],
          "flavorQuotes":[  
             {  

@@ -16,10 +16,10 @@ namespace Chasejyd.BlisterTeam
 
         public override IEnumerator Play()
         {
-            //Deal the Hero Target with the highest HP 2 Fire Damage.
+            //Blister deals the Hero Target with the highest HP 2 Fire Damage.
 
             List<DealDamageAction> storedResults = new List<DealDamageAction>();
-            IEnumerator coroutine = DealDamageToHighestHP(Card, 1, (Card c) => c.IsHero && c.IsTarget, (Card c) => 2, DamageType.Fire, storedResults: storedResults);
+            IEnumerator coroutine = DealDamageToHighestHP(CharacterCard, 1, (Card c) => c.IsHero && c.IsTarget, (Card c) => 2, DamageType.Fire, storedResults: storedResults);
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);
