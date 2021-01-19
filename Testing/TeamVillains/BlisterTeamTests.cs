@@ -426,5 +426,37 @@ namespace ChasejydTests
 
         }
 
+        [Test()]
+        public void TestSleepNowInTheFire()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            SetHitPoints(blisterTeam, 10);
+            PlayCard("SleepNowInTheFire");
+            //The first time each turn that {Blister} deals Fire Damage, she also heals HP equal to the amount of Fire Damage dealt.
+            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon, baronTeam, bunker);
+            DealDamage(blisterTeam, haka, 2, DamageType.Fire);
+            QuickHPCheck(2, -2, 0, 0, 0, 0, 0, 0);
+
+            //only first damage
+            QuickHPUpdate();
+            DealDamage(blisterTeam, haka, 2, DamageType.Fire);
+            QuickHPCheck(0, -2, 0, 0, 0, 0, 0, 0);
+
+            //resets next turn
+            GoToNextTurn();
+            QuickHPUpdate();
+            DealDamage(blisterTeam, haka, 4, DamageType.Fire);
+            QuickHPCheck(4, -4, 0, 0, 0, 0, 0, 0);
+
+            //only fire
+            GoToNextTurn();
+            QuickHPUpdate();
+            DealDamage(blisterTeam, haka, 2, DamageType.Melee);
+            QuickHPCheck(0, -2, 0, 0, 0, 0, 0, 0);
+        }
+
     }
 }
