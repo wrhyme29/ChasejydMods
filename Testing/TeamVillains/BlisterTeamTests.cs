@@ -149,7 +149,7 @@ namespace ChasejydTests
         [Test()]
         public void TestBisteringSolo()
         {
-            SetupGameController("Chasejyd.BlisterTeam", "Haka","ErmineTeam" , "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "Megalopolis");
+            SetupGameController(new string[] { "Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "Megalopolis" });
             StartGame();
             DestroyNonCharacterVillainCards();
             // Damage from { Blister} is Irreducible.
@@ -183,6 +183,7 @@ namespace ChasejydTests
             QuickHPCheckZero();
 
             GoToStartOfTurn(blisterTeam);
+            PreventEndOfTurnEffects(haka, blisterTeam.CharacterCard);
             GoToPlayCardPhase(haka);
             PlayCard(dominion);
             AssertIsInPlay(dominion);
