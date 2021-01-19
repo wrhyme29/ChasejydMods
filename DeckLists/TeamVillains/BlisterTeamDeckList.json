@@ -89,7 +89,7 @@
          ],
          "body":[  
             "Damage from {Blister} is Irreducible.",
-            "Heroes damaged by {Blister} cannot use Powers or Play Cards outside of their own turn."
+            "Heroes damaged by {Blister} cannot use powers or play cards outside of their own turn until the Start of Blister's next turn"
          ],
          "flavorQuotes":[  
             {  

@@ -122,5 +122,51 @@ namespace ChasejydTests
 
         }
 
+        [Test()]
+        public void TestBisteringSolo()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka","ErmineTeam" , "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "Megalopolis");
+            StartGame();
+
+            // Damage from { Blister} is Irreducible.
+            PlayCard("BlisteringSolo");
+            AddReduceDamageTrigger(haka, true, false, 2);
+            QuickHPStorage(haka);
+            DealDamage(blisterTeam, haka, 5, DamageType.Fire);
+            QuickHPCheck(-5);
+
+            DecisionSelectTarget = blisterTeam.CharacterCard;
+            DecisionAutoDecideIfAble = true;
+            //Heroes damaged by Blister cannot use powers or play cards outside of their own turn until the Start of Blister's next turn
+            Card mere = PlayCard("Mere");
+            AssertNotInPlay(mere);
+            QuickHPStorage(blisterTeam);
+            UsePower(haka.CharacterCard);
+            QuickHPCheckZero();
+
+            GoToPlayCardPhase(haka);
+            PlayCard(mere);
+            AssertIsInPlay(mere);
+            QuickHPUpdate();
+            UsePower(haka.CharacterCard);
+            QuickHPCheck(-2);
+
+            GoToPlayCardPhase(rockstar);
+            Card dominion = PlayCard("Dominion");
+            AssertNotInPlay(dominion);
+            QuickHPUpdate();
+            UsePower(haka.CharacterCard);
+            QuickHPCheckZero();
+
+            GoToStartOfTurn(blisterTeam);
+            GoToPlayCardPhase(haka);
+            PlayCard(dominion);
+            AssertIsInPlay(dominion);
+            QuickHPUpdate();
+            UsePower(haka.CharacterCard);
+            QuickHPCheck(-2);
+
+        }
+
     }
 }
