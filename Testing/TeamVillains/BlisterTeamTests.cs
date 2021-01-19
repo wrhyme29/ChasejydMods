@@ -471,5 +471,27 @@ namespace ChasejydTests
 
         }
 
+        [Test()]
+        public void TestStageDive()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card police = PlayCard("PoliceBackup");
+            Card top = PutOnDeck("HostageSituation");
+            //Destroy an Environment Card. 
+            //Deal the Hero with the Second Highest HP 2 Melee Damage and 2 Fire Damage.
+            //Play the top Card of the Environment Deck.
+            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon, baronTeam, bunker);
+            PlayCard("StageDive");
+            AssertInTrash(police);
+            QuickHPCheck(0, 0, 0, -6, 0, 0, 0, 0); //rockstar is nemesis
+            AssertInPlayArea(env, top);
+
+
+
+        }
+
     }
 }
