@@ -9,22 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controller\Hero\**" />
-    <Compile Remove="Controller\Villains\CardSubClasses\**" />
-    <Compile Remove="Controller\Villains\Cards\**" />
-    <Compile Remove="Controller\Villains\CharacterCards\**" />
-    <EmbeddedResource Remove="Controller\Hero\**" />
-    <EmbeddedResource Remove="Controller\Villains\CardSubClasses\**" />
-    <EmbeddedResource Remove="Controller\Villains\Cards\**" />
-    <EmbeddedResource Remove="Controller\Villains\CharacterCards\**" />
-    <None Remove="Controller\Hero\**" />
-    <None Remove="Controller\Villains\CardSubClasses\**" />
-    <None Remove="Controller\Villains\Cards\**" />
-    <None Remove="Controller\Villains\CharacterCards\**" />
-    <None Remove="DeckLists\**\*.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="DeckLists\**\*.json">
       <LogicalName>Chasejyd.DeckLists.%(EmbeddedResource.FileName).json</LogicalName>
     </EmbeddedResource>
@@ -59,13 +43,6 @@
     <Reference Include="SentinelsEngine">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Sentinels of the Multiverse\Sentinels_Data\Managed\SentinelsEngine.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controller\Environments\" />
-    <Folder Include="Controller\Villains\" />
-    <Folder Include="Testing\Environments\" />
-    <Folder Include="Testing\Villains\" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
