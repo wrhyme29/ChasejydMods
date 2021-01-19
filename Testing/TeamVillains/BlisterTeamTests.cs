@@ -284,5 +284,18 @@ namespace ChasejydTests
             AssertInTrash(police);
         }
 
+        [Test()]
+        public void TestFireAway()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            //Deal the 3 Non-Villain Targets with the Highest HP 2 Fire Damage each.
+            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon, baronTeam, bunker);
+            PlayCard("FireAway");
+            QuickHPCheck(0, -2, 0, -2, 0, 0, 0, -2);
+        }
+
     }
 }
