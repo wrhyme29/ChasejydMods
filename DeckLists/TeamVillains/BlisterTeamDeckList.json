@@ -54,7 +54,9 @@
             "DealDamageToxic"
 		 ],
          "openingLines":{  
-            "default":"Blister Placeholder Opening Line"
+            "default":"Alright crew, let's burn this house down.",
+            "Rockstar": "All right, Blondie, let's see who rocks harder.",
+            "DaybreakRockstar": "This'll be easy. Your crew can't compete with mine."
          }
       },
       {  
