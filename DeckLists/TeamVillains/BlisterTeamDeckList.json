@@ -55,8 +55,8 @@
 		 ],
          "openingLines":{  
             "default":"Alright crew, let's burn this house down.",
-            "Rockstar": "All right, Blondie, let's see who rocks harder.",
-            "DaybreakRockstar": "This'll be easy. Your crew can't compete with mine."
+            "RockstarCharacter": "All right, Blondie, let's see who rocks harder.",
+            "DaybreakRockstarCharacter": "This'll be easy. Your crew can't compete with mine."
          }
       },
       {  

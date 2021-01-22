@@ -39,7 +39,7 @@
             ],
             "openingLines": {
                 "default": "Now playing: The Hammer's greatest hits!",
-                "BlisterTeam": "No contest. You're barely a warm up."
+                "BlisterTeamCharacter": "No contest. You're barely a warm up."
             },
             "complexity": 3
         },
@@ -521,7 +521,7 @@
             ],
             "openingLines": {
                 "default": "Follow my lead, guys. We will, we will Rock You!",
-                "BlisterTeam": "Battle of the Bands time? Let's do this!"
+                "BlisterTeamCharacter": "Battle of the Bands time? Let's do this!"
             },
             "complexity": 3
         }
