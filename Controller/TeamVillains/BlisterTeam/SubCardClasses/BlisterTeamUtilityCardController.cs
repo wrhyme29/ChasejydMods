@@ -30,6 +30,16 @@ namespace Chasejyd.BlisterTeam
             return FindBlazingAxe().Where(c => c.IsInPlayAndHasGameText).Any();
         }
 
+        protected bool IsBlazingAxeInTrash()
+        {
+            return FindBlazingAxe().Where(c => TurnTaker.Trash.HasCard(c)).Any();
+        }
+
+        protected Card FindBlazingAxeInTrash()
+        {
+            return FindBlazingAxe().Where(c => TurnTaker.Trash.HasCard(c)).FirstOrDefault();
+        }
+
 
 
     }

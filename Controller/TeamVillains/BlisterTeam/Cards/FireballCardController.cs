@@ -1,6 +1,6 @@
 ﻿using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
-using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,14 +11,14 @@ namespace Chasejyd.BlisterTeam
 
         public FireballCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-            SpecialStringMaker.ShowHeroTargetWithHighestHP();
+            SpecialStringMaker.ShowHeroTargetWithHighestHP(numberOfTargets: FindCardsWhere(c=>c.Location.IsTrash && c.Location.IsEnvironment).Count());
             SpecialStringMaker.ShowIfSpecificCardIsInPlay("BlazingAxe");
         }
 
         public override IEnumerator Play()
-        {
-            //Blister deals the Hero Target with the highest HP 3 Fire Damage. 
-            IEnumerator coroutine = DealDamageToHighestHP(CharacterCard, 1, (Card c) => c.IsHero && c.IsTarget, (Card c) => 3, DamageType.Fire);
+        {   
+            //"Blister deals the X Hero Targets with the highest HP 3 Fire Damage, where X is equal to the number of cards in the Environment Trash plus 1.
+            IEnumerator coroutine = DealDamageToHighestHP(CharacterCard, 1, (Card c) => c.IsHero && c.IsTarget, (Card c) => 3, DamageType.Fire, numberOfTargets: () => FindCardsWhere(c => c.Location.IsTrash && c.Location.IsEnvironment).Count() + 1);
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);
