@@ -24,7 +24,7 @@ namespace Chasejyd.BlisterTeam
 				AddSideTrigger(AddImmuneToDamageTrigger((DealDamageAction dd) => dd.Target == CharacterCard && dd.DamageType == DamageType.Fire));
 
 				//At the End of her Turn, {Blister} deals the two Non-Villain Targets with the Highest HP 1 Fire Damage.
-				AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(TurnTaker, CharacterCard, (Card c) => c.IsNonVillainTarget, TargetType.HighestHP, 1, DamageType.Fire, numberOfTargets: 2));
+				AddSideTrigger(AddDealDamageAtEndOfTurnTrigger(TurnTaker, CharacterCard, (Card c) => c.IsNonVillainTarget, TargetType.HighestHP, 2, DamageType.Fire, numberOfTargets: 2));
 				if(TurnTaker.IsChallenge)
                 {
 					//Whenever {Blister} deals a Non-Villain Target Fire Damage, she also deals that Target 1 Toxic Damage.

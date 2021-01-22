@@ -11,7 +11,7 @@ namespace Chasejyd.Rockstar
 
         public StarterGuitarCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-
+            AddThisCardControllerToList(CardControllerListType.MakesIndestructible);
         }
 
         public override IEnumerator UsePower(int index = 0)

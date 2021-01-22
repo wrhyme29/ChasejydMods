@@ -23,7 +23,7 @@
          "backgroundColor":"A4B5B8",
          "foilBackgroundColor":"A2B3B7",
          "character":true,
-         "hitpoints":23,
+         "hitpoints":24,
          "nemesisIdentifiers":[  
             "Rockstar"
          ],
@@ -33,7 +33,7 @@
          ],
          "gameplay":[  
             "{Blister} is immune to Fire Damage.",
-            "At the End of her Turn, {Blister} deals the two Non-Villain Targets with the Highest HP 1 Fire Damage."
+            "At the End of her Turn, {Blister} deals the two Non-Villain Targets with the Highest HP 2 Fire Damage."
          ],
          "advanced":"Blazing Axe is Indestructible.",
          "flippedShowHitpoints":false,
@@ -197,27 +197,6 @@
          ],
          "flavorReference":"Blister"
       },
-       {  
-         "identifier":"BlisterRingOfFire",
-         "count":1,
-         "title":"Ring of Fire",
-         "keywords":[  
-            "ongoing"
-         ],
-         "icons":[  
-           "DealDamageFire"
-         ],
-         "body":[  
-            "The first time each turn that {Blister} would be dealt damage, she first deals the source of that damage 2 Fire Damage."
-         ],
-         "flavorQuotes":[  
-            {  
-               "identifier":"Blister",
-               "text":"-"
-            }
-         ],
-         "flavorReference":"Blister"
-      },
       {  
          "identifier":"SetFireToTheRain",
          "count":2,
@@ -261,28 +240,6 @@
          "flavorReference":"Blister"
       },
       {  
-         "identifier":"FightFireWithFire",
-         "count":1,
-         "title":"Fight Fire with Fire",
-         "keywords":[  
-            "ongoing"
-         ],
-         "icons":[  
-           "DestroyEquipment",
-           "DealDamageFire"
-         ],
-         "body":[  
-            "The first time each turn that a Device is destroyed, destroy an Equipment Card and deal the Hero Target with the Highest HP 2 Fire Damage."
-         ],
-         "flavorQuotes":[  
-            {  
-               "identifier":"Blister",
-               "text":"-"
-            }
-         ],
-         "flavorReference":"Blister"
-      },
-      {  
          "identifier":"Fireball",
          "count":2,
          "title":"Fireball",
@@ -294,7 +251,8 @@
            "DestroyOngoing"
          ],
          "body":[  
-            "{Blister} deals the Hero Target with the highest HP 3 Fire Damage. Destroy 1 Hero Ongoing and 1 of {Blister}'s Ongoings. Then if Blazing Axe is in play, {Blister} deals it 2 Fire Damage."
+            "Blister deals the X Hero Targets with the highest HP 3 Fire Damage, where X is equal to the number of cards in the Environment Trash plus 1.",
+            "Destroy 1 Hero Ongoing and 1 of Blister's Ongoings. Then deal Blazing Axe 2 Fire Damage."
          ],
          "flavorQuotes":[  
             {  
@@ -328,7 +286,7 @@
       {  
          "identifier":"SoloAct",
          "count":2,
-         "title":"SoloAct",
+         "title":"Solo Act",
          "keywords":[  
             "one-shot"
          ],
@@ -339,6 +297,30 @@
          ],
          "body":[  
             "{Blister} deals the Hero Target with the Highest HP 1 Sonic Damage, 1 Fire Damage, and 1 Toxic Damage."
+         ],
+         "flavorQuotes":[  
+            {  
+               "identifier":"Blister",
+               "text":"-"
+            }
+         ],
+         "flavorReference":"Blister"
+      },
+      {  
+         "identifier":"PlayWithFire",
+         "count":2,
+         "title":"Play With Fire",
+         "keywords":[  
+            "one-shot"
+         ],
+         "icons":[  
+           "GainHP",
+           "Manipulate",
+           "PlayCardNow"
+         ],
+         "body":[  
+            "If Blazing Axe is in play, restore it to 10 HP. If Blazing Axe is in Blister's Trash, shuffle it back into Blister's deck.",
+            "Blister recovers 3 HP, then Play the top Card of Blister's deck."
          ],
          "flavorQuotes":[  
             {  

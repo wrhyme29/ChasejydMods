@@ -24,7 +24,7 @@ namespace ChasejydTests
             Assert.IsInstanceOf(typeof(BlisterTeamCharacterCardController), blisterTeam.CharacterCardController);
             Assert.IsInstanceOf(typeof(BlisterTeamTurnTakerController), blisterTeam);
 
-            Assert.AreEqual(23, blisterTeam.CharacterCard.HitPoints);
+            Assert.AreEqual(24, blisterTeam.CharacterCard.HitPoints);
         }
 
         [Test()]
@@ -62,7 +62,7 @@ namespace ChasejydTests
             //At the End of her Turn, {Blister} deals the two Non-Villain Targets with the Highest HP 1 Fire Damage.
             QuickHPStorage(blisterTeam, rockstar, ermineTeam, bunker, operativeTeam, tachyon);
             GoToEndOfTurn(blisterTeam);
-            QuickHPCheck(0, -2, 0, -1, 0, 0); //rockstar is nemesis
+            QuickHPCheck(0, -3, 0, -2, 0, 0); //rockstar is nemesis
 
             
 
@@ -100,7 +100,7 @@ namespace ChasejydTests
             //When Blister would deal a Non-Villain Target Fire Damage, she also deals that Target 1 Toxic Damage.
             QuickHPStorage(blisterTeam, rockstar, ermineTeam, bunker, operativeTeam, tachyon);
             GoToEndOfTurn(blisterTeam);
-            QuickHPCheck(0, -4, 0, -2, 0, 0); //rockstar is nemesis
+            QuickHPCheck(0, -5, 0, -3, 0, 0); //rockstar is nemesis
 
         }
 
@@ -248,41 +248,7 @@ namespace ChasejydTests
 
         }
 
-        [Test()]
-        public void TestFightFireWithFire()
-        {
-            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "Megalopolis");
-            StartGame();
-            DestroyNonCharacterVillainCards();
-            PreventEndOfTurnEffects(haka, blisterTeam.CharacterCard);
-
-            Card police = PlayCard("PoliceBackup");
-            PlayCard("FightFireWithFire");
-            Card axe = PlayCard("BlazingAxe");
-            //The first time each turn that a Device is destroyed, destroy an Equipment Card and deal the Hero Target with the Highest HP 2 Fire Damage.
-            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon);
-            DestroyCard(axe, haka.CharacterCard);
-            QuickHPCheck(0, -2, 0, 0, 0, 0);
-            AssertInTrash(police);
-
-            //only once per turn
-            PlayCard(axe);
-            PlayCard(police);
-            SetAllTargetsToMaxHP();
-            QuickHPUpdate();
-            DestroyCard(axe, haka.CharacterCard);
-            QuickHPCheckZero();
-            AssertInPlayArea(env, police);
-
-            //resets next turn
-            GoToNextTurn();
-            PlayCard(axe);
-            SetAllTargetsToMaxHP();
-            QuickHPUpdate();
-            DestroyCard(axe, haka.CharacterCard);
-            QuickHPCheck(0, -2, 0, 0, 0, 0);
-            AssertInTrash(police);
-        }
+       
 
         [Test()]
         public void TestFireAway()
@@ -303,15 +269,15 @@ namespace ChasejydTests
             SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
             StartGame();
             DestroyNonCharacterVillainCards();
-
+            PutInTrash("PoliceBackup");
             Card heroOngoing = PlayCard("Dominion");
             Card blisterOngoing = PlayCard("BlisteringSolo");
-            //Blister deals the Hero Target with the highest HP 3 Fire Damage. 
+            //Blister deals X Hero Targets with the highest HP 3 Fire Damage, where X is number of cards in env trash + 1 
             //Destroy 1 Hero Ongoing and 1 of {Blister}'s Ongoings. 
             //Then if Blazing Axe is in play, Blister deals it 2 Fire Damage.
             QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon, baronTeam, bunker);
             PlayCard("Fireball");
-            QuickHPCheck(0, -3, 0, 0, 0, 0, 0, 0);
+            QuickHPCheck(0, -3, 0, -4, 0, 0, 0, 0);
             AssertInTrash(heroOngoing);
             AssertInTrash(blisterOngoing);
 
@@ -374,30 +340,6 @@ namespace ChasejydTests
             QuickHPUpdate();
             DestroyCard(dominion, blisterTeam.CharacterCard);
             QuickHPCheck(0, 0, 0, -3, 0, 0, 0, 0); //rockstar is nemesis
-        }
-        [Test()]
-        public void TestRingOfFire()
-        {
-            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
-            StartGame();
-            DestroyNonCharacterVillainCards();
-
-            PlayCard("BlisterRingOfFire");
-            //The first time each turn that {Blister} would be dealt damage, she first deals the source of that damage 2 Fire Damage.
-            QuickHPStorage(blisterTeam, haka, ermineTeam, rockstar, operativeTeam, tachyon, baronTeam, bunker);
-            DealDamage(haka, blisterTeam, 3, DamageType.Melee);
-            QuickHPCheck(-3, -2, 0, 0, 0, 0, 0, 0);
-
-            //only first time
-            QuickHPUpdate();
-            DealDamage(haka, blisterTeam, 3, DamageType.Melee);
-            QuickHPCheck(-3, 0, 0, 0, 0, 0, 0, 0);
-
-            //resets next turn
-            GoToNextTurn();
-            QuickHPUpdate();
-            DealDamage(haka, blisterTeam, 3, DamageType.Melee);
-            QuickHPCheck(-3, -2, 0, 0, 0, 0, 0, 0);
         }
         [Test()]
         public void TestSetFireToTheRain_NoAx()
@@ -491,6 +433,50 @@ namespace ChasejydTests
 
 
 
+        }
+
+        [Test()]
+        public void TestPlayWithFire_AxeInPlay()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+            //If Blazing Axe is in play, restore it to 10 HP. 
+            Card axe = PlayCard("BlazingAxe");
+            SetHitPoints(axe, 2);
+            SetHitPoints(blisterTeam.CharacterCard, 10);
+            Card firestarter = PutOnDeck("Firestarter");
+            QuickHPStorage(blisterTeam);
+            PlayCard("PlayWithFire");
+            AssertHitPoints(axe, 10);
+            //Blister recovers 3 HP
+            QuickHPCheck(3);
+            //then Play the top Card of Blister's deck.
+            AssertInPlayArea(blisterTeam, firestarter);
+        }
+
+
+        [Test()]
+        public void TestPlayWithFire_AxeInTrash()
+        {
+            SetupGameController("Chasejyd.BlisterTeam", "Haka", "ErmineTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Tachyon", "BaronBladeTeam", "Bunker", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+            //If Blazing Axe is in Blister's Trash, shuffle it back into Blister's deck.
+            Card axe = PutInTrash("BlazingAxe");
+            SetHitPoints(blisterTeam.CharacterCard, 10);
+            Card firestarter = PutOnDeck("Firestarter");
+            StackAfterShuffle(blisterTeam.TurnTaker.Deck, new string[] { firestarter.Identifier });
+            QuickShuffleStorage(blisterTeam.TurnTaker.Deck);
+            QuickHPStorage(blisterTeam);
+            PlayCard("PlayWithFire");
+            AssertInDeck(axe);
+            QuickShuffleCheck(1);
+
+            //Blister recovers 3 HP
+            QuickHPCheck(3);
+            //then Play the top Card of Blister's deck.
+            AssertInPlayArea(blisterTeam, firestarter);
         }
 
     }
