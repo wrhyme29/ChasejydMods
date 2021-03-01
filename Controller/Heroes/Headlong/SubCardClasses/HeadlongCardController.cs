@@ -21,5 +21,10 @@ namespace Chasejyd.Headlong
             return card.DoKeywordsContain(MomentumKeyword);
         }
 
+        protected int GetNumberOfEnvironmentCardsInPlay()
+        {
+            return FindCardsWhere(c => c.IsEnvironment && c.IsInPlayAndHasGameText && c.IsRealCard).Count();
+        }
+
     }
 }

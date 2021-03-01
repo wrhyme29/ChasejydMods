@@ -275,6 +275,26 @@ namespace ChasejydTests
             AssertNumberOfCardsInRevealed(headlong, 0);
             AssertInPlayArea(env, police);
             AssertOnBottomOfDeck(traffic);
+        }
+
+        [Test()]
+        public void TestBlindside()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card police = PlayCard("PoliceBackup");
+
+            //Deal one Non-Hero Target X Melee Damage where X is equal to the number of Environment Cards in play +1. 
+            DecisionSelectTarget = baron.CharacterCard;
+            QuickHPStorage(baron, headlong, legacy, bunker, scholar);
+            QuickHandStorage(headlong, legacy, bunker, scholar);
+            PlayCard("Blindside");
+            QuickHPCheck(-2, 0, 0, 0, 0);
+
+            //Each other Player may Draw a Card.
+            QuickHandCheck(0, 1, 1, 1);
 
         }
 
