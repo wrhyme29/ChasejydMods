@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Chasejyd.Headlong
 {
-	public class DaybreakHeadlongCharacterCardController : HeroCharacterCardController
+	public class DaybreakHeadlongCharacterCardController : HeadlongUtilityCharacterCardController
 	{
 		public DaybreakHeadlongCharacterCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
 		{
