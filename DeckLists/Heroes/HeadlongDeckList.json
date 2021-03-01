@@ -1,0 +1,437 @@
+﻿  {
+	  "name": "Headlong",
+	  "kind": "Hero",
+	  "initialCardIdentifiers": [
+		  "HeadlongCharacter"
+	  ],
+	  "cards": [
+	  {
+			"identifier": "HeadlongCharacter",
+			"title": "Headlong",
+			"count": 1,
+			"body": [
+				"Get Moving"
+			],
+			"icons": [
+				"Manipulate",
+				"PlayCardNow",
+				"DrawCardNow",
+				"HasPower"
+			],
+			"powers": [
+				"Reveal the top Card of {Headlong}'s deck. If it is a Momentum Card, put it into play. If it is not, place it in your hand and Draw a Card."
+			],
+			"hitpoints": 27,
+			"character": true,
+			"backgroundColor": "00d2fe",
+			"foilBackgroundColor": "00d2fe",
+			"hitpointColor": "00d2fe",
+			"incapicitatedAbilities": [
+				"Each Player may Discard a Card. Any Player who does so may Draw a Card.",
+				"Until the start of Headlong's next turn, Hero Targets are Immune to Damage from the Environment.",
+				"You may look at the top card of a deck, then replace it or Discard it."
+			],
+			"flippedIcons": [
+				"Discard",
+				"DrawCardNow",
+				"ImmuneToDamage",
+				"Manipulate"
+			],
+			"openingLines": {
+				"default": "Headlong placeholder opening line!"
+			},
+			"complexity": 2
+		  },
+		  {
+			  "identifier": "SlipperySurface",
+			  "title": "Slippery Surface",
+			  "count": 2,
+			  "body": [
+				  "Reduce damage dealt to Hero Targets from Environment Cards by 1. Increase Damage dealt to Villain Targets by Environment Cards by 1."
+			  ],
+			  "icons": [
+				  "ReduceDamageTaken",
+				  "IncreaseDamageDealt"
+			  ],
+			  "keywords": [
+				  "ongoing"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "UpTempo",
+			  "title": "Up-Tempo",
+			  "count": 2,
+			  "body": [
+				  "The first time {Headlong} plays a Momentum Card each turn, one Player may Draw a card."
+			  ],
+			  "icons": [
+				  "DrawCardNow"
+			  ],
+			  "keywords": [
+				  "ongoing"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "WheelinAndDealin",
+			  "title": "Wheelin' and Dealin'",
+			  "count": 2,
+			  "body": [
+				  "Each time an Environment Card comes into Play, {Headlong} may Draw a Card.",
+				  "When a Hero Target would be dealt 4 or more Damage, you may Destroy this Card. If you do so, Prevent the Damage, then {Headlong} and one other Hero may Draw a Card."
+			  ],
+			  "icons": [
+				  "DrawCardNow",
+				  "DestroySelf",
+				  "CancelledDamageGreen"
+			  ],
+			  "keywords": [
+				  "ongoing"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "BuildingMomentum",
+			  "title": "Building Momentum",
+			  "count": 2,
+			  "body": [
+				  "At the Start of {Headlong}'s Turn, he may Draw a Card. {Headlong} may skip his Draw phase. If he does so, he may play a Momentum Card."
+			  ],
+			  "icons": [
+				  "DrawCardNow",
+				  "CannotDrawCards",
+				  "PlayCardNow"
+			  ],
+			  "keywords": [
+				  "ongoing",
+				  "limited"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "Courier",
+			  "title": "Courier",
+			  "count": 2,
+			  "body": [
+				  "The first time each Turn an Environment Card is Destroyed, you may look at the Top Card of the Environment Deck and replace it or Discard it."
+			  ],
+			  "powers": [
+				  "Each Player may Draw 2 Cards. Then Destroy this Card."
+			  ],
+			  "icons": [
+				  "Manipulate",
+				  "HasPower",
+				  "DrawCardNow",
+				  "DestroySelf"
+			  ],
+			  "keywords": [
+				  "ongoing",
+				  "limited"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "RapidLeadership",
+			  "title": "Rapid Leadership",
+			  "count": 2,
+			  "body": [
+				  "When this Card comes into Play, each other Player may Draw a Card."
+			  ],
+			  "powers": [
+				  "One other Hero may Play a Card. Then one other Hero may Draw a Card."
+			  ],
+			  "icons": [
+				  "DrawCardNow",
+				  "HasPower",
+				  "PlayCardNow"
+			  ],
+			  "keywords": [
+				  "ongoing"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "PerfectTiming",
+			  "title": "Perfect Timing",
+			  "count": 2,
+			  "body": [
+				  "{Headlong} is Immune to Damage from Environment Cards.",
+				  "The first time each turn that an Environment Card enters play, you may play a Momentum Card."
+			  ],
+			  "icons": [
+				  "ImmuneToDamage",
+				  "PlayCardNow"
+			  ],
+			  "keywords": [
+				  "ongoing",
+				  "limited"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "AreaKnowledge",
+			  "title": "Area Knowledge",
+			  "count": 2,
+			  "body": [
+				  "Look at the Top 3 Cards of the Environment Deck. Place one into Play, one at the top or bottom of the Environment Deck, and one into the Trash. Until the Start of {Headlong}’s next Turn, Heroes are Immune to Damage from Environment Cards."
+			  ],
+			  "icons": [
+				  "Manipulate",
+				  "ImmuneToDamage"
+			  ],
+			  "keywords": [
+				  "one-shot"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "BowlOver",
+			  "title": "Bowl Over",
+			  "count": 2,
+			  "body": [
+				  "Deal up to X Targets 3 Melee Damage, where X is equal to the number of Environment Cards in play +1."
+			  ],
+			  "icons": [
+				  "DealDamageMelee"
+			  ],
+			  "keywords": [
+				  "one-shot",
+				  "momentum"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "SlipAndSlide",
+			  "title": "Slip & Slide",
+			  "count": 2,
+			  "body": [
+				  "Deal one Target 2 Projectile Damage. If a Target takes Damage this way, that Target Deals a Non-Hero Target 3 Melee Damage."
+			  ],
+			  "icons": [
+				  "DealDamageProjectile",
+				  "DealDamageMelee"
+			  ],
+			  "keywords": [
+				  "one-shot",
+				  "momentum"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "FrictionlessShove",
+			  "title": "Frictionless Shove",
+			  "count": 3,
+			  "body": [
+				  "Place a non-Character Villain Target in play on the top of its Deck. {Headlong} may Deal a non-Character Target 3 Projectile Damage."
+			  ],
+			  "icons": [
+				  "Manipulate",
+				  "DealDamageProjectile"
+			  ],
+			  "keywords": [
+				  "one-shot",
+				  "momentum"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "Outmaneuver",
+			  "title": "Outmaneuver",
+			  "count": 3,
+			  "body": [
+				  "Play the top Card of the Environment Deck. Then Destroy an Ongoing. {Headlong} may Draw a Card."
+			  ],
+			  "icons": [
+				  "PlayCardNow",
+				  "DestroyOngoing",
+				  "DrawCardNow"
+			  ],
+			  "keywords": [
+				  "one-shot",
+				  "momentum"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "FrictionTransfer",
+			  "title": "Friction Transfer",
+			  "count": 2,
+			  "body": [
+				  "Increase the next Damage dealt by {Headlong} by 2. Reduce the next Damage dealt to a Hero Target by 2."
+			  ],
+			  "icons": [
+				  "IncreaseDamageDealt",
+				  "ReduceDamageTaken"
+			  ],
+			  "keywords": [
+				  "one-shot",
+				  "momentum"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "SpinOut",
+			  "title": "Spin Out",
+			  "count": 2,
+			  "body": [
+				  "{Headlong} deals 1 Non-Hero Target 4 Melee Damage. Then he may deal a second Non-Hero Target 3 Projectile Damage."
+			  ],
+			  "icons": [
+				  "DealDamageMelee",
+				  "DealDamageProjectile"
+			  ],
+			  "keywords": [
+				  "one-shot",
+				  "momentum"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "PerfectPlacement",
+			  "title": "Perfect Placement",
+			  "count": 2,
+			  "body": [
+				  "Deal a Hero Character 2 Projectile Damage. If a Hero takes Damage this way, that Hero may Play a Card. Then {Headlong} may use a Power."
+			  ],
+			  "icons": [
+				  "DealDamageProjectile",
+				  "PlayCardNow",
+				  "UsePowerNow"
+			  ],
+			  "keywords": [
+				  "one-shot",
+				  "momentum"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "Blindside",
+			  "title": "Blindside",
+			  "count": 2,
+			  "body": [
+				  "Deal one Non-Hero Target X Melee Damage where X is equal to the number of Environment Cards in play +1. Each other Player may Draw a Card."
+			  ],
+			  "icons": [
+				  "DealDamageMelee",
+				  "DrawCardNow"
+			  ],
+			  "keywords": [
+				  "one-shot",
+				  "momentum"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "SetUp",
+			  "title": "Set Up",
+			  "count": 2,
+			  "body": [
+				  "Deal one Non-Hero Target 1 Melee Damage. If a Target takes Damage this way, another Hero deals that same Target 3 Irreducible Melee Damage. One Hero may Draw a Card."
+			  ],
+			  "icons": [
+				  "DealDamageMelee",
+				  "DrawCardNow"
+			  ],
+			  "keywords": [
+				  "one-shot",
+				  "momentum"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "RecklessMomentum",
+			  "title": "Reckless Momentum",
+			  "count": 2,
+			  "body": [
+				  "Shuffle any number of Momentum Cards from your Trash into your Deck. For each Card Shuffled into your Deck this Way, {Headlong} deals himself 1 Fire Damage, and then deals 1 Non-Hero Target 2 Melee Damage. He must choose a different Non-Hero Target each time."
+			  ],
+			  "icons": [
+				  "Manipulate",
+				  "DealDamageFire",
+				  "DealDamageMelee"
+			  ],
+			  "keywords": [
+				  "one-shot",
+				  "momentum"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  },
+		  {
+			  "identifier": "SmoothMoves",
+			  "title": "Smooth Moves",
+			  "count": 2,
+			  "body": [
+				  "Reveal the top 3 Cards of your Deck. Put one of those Cards into your hand, one into play, and one into your Trash."
+			  ],
+			  "icons": [
+				  "Manipulate",
+				  "PlayCardNow"
+			  ],
+			  "keywords": [
+				  "one-shot",
+				  "momentum"
+			  ],
+			  "flavorText": "-",
+			  "flavorReference": "-"
+		  }
+	  ],
+	  "promoCards": [{
+		  "identifier": "HeadlongCharacter",
+		  "promoIdentifier": "DaybreakHeadlongCharacter",
+		  "count": 1,
+		  "title": "Headlong",
+		  "promoTitle": "Daybreak Headlong",
+		  "shortPromoTitle": "Daybreak Headlong",
+		  "body": "Shifting Tactics",
+		  "backgroundColor": "00d2fe",
+		  "foilBackgroundColor": "00d2fe",
+		  "hitpointColor": "00d2fe",
+		  "character": true,
+		  "powers": [
+			  "Two Players may draw a card. You may Destroy an Environment Card or Play the top Card of the Environment Deck."
+		  ],
+		  "icons": [
+			  "HasPower",
+			  "DrawCardNow",
+			  "DestroyEnvironment",
+			  "PlayCardNow"
+		  ],
+		  "hitpoints": 26,
+		  "nemesisIdentifiers": [
+			  "Headlong"
+		  ],
+		  "incapacitatedAbilities": [
+			  "Increase Damage dealt by Environment Cards to Villain Targets by 1.",
+			  "2 Players may Draw a Card.",
+			  "One Hero may Play a Card."
+		  ],
+		  "flippedIcons": [
+			  "IncreaseDamageDealt",
+			  "DrawCardNow",
+			  "PlayCardNow"
+		  ],
+		  "openingLines": {
+			  "default": "Daybreak Headlong placeholder opening line!"
+		  },
+		  "complexity": 2
+	  }]
+  }

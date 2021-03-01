@@ -12,6 +12,8 @@ namespace ChasejydTests
     {
         //heroes
         protected HeroTurnTakerController rockstar { get { return FindHero("Rockstar"); } }
+        protected HeroTurnTakerController headlong { get { return FindHero("Headlong"); } }
+
 
         //team villains
         protected TurnTakerController blisterTeam { get { return FindVillainTeamMember("Blister"); } }
