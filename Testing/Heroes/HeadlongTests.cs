@@ -175,5 +175,108 @@ namespace ChasejydTests
 
         }
 
+        [Test()]
+        public void TestAreaKnowledge()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card police = PutOnDeck("PoliceBackup");
+            Card hostage = PutOnDeck("HostageSituation");
+            Card traffic = PutOnDeck("TrafficPileup");
+
+            DecisionSelectCards = new Card[] { police, traffic, hostage };
+            DecisionMoveCardDestination = new MoveCardDestination(env.TurnTaker.Deck, toBottom: true);
+
+            //Look at the Top 3 Cards of the Environment Deck. Place one into Play, one at the top or bottom of the Environment Deck, and one into the Trash. 
+            PlayCard("AreaKnowledge");
+            AssertNumberOfCardsInRevealed(headlong, 0);
+            AssertInTrash(hostage);
+            AssertInPlayArea(env, police);
+            AssertOnBottomOfDeck(traffic);
+
+            //Until the Start of {Headlong}’s next Turn, Heroes are Immune to Damage from Environment Cards.
+            //should be immune to environment
+            DecisionAutoDecideIfAble = true;
+
+            QuickHPStorage(baron, legacy, bunker, scholar);
+            DealDamage(police, (Card c) => true, 3, DamageType.Projectile);
+            QuickHPCheck(-3, 0, 0, 0);
+
+            //should not be immune to villain
+            QuickHPUpdate();
+            DealDamage(baron, (Card c) => true, 3, DamageType.Projectile);
+            QuickHPCheck(-3, -4, -3, -3);
+
+            //should not be immune to hero
+            QuickHPUpdate();
+            DealDamage(bunker, (Card c) => true, 3, DamageType.Projectile);
+            QuickHPCheck(-3, -3, -3, -3);
+
+            //should not be immune to once effect has expired
+            GoToStartOfTurn(headlong);
+            QuickHPUpdate();
+            DealDamage(police, (Card c) => true, 3, DamageType.Projectile);
+            QuickHPCheck(-3, -3, -3, -3);
+
+        }
+
+        [Test()]
+        public void TestAreaKnowledge_NoCardsInDeck()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            MoveAllCards(env, env.TurnTaker.Deck, env.TurnTaker.Trash);
+
+            //Look at the Top 3 Cards of the Environment Deck. Place one into Play, one at the top or bottom of the Environment Deck, and one into the Trash. 
+            PlayCard("AreaKnowledge");
+            AssertNumberOfCardsInRevealed(headlong, 0);
+            AssertNumberOfCardsInPlay(env, 0);
+
+
+        }
+
+        [Test()]
+        public void TestAreaKnowledge_1CardInDeck()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            MoveAllCards(env, env.TurnTaker.Deck, env.TurnTaker.Trash);
+            Card police = PutOnDeck("PoliceBackup");
+
+            //Look at the Top 3 Cards of the Environment Deck. Place one into Play, one at the top or bottom of the Environment Deck, and one into the Trash. 
+            PlayCard("AreaKnowledge");
+            AssertNumberOfCardsInRevealed(headlong, 0);
+            AssertInPlayArea(env, police); 
+
+        }
+
+        [Test()]
+        public void TestAreaKnowledge_2CardsInDeck()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            MoveAllCards(env, env.TurnTaker.Deck, env.TurnTaker.Trash);
+            Card police = PutOnDeck("PoliceBackup");
+            Card traffic = PutOnDeck("TrafficPileup");
+
+            DecisionSelectCards = new Card[] { police, traffic };
+            DecisionMoveCardDestination = new MoveCardDestination(env.TurnTaker.Deck, toBottom: true);
+
+            //Look at the Top 3 Cards of the Environment Deck. Place one into Play, one at the top or bottom of the Environment Deck, and one into the Trash. 
+            PlayCard("AreaKnowledge");
+            AssertNumberOfCardsInRevealed(headlong, 0);
+            AssertInPlayArea(env, police);
+            AssertOnBottomOfDeck(traffic);
+
+        }
+
     }
 }

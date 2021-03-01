@@ -14,6 +14,12 @@ namespace Chasejyd.Headlong
 
         }
 
+        public static readonly string MomentumKeyword = "momentum";
+
+        protected bool IsMomentum(Card card)
+        {
+            return card.DoKeywordsContain(MomentumKeyword);
+        }
 
     }
 }
