@@ -298,5 +298,42 @@ namespace ChasejydTests
 
         }
 
+        [Test()]
+        public void TestBowlOver()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card traffic = PlayCard("TrafficPileup");
+            Card battalion = PlayCard("BladeBattalion");
+
+            //Deal up to X Targets 3 Melee Damage, where X is equal to the number of Environment Cards in play +1.
+            DecisionSelectTargets = new Card[] { baron.CharacterCard, battalion };
+            QuickHPStorage(baron.CharacterCard, battalion, headlong.CharacterCard, legacy.CharacterCard, bunker.CharacterCard, scholar.CharacterCard);
+            PlayCard("BowlOver");
+            QuickHPCheck(-3, -3, 0, 0, 0, 0);
+
+        }
+
+        [Test()]
+        public void TestBowlOver_Dynamic()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card traffic = PlayCard("TrafficPileup");
+            Card battalion = PlayCard("BladeBattalion");
+
+            //Deal up to X Targets 3 Melee Damage, where X is equal to the number of Environment Cards in play +1.
+            DecisionSelectTargets = new Card[] { baron.CharacterCard, battalion };
+            AddDestroyEnvironmentCardCounterAttackTrigger(legacy, baron.CharacterCard, legacy.CharacterCardController.GetCardSource());
+            QuickHPStorage(baron.CharacterCard, battalion, headlong.CharacterCard, legacy.CharacterCard, bunker.CharacterCard, scholar.CharacterCard);
+            PlayCard("BowlOver");
+            QuickHPCheck(-3,0, 0, 0, 0, 0);
+
+        }
+
     }
 }

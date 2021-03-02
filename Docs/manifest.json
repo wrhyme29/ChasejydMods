@@ -10,6 +10,7 @@
 	"dll": "ChasejydMods.dll",
 	"decks": {
 		"heroes": [	
+		"Headlong",
 		"Rockstar"
 		],
 		"villains": [
