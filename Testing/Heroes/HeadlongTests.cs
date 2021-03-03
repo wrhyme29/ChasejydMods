@@ -335,5 +335,32 @@ namespace ChasejydTests
 
         }
 
+        [Test()]
+        public void TestBuildingMomentum()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            //At the Start of {Headlong}'s Turn, he may Draw a Card. 
+            PlayCard("BuildingMomentum");
+
+            QuickHandStorage(headlong);
+            DecisionYesNo = true;
+            GoToStartOfTurn(headlong);
+            QuickHandCheck(1);
+
+            //{Headlong} may skip his Draw phase. If he does so, he may play a Momentum Card.
+            Card setUp = PutInHand("SetUp");
+            DecisionSelectCardToPlay = setUp;
+            GoToDrawCardPhase(headlong);
+            RunActiveTurnPhase();
+            EnterNextTurnPhase();
+            AssertCurrentTurnPhase(headlong, Phase.End);
+            AssertInTrash(headlong, setUp);
+
+
+        }
+
     }
 }
