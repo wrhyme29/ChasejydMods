@@ -362,5 +362,73 @@ namespace ChasejydTests
 
         }
 
+        [Test()]
+        public void TestCourier_Power()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            //Each Player may Draw 2 Cards. Then Destroy this Card.
+            Card courier = PlayCard("Courier");
+            QuickHandStorage(headlong, legacy, bunker, scholar);
+            UsePower(courier);
+            QuickHandCheck(2, 2, 2, 2);
+            AssertInTrash(courier);
+
+        }
+
+        [Test()]
+        public void TestCourier_Trigger()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+            Card courier = PlayCard("Courier");
+
+            Card hostage = PlayCard("HostageSituation");
+            Card police = PlayCard("PoliceBackup");
+            Card traffic = PlayCard("TrafficPileup");
+
+            Card envTopCard = env.TurnTaker.Deck.TopCard;
+
+            //The first time each Turn an Environment Card is Destroyed, you may look at the Top Card of the Environment Deck and replace it or Discard it.
+            DecisionMoveCardDestinations = new MoveCardDestination[] { new MoveCardDestination(env.TurnTaker.Trash), new MoveCardDestination(env.TurnTaker.Trash) };
+            DestroyCard(hostage, bunker.CharacterCard);
+            AssertInTrash(envTopCard);
+
+            envTopCard = env.TurnTaker.Deck.TopCard;
+
+            //only first time per turn
+            DestroyCard(police, legacy.CharacterCard);
+            AssertOnTopOfDeck(envTopCard);
+
+            //resets at the next turn
+            GoToNextTurn();
+            DestroyCard(traffic, bunker.CharacterCard);
+            AssertInTrash(envTopCard);
+        }
+
+        [Test()]
+        public void TestFrictionlessShove()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+
+            Card mdp = GetCardInPlay("MobileDefensePlatform");
+            Card battalion = PlayCard("BladeBattalion");
+
+            DecisionSelectCard = mdp;
+            DecisionSelectTarget = battalion;
+            QuickHPStorage(baron.CharacterCard, battalion, headlong.CharacterCard, legacy.CharacterCard, bunker.CharacterCard, scholar.CharacterCard);
+
+            //Place a non-Character Villain Target in play on the top of its Deck. 
+            PlayCard("FrictionlessShove");
+            AssertOnTopOfDeck(mdp);
+
+            //{Headlong} may Deal a non-Character Target 3 Projectile Damage.
+            QuickHPCheck(0, -3, 0, 0, 0, 0);
+        }
+
     }
 }
