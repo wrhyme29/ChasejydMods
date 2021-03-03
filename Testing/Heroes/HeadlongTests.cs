@@ -430,5 +430,42 @@ namespace ChasejydTests
             QuickHPCheck(0, -3, 0, 0, 0, 0);
         }
 
+        [Test()]
+        public void TestFrictionTransfer()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            PlayCard("FrictionTransfer");
+
+            //Increase the next Damage dealt by {Headlong} by 2. 
+
+            //should not fire for non-headlong heroes
+            QuickHPStorage(baron);
+            DealDamage(bunker, baron, 2, DamageType.Projectile);
+            QuickHPCheck(-2);
+
+            //should fire for headlong
+            QuickHPUpdate();
+            DealDamage(headlong, baron, 2, DamageType.Melee);
+            QuickHPCheck(-4);
+
+            //should expire after use
+            QuickHPUpdate();
+            DealDamage(headlong, baron, 2, DamageType.Melee);
+            QuickHPCheck(-2);
+
+            //Reduce the next Damage dealt to a Hero Target by 2.
+            QuickHPStorage(bunker);
+            DealDamage(baron, bunker, 4, DamageType.Lightning);
+            QuickHPCheck(-2);
+
+            //should expire after use
+            QuickHPUpdate();
+            DealDamage(baron, bunker, 4, DamageType.Lightning);
+            QuickHPCheck(-4);
+        }
+
     }
 }
