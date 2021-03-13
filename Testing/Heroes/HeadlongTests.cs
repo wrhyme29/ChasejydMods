@@ -508,5 +508,26 @@ namespace ChasejydTests
             AssertInTrash(ongoing);
 
         }
+
+        [Test()]
+        public void TestPerfectPlacement()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card legacyPlay = PutInHand("NextEvolution");
+
+            Card momentumToPlayWithPower = PutOnDeck("BowlOver");
+
+            //Deal a Hero Character 2 Projectile Damage. If a Hero takes Damage this way, that Hero may Play a Card. Then {Headlong} may use a Power.
+            DecisionSelectTarget = legacy.CharacterCard;
+            DecisionSelectCardToPlay = legacyPlay;
+            PlayCard("PerfectPlacement");
+            AssertInPlayArea(legacy, legacyPlay);
+            AssertInTrash(momentumToPlayWithPower);
+            
+
+        }
     }
 }
