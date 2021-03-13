@@ -166,7 +166,7 @@ namespace ChasejydTests
 
             GoToUseIncapacitatedAbilityPhase(headlong);
 
-            DecisionSelectLocation =  new LocationChoice(legacy.TurnTaker.Deck);
+            DecisionSelectLocation = new LocationChoice(legacy.TurnTaker.Deck);
             DecisionMoveCardDestination = new MoveCardDestination(legacy.TurnTaker.Deck);
 
             //You may look at the top card of a deck, then replace it or Discard it.
@@ -252,7 +252,7 @@ namespace ChasejydTests
             //Look at the Top 3 Cards of the Environment Deck. Place one into Play, one at the top or bottom of the Environment Deck, and one into the Trash. 
             PlayCard("AreaKnowledge");
             AssertNumberOfCardsInRevealed(headlong, 0);
-            AssertInPlayArea(env, police); 
+            AssertInPlayArea(env, police);
 
         }
 
@@ -331,7 +331,7 @@ namespace ChasejydTests
             AddDestroyEnvironmentCardCounterAttackTrigger(legacy, baron.CharacterCard, legacy.CharacterCardController.GetCardSource());
             QuickHPStorage(baron.CharacterCard, battalion, headlong.CharacterCard, legacy.CharacterCard, bunker.CharacterCard, scholar.CharacterCard);
             PlayCard("BowlOver");
-            QuickHPCheck(-3,0, 0, 0, 0, 0);
+            QuickHPCheck(-3, 0, 0, 0, 0, 0);
 
         }
 
@@ -467,5 +467,46 @@ namespace ChasejydTests
             QuickHPCheck(-4);
         }
 
+        [Test()]
+        public void TestOutmanuever()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            //Play the top Card of the Environment Deck. Then Destroy an Ongoing. {Headlong} may Draw a Card.
+            Card police = PutOnDeck("PoliceBackup");
+            Card ongoing = PlayCard("NextEvolution");
+
+            QuickHandStorage(headlong, legacy, bunker, scholar);
+            PlayCard("Outmaneuver");
+            QuickHandCheck(1, 0, 0, 0);
+
+            AssertInPlayArea(env, police);
+            AssertInTrash(ongoing);
+
+        }
+
+        [Test()]
+        public void TestOutmanuever_EmptyEnvDeck()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            //Play the top Card of the Environment Deck. Then Destroy an Ongoing. {Headlong} may Draw a Card.
+            Card police = GetCard("PoliceBackup");
+            Card ongoing = PlayCard("NextEvolution");
+
+            MoveAllCards(env, env.TurnTaker.Deck, env.TurnTaker.Trash);
+            StackAfterShuffle(env.TurnTaker.Deck, new string[] { police.Identifier });
+
+            QuickHandStorage(headlong, legacy, bunker, scholar);
+            PlayCard("Outmaneuver");
+            QuickHandCheck(1, 0, 0, 0);
+            AssertIsInPlay("PoliceBackup");
+            AssertInTrash(ongoing);
+
+        }
     }
 }
