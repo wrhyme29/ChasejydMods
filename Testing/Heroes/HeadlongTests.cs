@@ -15,6 +15,15 @@ namespace ChasejydTests
     public class HeadlongTests : CustomBaseTest
     {
 
+        #region HeadlongTestHelpers
+        public static readonly string MomentumKeyword = "momentum";
+
+        protected bool IsMomentum(Card card)
+        {
+            return card.DoKeywordsContain(MomentumKeyword);
+        }
+        #endregion
+
         private void SetupIncap(TurnTakerController villain)
         {
             SetHitPoints(headlong.CharacterCard, 1);
@@ -604,6 +613,36 @@ namespace ChasejydTests
             PlayCard(rapid);
             QuickHandCheck(0, 1, 1, 1);
 
+        }
+
+        [Test()]
+        public void TestRecklessMomentum()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            //prep targets
+            Card battalion = PlayCard("BladeBattalion");
+            Card elemental = PlayCard("ElementalRedistributor");
+
+            Card reckless = PutInHand("RecklessMomentum");
+            //prep for shuffle
+            int numCardsToMove = 3; //needs to be >=1 
+            MoveCards(headlong, FindCardsWhere(c => c != reckless && IsMomentum(c) && c.Owner == headlong.TurnTaker).Distinct().TakeRandom(numCardsToMove, new Random()), headlong.TurnTaker.Trash);
+
+            //Shuffle any number of Momentum Cards from your Trash into your Deck. 
+            //For each Card Shuffled into your Deck this way, {Headlong} deals himself 1 Fire Damage, and then deals 1 Non-Hero Target 2 Melee Damage. 
+            //He must choose a different Non-Hero Target each time.
+
+            DecisionSelectCards = FindCardsWhere(c => IsMomentum(c) && headlong.TurnTaker.Trash.HasCard(c)).Take(numCardsToMove - 1).Concat(new List<Card>() { null, battalion, elemental });
+
+            QuickHPStorage(baron.CharacterCard, headlong.CharacterCard, legacy.CharacterCard, bunker.CharacterCard, scholar.CharacterCard, battalion, elemental);
+            PlayCard(reckless);
+            QuickHPCheck(0, -2, 0, 0, 0, -2, -2);
+
+            //should be 2 left, the one ignored + reckless
+            AssertNumberOfCardsAtLocation(headlong.TurnTaker.Trash, 2, cardCriteria: c => IsMomentum(c));
         }
     }
 }
