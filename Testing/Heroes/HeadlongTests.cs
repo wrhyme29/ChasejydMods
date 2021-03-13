@@ -527,6 +527,44 @@ namespace ChasejydTests
             AssertInPlayArea(legacy, legacyPlay);
             AssertInTrash(momentumToPlayWithPower);
             
+        }
+
+
+        [Test()]
+        public void TestPerfectTiming()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card police = PlayCard("PoliceBackup");
+            Card timing = PlayCard("PerfectTiming");
+            Card momentum = PutInHand("BowlOver");
+            PutInHand("PerfectPlacement");
+
+            //Headlong is Immune to Damage from Environment Cards.
+            QuickHPStorage(baron, headlong, legacy, bunker, scholar);
+            DealDamage(police, (Card c) => c.IsTarget, 3, DamageType.Projectile);
+            QuickHPCheck(-3, 0, -3, -3, -3);
+
+            //The first time each turn that an Environment Card enters play, you may play a Momentum Card.
+            DecisionSelectCard = momentum;
+            Card pileup = PlayCard("TrafficPileup");
+            AssertInTrash(momentum);
+
+            PutInHand(momentum);
+            DestroyCard(pileup, baron.CharacterCard);
+
+            //should be only first in a turn
+            PlayCard(pileup);
+            AssertInHand(momentum);
+
+            DestroyCard(pileup, baron.CharacterCard);
+            GoToNextTurn();
+
+            //resets at next turn
+            PlayCard(pileup);
+            AssertInTrash(momentum);
 
         }
     }
