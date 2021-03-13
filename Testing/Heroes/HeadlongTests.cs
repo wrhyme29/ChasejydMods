@@ -700,5 +700,22 @@ namespace ChasejydTests
 
         }
 
+        [Test()]
+        public void TestSlipAndSlide()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card battalion = PlayCard("BladeBattalion");
+
+            DecisionSelectTargets = new Card[] { baron.CharacterCard, battalion };
+
+            //Deal one Target 2 Projectile Damage. If a Target takes Damage this way, that Target Deals a Non-Hero Target 3 Melee Damage.
+            QuickHPStorage(baron.CharacterCard, battalion, headlong.CharacterCard, legacy.CharacterCard, bunker.CharacterCard, scholar.CharacterCard);
+            PlayCard("SlipAndSlide");
+            QuickHPCheck(-2, -3, 0, 0, 0, 0);
+        }
+
     }
 }
