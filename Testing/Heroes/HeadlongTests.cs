@@ -644,5 +644,61 @@ namespace ChasejydTests
             //should be 2 left, the one ignored + reckless
             AssertNumberOfCardsAtLocation(headlong.TurnTaker.Trash, 2, cardCriteria: c => IsMomentum(c));
         }
+
+        [Test()]
+        public void TestSetUpCard()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card battalion = PlayCard("BladeBattalion");
+            Card setup = PutInTrash("SetUp");
+
+            DecisionSelectTarget = baron.CharacterCard;
+            DecisionSelectTurnTakers = new TurnTaker[] { bunker.TurnTaker, legacy.TurnTaker };
+
+            QuickHPStorage(baron.CharacterCard, battalion, headlong.CharacterCard, legacy.CharacterCard, bunker.CharacterCard, scholar.CharacterCard);
+            QuickHandStorage(headlong, legacy, bunker, scholar);
+
+            PlayCard(setup);
+
+            //Deal one Non-Hero Target 1 Melee Damage. 
+            //If a Target takes Damage this way, another Hero deals that same Target 3 Irreducible Melee Damage. 
+            QuickHPCheck(-4, 0, 0, 0, 0, 0);
+
+            //One Hero may Draw a Card.
+            QuickHandCheck(0, 1, 0, 0);
+
+        }
+
+        [Test()]
+        public void TestSetUpCard_Sentinels()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "TheSentinels", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card battalion = PlayCard("BladeBattalion");
+            Card setup = PutInTrash("SetUp");
+
+            DecisionSelectTarget = baron.CharacterCard;
+            DecisionSelectCard = writhe;
+            DecisionSelectTurnTakers = new TurnTaker[] { sentinels.TurnTaker, legacy.TurnTaker };
+
+            QuickHPStorage(baron.CharacterCard, battalion, headlong.CharacterCard, legacy.CharacterCard, bunker.CharacterCard, scholar.CharacterCard);
+            QuickHandStorage(headlong, legacy, bunker, scholar);
+
+            PlayCard(setup);
+
+            //Deal one Non-Hero Target 1 Melee Damage. 
+            //If a Target takes Damage this way, another Hero deals that same Target 3 Irreducible Melee Damage. 
+            QuickHPCheck(-4, 0, 0, 0, 0, 0);
+
+            //One Hero may Draw a Card.
+            QuickHandCheck(0, 1, 0, 0);
+
+        }
+
     }
 }
