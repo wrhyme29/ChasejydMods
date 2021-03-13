@@ -567,5 +567,43 @@ namespace ChasejydTests
             AssertInTrash(momentum);
 
         }
+
+        [Test()]
+        public void TestRapidLeadership_Power()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card rapid = PlayCard("RapidLeadership");
+            Card legacyPlay = PutInHand("NextEvolution");
+            Card bunkerDraw = bunker.TurnTaker.Deck.TopCard;
+
+            //One other Hero may Play a Card. Then one other Hero may Draw a Card.
+            DecisionSelectTurnTakers = new TurnTaker[] { legacy.TurnTaker, bunker.TurnTaker };
+            DecisionSelectCardToPlay = legacyPlay;
+
+            UsePower(rapid);
+
+            AssertInPlayArea(legacy, legacyPlay);
+            AssertInHand(bunkerDraw);
+
+        }
+
+        [Test()]
+        public void TestRapidLeadership_Play()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card rapid = PutInTrash("RapidLeadership");
+
+            //When this Card comes into Play, each other Player may Draw a Card.
+            QuickHandStorage(headlong, legacy, bunker, scholar);
+            PlayCard(rapid);
+            QuickHandCheck(0, 1, 1, 1);
+
+        }
     }
 }
