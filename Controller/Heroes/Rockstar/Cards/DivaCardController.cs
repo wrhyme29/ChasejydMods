@@ -29,7 +29,7 @@ namespace Chasejyd.Rockstar
         {
             //{Rockstar} may first destroy an Ongoing, Device, or Environment Card.
             SetCardPropertyToTrueIfRealAction(FirstTimePlayOrPower);
-            IEnumerator coroutine = base.GameController.SelectAndDestroyCard(HeroTurnTakerController, new LinqCardCriteria((Card c) => c.IsEnvironment || c.IsOngoing || c.IsDevice, "ongoing, device, or environment"), true, cardSource: GetCardSource());
+            IEnumerator coroutine = base.GameController.SelectAndDestroyCard(HeroTurnTakerController, new LinqCardCriteria((Card c) => c.IsEnvironment || c.IsOngoing || (c.IsDevice && !c.IsCharacter), "ongoing, device, or environment"), true, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);
