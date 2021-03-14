@@ -37,7 +37,7 @@ namespace Chasejyd.Headlong
                 if (!dd.Target.Owner.IsIncapacitatedOrOutOfGame && dd.Target.IsInPlayAndHasGameText)
                 {
                     HeroTurnTakerController httc = dd.Target.IsHeroCharacterCard ? FindHeroTurnTakerController(dd.Target.Owner.ToHero()) : DecisionMaker;
-                    coroutine = GameController.SelectTargetsAndDealDamage(HeroTurnTakerController, new DamageSource(GameController, CharacterCard), 3, DamageType.Melee, 1, false, 1, additionalCriteria: (Card c) => !c.IsHero && c.IsTarget, cardSource: GetCardSource());
+                    coroutine = GameController.SelectTargetsAndDealDamage(httc, new DamageSource(GameController, dd.Target), 3, DamageType.Melee, 1, false, 1, additionalCriteria: (Card c) => !c.IsHero && c.IsTarget, cardSource: GetCardSource());
                     if (base.UseUnityCoroutines)
                     {
                         yield return base.GameController.StartCoroutine(coroutine);
