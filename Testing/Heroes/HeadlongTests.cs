@@ -510,6 +510,29 @@ namespace ChasejydTests
         }
 
         [Test()]
+        public void TestFrictionlessShove_onlyVillainTargets()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+
+            Card mdp = GetCardInPlay("MobileDefensePlatform");
+            Card backlash = PlayCard("BacklashField");
+            Card battalion = PlayCard("BladeBattalion");
+
+            DecisionSelectCard = mdp;
+            DecisionSelectTarget = battalion;
+            QuickHPStorage(baron.CharacterCard, battalion, headlong.CharacterCard, legacy.CharacterCard, bunker.CharacterCard, scholar.CharacterCard);
+
+            //Place a non-Character Villain Target in play on the top of its Deck. 
+            AssertNextDecisionChoices(notIncluded: backlash.ToEnumerable());
+            PlayCard("FrictionlessShove");
+            AssertOnTopOfDeck(mdp);
+
+            //{Headlong} may Deal a non-Character Target 3 Projectile Damage.
+            QuickHPCheck(0, -3, 0, 0, 0, 0);
+        }
+
+        [Test()]
         public void TestFrictionTransfer()
         {
             SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
