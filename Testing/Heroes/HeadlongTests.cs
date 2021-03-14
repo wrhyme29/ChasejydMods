@@ -799,6 +799,37 @@ namespace ChasejydTests
             QuickHandCheck(0, 0, 0, 1);
         }
 
+        [Test()]
+        public void TestUpWheelinAndDealin()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            PlayCard("WheelinAndDealin");
+
+            //Each time an Environment Card comes into Play, {Headlong} may Draw a Card.
+            QuickHandStorage(headlong, legacy, bunker, scholar);
+            Card police = PlayCard("PoliceBackup");
+            QuickHandCheck(1, 0, 0, 0);
+
+            DestroyCard(police);
+            QuickHandUpdate();
+            PlayCard(police);
+            QuickHandCheck(1, 0, 0, 0);
+
+
+            //When a Hero Target would be dealt 4 or more Damage, you may Destroy this Card. If you do so, Prevent the Damage, then {Headlong} and one other Hero may Draw a Card.
+            DecisionYesNo = true;
+            DecisionSelectTurnTaker = bunker.TurnTaker;
+            QuickHandUpdate();
+            QuickHPStorage(scholar);
+            DealDamage(baron, scholar, 4, DamageType.Projectile);
+            QuickHPCheckZero();
+            QuickHandCheck(1, 0, 1, 0);
+
+        }
+
 
     }
 }
