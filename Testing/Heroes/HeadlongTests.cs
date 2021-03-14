@@ -185,6 +185,76 @@ namespace ChasejydTests
         }
 
         [Test()]
+        public void TestDaybreakHeadlongInnatePower()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong/DaybreakHeadlongCharacter", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+
+            Card police = PutOnDeck("PoliceBackup");
+            //Two Players may draw a card. 
+            //You may Destroy an Environment Card or Play the top Card of the Environment Deck.
+            DecisionSelectFunction = 1;
+            DecisionSelectTurnTakers = new TurnTaker[] { bunker.TurnTaker, scholar.TurnTaker };
+            QuickHandStorage(headlong, legacy, bunker, scholar);
+            UsePower(headlong);
+            QuickHandCheck(0, 0, 1, 1);
+            AssertInPlayArea(env, police);
+        }
+
+        [Test()]
+        public void TestDaybreakHeadlongIncap1()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong/DaybreakHeadlongCharacter", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            SetupIncap(baron);
+            //Increase Damage dealt by Environment Cards to Villain Targets by 1 until the Start of your next turn
+
+            UseIncapacitatedAbility(headlong, 0);
+
+            Card police = PlayCard("PoliceBackup");
+            QuickHPStorage(baron, legacy, bunker, scholar);
+            DealDamage(police, c => c.IsTarget, 3, DamageType.Projectile);
+            QuickHPCheck(-4, -3, -3, -3);
+
+            GoToStartOfTurn(headlong);
+            QuickHPUpdate();
+            DealDamage(police, c => c.IsTarget, 3, DamageType.Projectile);
+            QuickHPCheck(-3, -3, -3, -3);
+        }
+
+        [Test()]
+        public void TestDaybreakHeadlongIncap2()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong/DaybreakHeadlongCharacter", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            SetupIncap(baron);
+            //Two Players may draw a card. 
+            DecisionSelectTurnTakers = new TurnTaker[] { bunker.TurnTaker, scholar.TurnTaker };
+            QuickHandStorage(legacy, bunker, scholar);
+
+            UseIncapacitatedAbility(headlong, 1);
+
+            QuickHandCheck( 0, 1, 1);
+        }
+
+        [Test()]
+        public void TestDaybreakHeadlongIncap3()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong/DaybreakHeadlongCharacter", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            SetupIncap(baron);
+            //One Hero may Play a Card.
+            Card ammoDrop = PutInHand("AmmoDrop");
+            AssertIncapLetsHeroPlayCard(headlong, 2, bunker, "AmmoDrop");
+        }
+
+        [Test()]
         public void TestAreaKnowledge()
         {
             SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
