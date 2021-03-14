@@ -3,6 +3,8 @@ using Handelabra.Sentinels.Engine.Controller;
 using Handelabra.Sentinels.Engine.Model;
 using Handelabra.Sentinels.UnitTest;
 using NUnit.Framework;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,6 +14,8 @@ namespace ChasejydTests
     {
         //heroes
         protected HeroTurnTakerController rockstar { get { return FindHero("Rockstar"); } }
+        protected HeroTurnTakerController headlong { get { return FindHero("Headlong"); } }
+
 
         //team villains
         protected TurnTakerController blisterTeam { get { return FindVillainTeamMember("Blister"); } }
@@ -151,6 +155,13 @@ namespace ChasejydTests
                 Assert.Fail("storedResults was null");
             }
 
+        }
+
+        protected void AddDestroyEnvironmentCardCounterAttackTrigger(HeroTurnTakerController decisionMaker, Card target, CardSource cardsource)
+        {
+            Func<DealDamageAction, bool> criteria = (DealDamageAction dd) => dd.Target == target;
+            Func<DealDamageAction, IEnumerator> response = (DealDamageAction dd) => this.GameController.DestroyCards(decisionMaker, new LinqCardCriteria(c => c.IsEnvironment, "environment"), autoDecide: true, cardSource: cardsource);
+            GameController.AddTrigger<DealDamageAction>(new Trigger<DealDamageAction>(this.GameController, criteria, response, new TriggerType[] { TriggerType.DestroyCard }, TriggerTiming.After, cardsource));
         }
 
     }
