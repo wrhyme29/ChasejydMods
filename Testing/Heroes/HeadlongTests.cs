@@ -772,6 +772,33 @@ namespace ChasejydTests
 
         }
 
+        [Test()]
+        public void TestUpTempo()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card momentum = PutInTrash("BowlOver");
+
+            PlayCard("UpTempo");
+
+            //The first time {Headlong} plays a Momentum Card each turn, one Player may Draw a card.
+            DecisionSelectTurnTakers = new TurnTaker[] { bunker.TurnTaker, scholar.TurnTaker };
+            QuickHandStorage(headlong, legacy, bunker, scholar);
+            PlayCard(momentum);
+            QuickHandCheck(0, 0, 1, 0);
+
+            QuickHandUpdate();
+            PlayCard(momentum);
+            QuickHandCheck(0, 0, 0, 0);
+
+            GoToNextTurn();
+            QuickHandUpdate();
+            PlayCard(momentum);
+            QuickHandCheck(0, 0, 0, 1);
+        }
+
 
     }
 }
