@@ -14,6 +14,14 @@ namespace Chasejyd.Headlong
 
         }
 
+        public override void AddTriggers()
+        {
+            //Reduce damage dealt to Hero Targets from Environment Cards by 1. 
+            AddReduceDamageTrigger((DealDamageAction dd) => dd.DamageSource != null && dd.DamageSource.IsCard && dd.DamageSource.Card.IsEnvironment && dd.Target.IsHero, dd => 1);
+            //Increase Damage dealt to Villain Targets by Environment Cards by 1.
+            AddIncreaseDamageTrigger((DealDamageAction dd) => dd.DamageSource != null && dd.DamageSource.IsCard && dd.DamageSource.Card.IsEnvironment && IsVillainTarget(dd.Target), 1);
+        }
+
 
     }
 }

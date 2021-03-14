@@ -717,5 +717,24 @@ namespace ChasejydTests
             QuickHPCheck(-2, -3, 0, 0, 0, 0);
         }
 
+        [Test()]
+        public void TestSlipperySurface()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card police = PlayCard("PoliceBackup");
+
+            PlayCard("SlipperySurface");
+
+            //Reduce damage dealt to Hero Targets from Environment Cards by 1. 
+            //Increase Damage dealt to Villain Targets by Environment Cards by 1.
+
+            QuickHPStorage(baron, legacy, bunker, scholar, headlong);
+            DealDamage(police, c => c.IsTarget, 3, DamageType.Projectile);
+            QuickHPCheck(-4, -2, -2, -2, -2);
+        }
+
     }
 }
