@@ -736,5 +736,42 @@ namespace ChasejydTests
             QuickHPCheck(-4, -2, -2, -2, -2);
         }
 
+        [Test()]
+        public void TestSmoothMoves()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card toHand = PutOnDeck("BowlOver");
+            Card toPlay = PutOnDeck("SlipperySurface");
+            Card toTrash = PutOnDeck("FrictionTransfer");
+            //Reveal the top 3 Cards of your Deck. Put one of those Cards into your hand, one into play, and one into your Trash.
+            DecisionSelectCards = new Card[] { toHand, toPlay, toTrash };
+            PlayCard("SmoothMoves");
+            AssertInHand(toHand);
+            AssertInPlayArea(headlong, toPlay);
+            AssertInTrash(toTrash);
+
+        }
+
+        [Test()]
+        public void TestSpinOut()
+        {
+            SetupGameController("BaronBlade", "Chasejyd.Headlong", "Legacy", "Bunker", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+            Card battalion = PlayCard("BladeBattalion");
+
+            //{Headlong} deals 1 Non-Hero Target 4 Melee Damage. Then he may deal a second Non-Hero Target 3 Projectile Damage.
+
+            DecisionSelectTargets = new Card[] { baron.CharacterCard, battalion };
+            QuickHPStorage(baron.CharacterCard, battalion, headlong.CharacterCard, legacy.CharacterCard, bunker.CharacterCard, scholar.CharacterCard);
+            PlayCard("SpinOut");
+            QuickHPCheck(-4, -3, 0, 0, 0, 0);
+
+        }
+
+
     }
 }
