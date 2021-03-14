@@ -18,7 +18,7 @@ namespace Chasejyd.Headlong
         {
             //Place a non-Character Villain Target in play on the top of its Deck. 
             List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
-            IEnumerator coroutine = base.GameController.SelectCardAndStoreResults(HeroTurnTakerController, SelectionType.MoveCardOnDeck, new LinqCardCriteria((Card c) => IsVillain(c) && c.IsInPlay && !c.IsCharacter &&  !c.IsOneShot && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), "non-character villain cards in play", useCardsSuffix: false), storedResults, optional: false, cardSource: GetCardSource());
+            IEnumerator coroutine = base.GameController.SelectCardAndStoreResults(HeroTurnTakerController, SelectionType.MoveCardOnDeck, new LinqCardCriteria((Card c) => IsVillainTarget(c) && c.IsInPlay && !c.IsCharacter &&  !c.IsOneShot && base.GameController.IsCardVisibleToCardSource(c, GetCardSource()), "non-character villain cards in play", useCardsSuffix: false), storedResults, optional: false, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);
