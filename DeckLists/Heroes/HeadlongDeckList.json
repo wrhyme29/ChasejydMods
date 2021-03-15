@@ -198,7 +198,7 @@
 			  "title": "Bowl Over",
 			  "count": 2,
 			  "body": [
-				  "Deal up to X Targets 3 Melee Damage, where X is equal to the number of Environment Cards in play +1."
+				  "{Headlong} deals up to X Targets 3 Melee Damage, where X is equal to the number of Environment Cards in play +1."
 			  ],
 			  "icons": [
 				  "DealDamageMelee"
@@ -215,7 +215,7 @@
 			  "title": "Slip & Slide",
 			  "count": 2,
 			  "body": [
-				  "Deal one Target 2 Projectile Damage. If a Target takes Damage this way, that Target Deals a Non-Hero Target 3 Melee Damage."
+				  "{Headlong} deals one Target 2 Projectile Damage. If a Target takes Damage this way, that Target Deals a Non-Hero Target 3 Melee Damage."
 			  ],
 			  "icons": [
 				  "DealDamageProjectile",
@@ -306,7 +306,7 @@
 			  "title": "Perfect Placement",
 			  "count": 2,
 			  "body": [
-				  "Deal a Hero Character 2 Projectile Damage. If a Hero takes Damage this way, that Hero may Play a Card. Then {Headlong} may use a Power."
+				  "{Headlong} deals one Hero Character 2 Projectile Damage. If a Hero takes Damage this way, that Hero may Play a Card. Then {Headlong} may use a Power."
 			  ],
 			  "icons": [
 				  "DealDamageProjectile",
@@ -325,7 +325,7 @@
 			  "title": "Blindside",
 			  "count": 2,
 			  "body": [
-				  "Deal one Non-Hero Target X Melee Damage where X is equal to the number of Environment Cards in play +1. Each other Player may Draw a Card."
+				  "{Headlong} deals one Non-Hero Target X Melee Damage where X is equal to the number of Environment Cards in play +1. Each other Player may Draw a Card."
 			  ],
 			  "icons": [
 				  "DealDamageMelee",
@@ -343,7 +343,7 @@
 			  "title": "Set Up",
 			  "count": 2,
 			  "body": [
-				  "Deal one Non-Hero Target 1 Melee Damage. If a Target takes Damage this way, another Hero deals that same Target 3 Irreducible Melee Damage. One Hero may Draw a Card."
+				  "{Headlong} deals one Non-Hero Target 1 Melee Damage. If a Target takes Damage this way, another Hero deals that same Target 3 Irreducible Melee Damage. One Hero may Draw a Card."
 			  ],
 			  "icons": [
 				  "DealDamageMelee",

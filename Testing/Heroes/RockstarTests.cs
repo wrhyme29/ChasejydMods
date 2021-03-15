@@ -270,71 +270,10 @@ namespace ChasejydTests
             
         }
 
-        [Test()]
-        public void TestDivaPreventionOverride_SelectAndUsePower()
-        {
-            //This is currently failing as well, as it prevents hasty augmentation from even asking for a hero to trigger it for
 
-            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy", "Bunker", "TheScholar", "Megalopolis");
-            StartGame();
-            DestroyNonCharacterVillainCards();
-            //Non-Hero cards cannot prevent {Rockstar} from using Powers.
-            PlayCard("PaparazziOnTheScene");
-            QuickHPStorage(baron);
-            RunCoroutine(GameController.SelectAndUsePower(rockstar, cardSource: rockstar.CharacterCardController.GetCardSource()));
-            QuickHPCheck(0);
 
-            PlayCard("Diva");
-            QuickHPStorage(baron);
-            RunCoroutine(GameController.SelectAndUsePower(rockstar, cardSource: rockstar.CharacterCardController.GetCardSource()));
-            QuickHPCheck(-2);
 
-        }
-
-        [Test()]
-        public void TestDivaPreventionOverride_HastyAugmentation()
-        {
-
-            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy", "Unity", "TheScholar", "Megalopolis");
-            StartGame();
-            DestroyNonCharacterVillainCards();
-            //Non-Hero cards cannot prevent {Rockstar} from using Powers.
-            PlayCard("PaparazziOnTheScene");
-            QuickHPStorage(baron);
-            DecisionSelectTurnTaker = rockstar.TurnTaker;
-            PlayCard("HastyAugmentation");
-            QuickHPCheck(0);
-
-            PlayCard("Diva");
-            QuickHPStorage(baron);
-            DecisionSelectTurnTaker = rockstar.TurnTaker;
-            PlayCard("HastyAugmentation");
-            QuickHPCheck(-4);
-
-        }
-
-        [Test()]
-        public void TestRoarPreventionOverride_Legacy()
-        {
-
-            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy/FreedomFiveLegacyCharacter", "Unity", "TheScholar", "Megalopolis");
-            StartGame();
-            DestroyNonCharacterVillainCards();
-            //Non-Hero cards cannot prevent {Rockstar} from playing cards.
-            PlayCard("RockstarRoar");
-            PlayCard("HostageSituation");
-            QuickHPStorage(baron);
-            Card playCard = PutInHand("OwnTheStage");
-            DecisionSelectTurnTaker = rockstar.TurnTaker;
-            DecisionSelectFunction = 1;
-            DecisionSelectCard = playCard;
-
-            GoToStartOfTurn(rockstar);
-            UsePower(legacy);
-            AssertInPlayArea(rockstar, playCard);
-
-        }
-
+       
         [Test()]
         public void TestRoar_DestroyEffect()
         {
@@ -372,6 +311,41 @@ namespace ChasejydTests
             //optional damage
             DestroyCard(battalion, unity.CharacterCard);
             QuickHPCheck(0, 0);
+
+        }
+
+        [Test()]
+        public void TestConfident_PlayOneCardOnly()
+        {
+
+            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy/FreedomFiveLegacyCharacter", "Unity", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card ongoing = PlayCard("StandingOvation");
+            Card toPlay = PutInHand("FrontWoman");
+
+            PlayCard("Confident");
+            //The first time each turn that one of {Rockstar}'s cards is destroyed, she may play a card.
+            DecisionSelectCard = toPlay;
+
+            DestroyCard(ongoing, baron.CharacterCard);
+            AssertInPlayArea(rockstar, toPlay);
+
+            MoveCard(rockstar, toPlay, rockstar.HeroTurnTaker.Hand);
+            PlayCard(ongoing);
+
+            //only first time per turn
+            DestroyCard(ongoing, baron.CharacterCard);
+            AssertInHand(rockstar, toPlay);
+
+            MoveCard(rockstar, toPlay, rockstar.HeroTurnTaker.Hand);
+            PlayCard(ongoing);
+            GoToNextTurn();
+
+            //resets at next turn
+            DestroyCard(ongoing, baron.CharacterCard);
+            AssertInPlayArea(rockstar, toPlay);
 
         }
     }

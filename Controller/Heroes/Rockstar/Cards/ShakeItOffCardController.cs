@@ -23,7 +23,8 @@ namespace Chasejyd.Rockstar
         {
             //When {Rockstar} would take 3 or more damage you may destroy this card. If you do, prevent that damage and you may draw a card.
             AddTrigger((DealDamageAction dd) => dd.Target == CharacterCard && dd.Amount >= 3 && !base.IsBeingDestroyed, PreventDamageResponse, TriggerType.WouldBeDealtDamage, TriggerTiming.Before, isConditional: true, requireActionSuccess: true, isActionOptional: true);
-        }
+			AddWhenDestroyedTrigger(dca => DrawCard(optional: true), TriggerType.DrawCard);
+		}
 
 		private IEnumerator PreventDamageResponse(DealDamageAction dd)
 		{
@@ -31,7 +32,7 @@ namespace Chasejyd.Rockstar
 			if (!PerformDestroyForDamage.HasValue || PerformDestroyForDamage.Value != dd.InstanceIdentifier)
 			{
 				List<YesNoCardDecision> storedResults = new List<YesNoCardDecision>();
-				IEnumerator coroutine = base.GameController.MakeYesNoCardDecision(DecisionMaker, SelectionType.DestroyCard, base.Card, dd, storedResults, null, GetCardSource());
+				IEnumerator coroutine = base.GameController.MakeYesNoCardDecision(DecisionMaker, SelectionType.DestroyCard, base.Card, dd, storedResults, cardSource: GetCardSource());
 				if (base.UseUnityCoroutines)
 				{
 					yield return base.GameController.StartCoroutine(coroutine);
@@ -58,7 +59,7 @@ namespace Chasejyd.Rockstar
 				}
 				if (IsRealAction(dd))
 				{
-					coroutine2 = base.GameController.DestroyCard(DecisionMaker, base.Card, optional: false, null, null, null, null, null, null, null, null, GetCardSource());
+					coroutine2 = base.GameController.DestroyCard(DecisionMaker, base.Card, cardSource: GetCardSource());
 					if (base.UseUnityCoroutines)
 					{
 						yield return base.GameController.StartCoroutine(coroutine2);
@@ -68,15 +69,6 @@ namespace Chasejyd.Rockstar
 						base.GameController.ExhaustCoroutine(coroutine2);
 					}
 
-					coroutine2 = DrawCard(hero: HeroTurnTaker, optional: true);
-					if (base.UseUnityCoroutines)
-					{
-						yield return base.GameController.StartCoroutine(coroutine2);
-					}
-					else
-					{
-						base.GameController.ExhaustCoroutine(coroutine2);
-					}
 				}
 			}
 			if (IsRealAction(dd))
