@@ -360,5 +360,42 @@ namespace ChasejydTests
 
 
         }
+
+        [Test()]
+        public void TestEncore()
+        {
+
+            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy/FreedomFiveLegacyCharacter", "Unity", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card otherPowerCard = PlayCard("WickedSolo");
+
+            Card card1 = PutInTrash("Diva");
+            Card card2 = PutInTrash("OwnTheStage");
+            Card card3 = PutInTrash("SoWhat");
+
+            //Rockstar takes up to 2 Cards from her Trash and puts them in her hand.
+            //Then Rockstar may use a Power.
+            DecisionSelectCards = new Card[] { card2, card3 , baron.CharacterCard};
+            DecisionSelectPower = otherPowerCard;
+            QuickHPStorage(baron.CharacterCard);
+
+            PlayCard("Encore");
+
+            AssertInHand(card2, card3);
+            AssertInTrash(card1);
+            QuickHPCheck(-2);
+
+
+
+            
+            
+
+
+
+
+
+        }
     }
 }
