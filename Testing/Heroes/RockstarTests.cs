@@ -143,8 +143,29 @@ namespace ChasejydTests
 
         }
 
-
         [Test()]
+        public void TestDivaDestroyEffect_StartOfTurnHeal()
+        {
+
+            SetupGameController("BaronBlade", "Unity", "Legacy", "Bunker", "CaptainCosmic", "Chasejyd.Rockstar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            SetHitPoints(rockstar, 20);
+            PlayCard("Diva");
+
+            GoToEndOfTurn(cosmic);
+
+            //start of turn, rockstar gains 1 hp
+            QuickHPStorage(rockstar);
+            GoToStartOfTurn(rockstar);
+            QuickHPCheck(1);
+
+
+
+        }
+
+            [Test()]
         public void TestDivaDestroyEffect_Power()
         {
 

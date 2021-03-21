@@ -266,7 +266,7 @@
                 "Destroy"
             ],
             "body": [
-                "Non-Hero cards cannot prevent {Rockstar} from using Powers.",
+                "At the Start of her Turn, {Rockstar} gains 1 HP.",
                 "The first time per turn, outside of her own, a card allows {Rockstar} to play a card or use a power , {Rockstar} may first destroy an Ongoing, non-Character Card Device, or Environment Card."
             ],
             "flavorQuotes": [
