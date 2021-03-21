@@ -19,8 +19,13 @@ namespace Chasejyd.Rockstar
 
         public override void AddTriggers()
         {
+
+            //At the Start of her Turn, Rockstar draws a Card.
+
+            AddStartOfTurnTrigger((TurnTaker tt) => tt == TurnTaker, pca => DrawCard(), TriggerType.DrawCard);
+
             //The first time each turn that {Rockstar} destroys a Non-Hero card she may deal 1 Target 2 Melee Damage and gain 1 HP.
-            AddTrigger<DestroyCardAction>((DestroyCardAction dca) => TestCriteria(dca), DealDamageAndHealResponse, new TriggerType[]
+            AddTrigger<DestroyCardAction>((DestroyCardAction dca) => FirstTimeDestroyingNonHeroCriteria(dca), DealDamageAndHealResponse, new TriggerType[]
             {
                 TriggerType.DealDamage,
                 TriggerType.GainHP
@@ -29,7 +34,7 @@ namespace Chasejyd.Rockstar
             AddAfterLeavesPlayAction((GameAction ga) => ResetFlagAfterLeavesPlay(FirstTimeDestroyCard), TriggerType.Hidden);
         }
 
-        public bool TestCriteria(DestroyCardAction dca)
+        public bool FirstTimeDestroyingNonHeroCriteria(DestroyCardAction dca)
         {
             return dca.WasCardDestroyed && dca.CardToDestroy != null && !dca.CardToDestroy.Card.IsHero && dca.CardSource.CardController == CharacterCardController && !HasBeenSetToTrueThisTurn(FirstTimeDestroyCard);
         }

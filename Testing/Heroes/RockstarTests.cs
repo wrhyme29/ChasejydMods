@@ -235,9 +235,25 @@ namespace ChasejydTests
         }
 
 
+        [Test()]
+        public void TestRoar_StartOfTurnDraw()
+        {
+
+            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy/FreedomFiveLegacyCharacter", "Unity", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            //start of turn, draw a card
+
+            PlayCard("RockstarRoar");
+
+            QuickHandStorage(rockstar);
+            GoToStartOfTurn(rockstar);
+            QuickHandCheck(1);
+        }
 
 
-       
+
         [Test()]
         public void TestRoar_DestroyEffect()
         {

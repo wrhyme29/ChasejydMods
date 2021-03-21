@@ -333,11 +333,12 @@
                 "ongoing"
             ],
             "icons": [
+                "DrawCardNow",
                 "DealDamageMelee",
                 "GainHP"
             ],
             "body": [
-                "Non-Hero Cards cannot prevent {Rockstar} from playing cards.",
+                "At the Start of her Turn, {Rockstar} draws a Card.",
                 "The first time each turn that {Rockstar} destroys a Non-Hero card she may deal 1 Target 2 Melee Damage and gain 1 HP."
             ],
             "flavorQuotes": [
