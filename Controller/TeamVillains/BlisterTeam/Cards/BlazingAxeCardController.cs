@@ -23,8 +23,8 @@ namespace Chasejyd.BlisterTeam
 
         public override void AddTriggers()
         {
-            //Increase Damage Dealt by {Blister} by 1.
-            AddIncreaseDamageTrigger((DealDamageAction dd) => dd.DamageSource != null && dd.DamageSource.IsSameCard(CharacterCard), 1);
+            //Increase fire Damage Dealt by {Blister} by 1.
+            AddIncreaseDamageTrigger((DealDamageAction dd) => dd.DamageSource != null && dd.DamageSource.IsSameCard(CharacterCard) && dd.DamageType == DamageType.Fire, 1);
 
             //Damage from {Blister} cannot be redirected.
             AddTrigger((RedirectDamageAction rd) => rd.DealDamageAction != null && rd.DealDamageAction.DamageSource != null && rd.DealDamageAction.DamageSource.IsSameCard(CharacterCard), (RedirectDamageAction rd) => CancelAction(rd), TriggerType.CancelAction, TriggerTiming.Before);
