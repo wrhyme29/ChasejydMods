@@ -357,16 +357,16 @@
 			  "flavorReference": "-"
 		  },
 		  {
-			  "identifier": "RecklessMomentum",
-			  "title": "Reckless Momentum",
+			  "identifier": "RapidEvac",
+			  "title": "Rapid Evac",
 			  "count": 2,
 			  "body": [
-				  "Shuffle any number of Momentum Cards from your Trash into your Deck. For each Card Shuffled into your Deck this Way, {Headlong} deals himself 1 Fire Damage, and then deals 1 Non-Hero Target 2 Melee Damage. He must choose a different Non-Hero Target each time."
+				  "Destroy an Environment Card. Then, Reveal the top Card of the Environment Deck. Play it or Discard it. Then each Hero and Environment Target gains 1 HP."
 			  ],
 			  "icons": [
+				  "DestroyEnvironment",
 				  "Manipulate",
-				  "DealDamageFire",
-				  "DealDamageMelee"
+				  "GainHP"
 			  ],
 			  "keywords": [
 				  "one-shot",
