@@ -38,7 +38,7 @@
 				"Manipulate"
 			],
 			"openingLines": {
-				"default": "Headlong placeholder opening line!"
+				"default": "A villain attack? Time to get moving!"
 			},
 			"complexity": 2
 		  },
@@ -198,7 +198,7 @@
 			  "title": "Bowl Over",
 			  "count": 2,
 			  "body": [
-				  "{Headlong} deals up to X Targets 3 Melee Damage, where X is equal to the number of Environment Cards in play +1."
+				  "{Headlong} deals up to X Targets 2 Melee Damage, where X is equal to the number of Environment Cards in play +1."
 			  ],
 			  "icons": [
 				  "DealDamageMelee"
@@ -288,7 +288,7 @@
 			  "title": "Spin Out",
 			  "count": 2,
 			  "body": [
-				  "{Headlong} deals 1 Non-Hero Target 4 Melee Damage. Then he may deal a second Non-Hero Target 3 Projectile Damage."
+				  "{Headlong} deals 1 Non-Hero Target 3 Melee Damage. Then he may deal a second Non-Hero Target 3 Projectile Damage."
 			  ],
 			  "icons": [
 				  "DealDamageMelee",
@@ -357,16 +357,16 @@
 			  "flavorReference": "-"
 		  },
 		  {
-			  "identifier": "RecklessMomentum",
-			  "title": "Reckless Momentum",
+			  "identifier": "RapidEvac",
+			  "title": "Rapid Evac",
 			  "count": 2,
 			  "body": [
-				  "Shuffle any number of Momentum Cards from your Trash into your Deck. For each Card Shuffled into your Deck this Way, {Headlong} deals himself 1 Fire Damage, and then deals 1 Non-Hero Target 2 Melee Damage. He must choose a different Non-Hero Target each time."
+				  "Destroy an Environment Card. Then, Reveal the top Card of the Environment Deck. Play it or Discard it. Then each Hero and Environment Target gains 1 HP."
 			  ],
 			  "icons": [
+				  "DestroyEnvironment",
 				  "Manipulate",
-				  "DealDamageFire",
-				  "DealDamageMelee"
+				  "GainHP"
 			  ],
 			  "keywords": [
 				  "one-shot",
@@ -430,7 +430,7 @@
 			  "PlayCardNow"
 		  ],
 		  "openingLines": {
-			  "default": "Daybreak Headlong placeholder opening line!"
+			  "default": "Follow my lead, team. We hit them fast and hard."
 		  },
 		  "complexity": 2
 	  }]

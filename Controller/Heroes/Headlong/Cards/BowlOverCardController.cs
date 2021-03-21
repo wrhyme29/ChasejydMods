@@ -16,8 +16,8 @@ namespace Chasejyd.Headlong
 
         public override IEnumerator Play()
         {
-            //Deal up to X Targets 3 Melee Damage, where X is equal to the number of Environment Cards in play +1.
-            IEnumerator coroutine = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, CharacterCard), (Card c) => 3, DamageType.Melee, () => GetNumberOfEnvironmentCardsInPlay() + 1, false, 0, cardSource: GetCardSource());
+            //Deal up to X Targets 2 Melee Damage, where X is equal to the number of Environment Cards in play +1.
+            IEnumerator coroutine = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, CharacterCard), (Card c) => 2, DamageType.Melee, () => GetNumberOfEnvironmentCardsInPlay() + 1, false, 0, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(coroutine);

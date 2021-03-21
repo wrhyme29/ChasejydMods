@@ -132,10 +132,15 @@ namespace ChasejydTests
             SetupGameController("ErmineTeam", "Haka", "Chasejyd.BlisterTeam", "Chasejyd.Rockstar", "TheOperativeTeam", "Legacy", "Megalopolis");
             StartGame();
 
-            //Increase Damage Dealt by {Blister} by 1.
+            //Increase fire Damage Dealt by {Blister} by 1.
             QuickHPStorage(haka);
             DealDamage(blisterTeam, haka, 2, DamageType.Fire);
             QuickHPCheck(-3);
+
+            //only fire
+            QuickHPStorage(haka);
+            DealDamage(blisterTeam, haka, 2, DamageType.Melee);
+            QuickHPCheck(-2);
 
             //Damage from {Blister} cannot be redirected.
             PlayCard("LeadFromTheFront");
@@ -143,6 +148,7 @@ namespace ChasejydTests
             QuickHPStorage(haka, rockstar, legacy);
             DealDamage(blisterTeam, haka, 2, DamageType.Fire);
             QuickHPCheck(-3, 0, 0);
+
 
         }
 

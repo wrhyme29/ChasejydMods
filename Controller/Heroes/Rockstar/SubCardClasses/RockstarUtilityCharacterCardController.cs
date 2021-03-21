@@ -53,5 +53,17 @@ namespace Chasejyd.Rockstar
         {
             return FindRoar().Where(c => c.IsInPlayAndHasGameText).Any();
         }
+
+
+        protected bool IsStagePresence(Card card)
+        {
+            return card != null && base.GameController.DoesCardContainKeyword(card, "stage presence");
+        }
+
+
+        protected int GetNumberOfStagePresenceInPlay()
+        {
+            return base.FindCardsWhere((Card c) => c.IsInPlayAndHasGameText && IsStagePresence(c)).Count();
+        }
     }
 }

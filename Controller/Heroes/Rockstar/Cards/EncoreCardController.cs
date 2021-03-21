@@ -17,20 +17,19 @@ namespace Chasejyd.Rockstar
 
         public override IEnumerator Play()
         {
-            //{Rockstar} gains 2 HP.
-            IEnumerator coroutine = GameController.GainHP(CharacterCard, 2, cardSource: GetCardSource());
+            //Rockstar takes up to 2 Cards from her Trash and puts them in her hand. 
+            List<MoveCardDestination> destinations = new List<MoveCardDestination>() { new MoveCardDestination(HeroTurnTaker.Hand) };
+            IEnumerator coroutine = GameController.SelectCardsFromLocationAndMoveThem(DecisionMaker, TurnTaker.Trash, 0, 2, new LinqCardCriteria(c => true), destinations, selectionType: SelectionType.MoveCardToHand, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(coroutine);
             }
             else
             {
-               GameController.ExhaustCoroutine(coroutine);
+                GameController.ExhaustCoroutine(coroutine);
             }
-
-            // You may take an Ongoing from your Trash and put it on top of your deck.
-            MoveCardDestination destinations = new MoveCardDestination(HeroTurnTakerController.TurnTaker.Deck);
-            coroutine = GameController.SelectCardsFromLocationAndMoveThem(HeroTurnTakerController, HeroTurnTakerController.TurnTaker.Trash, 0, 1, new LinqCardCriteria((Card c) => c.IsOngoing, "ongoing"), destinations.ToEnumerable(), cardSource: GetCardSource());
+            //Then Rockstar may use a Power.
+            coroutine = GameController.SelectAndUsePower(HeroTurnTakerController, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(coroutine);

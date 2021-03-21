@@ -18,6 +18,10 @@ namespace Chasejyd.Rockstar
         private const string FirstTimePlayOrPower = "FirstTimePlayOrPower";
         public override void AddTriggers()
         {
+
+            //At the Start of her Turn, {Rockstar} gains 1 HP.
+            AddStartOfTurnTrigger((TurnTaker tt) => tt == TurnTaker, pca => GameController.GainHP(CharacterCard, 1, cardSource: GetCardSource()), TriggerType.GainHP);
+
             //The first time per turn, outside of her own, a card allows {Rockstar} to play a card or use a power , {Rockstar} may first destroy an Ongoing, Device, or Environment Card.
 
             AddTrigger<PlayCardAction>((PlayCardAction pca) => Game.ActiveTurnTaker != TurnTaker && pca.ResponsibleTurnTaker == TurnTaker && !HasBeenSetToTrueThisTurn(FirstTimePlayOrPower), MaybeDestroyCardResponse, TriggerType.DestroyCard, TriggerTiming.Before);

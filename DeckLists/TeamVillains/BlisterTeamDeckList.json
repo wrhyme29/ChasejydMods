@@ -71,7 +71,7 @@
            "MakeDamageUnredirectable"
          ],
          "body":[  
-            "Increase Damage Dealt by {Blister} by 1.",
+            "Increase Fire Damage Dealt by {Blister} by 1.",
             "Damage from {Blister} cannot be redirected."
          ],
          "flavorQuotes":[  

@@ -34,43 +34,7 @@ namespace ChasejydTests
             Assert.AreEqual(31, rockstar.CharacterCard.HitPoints);
         }
 
-        [Test()]
-        public void TestRockstarInnatePower()
-        {
-
-            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy", "Bunker", "TheScholar", "Megalopolis");
-            StartGame();
-            DestroyNonCharacterVillainCards();
-
-            //{Rockstar} deals 1 target 2 melee damage.
-
-            GoToUsePowerPhase(rockstar);
-            QuickHPStorage(baron);
-            UsePower(rockstar);
-            QuickHPCheck(-2);
-
-            //Until the start of your next turn, increase HP recovery by {Rockstar} by 1.
-            SetHitPoints(new TurnTakerController[] { rockstar, legacy, bunker, scholar }, 10);
-            QuickHPStorage(rockstar, legacy, bunker, scholar);
-            Card hpGain = PlayCard("InspiringPresence");
-            QuickHPCheck(2, 1, 1, 1);
-            DestroyCard(hpGain, legacy.CharacterCard);
-
-            //should stil apply on the next turn
-            GoToNextTurn();
-            QuickHPUpdate();
-            hpGain = PlayCard("InspiringPresence");
-            QuickHPCheck(2, 1, 1, 1);
-            DestroyCard(hpGain, legacy.CharacterCard);
-
-            //should expire by the next turn
-            GoToStartOfTurn(rockstar);
-            QuickHPUpdate();
-            hpGain = PlayCard("InspiringPresence");
-            QuickHPCheck(1, 1, 1, 1);
-            DestroyCard(hpGain, legacy.CharacterCard);
-        }
-
+       
 
         [Test()]
         public void TestRockstarIncap1()
@@ -179,8 +143,29 @@ namespace ChasejydTests
 
         }
 
-
         [Test()]
+        public void TestDivaDestroyEffect_StartOfTurnHeal()
+        {
+
+            SetupGameController("BaronBlade", "Unity", "Legacy", "Bunker", "CaptainCosmic", "Chasejyd.Rockstar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            SetHitPoints(rockstar, 20);
+            PlayCard("Diva");
+
+            GoToEndOfTurn(cosmic);
+
+            //start of turn, rockstar gains 1 hp
+            QuickHPStorage(rockstar);
+            GoToStartOfTurn(rockstar);
+            QuickHPCheck(1);
+
+
+
+        }
+
+            [Test()]
         public void TestDivaDestroyEffect_Power()
         {
 
@@ -271,9 +256,25 @@ namespace ChasejydTests
         }
 
 
+        [Test()]
+        public void TestRoar_StartOfTurnDraw()
+        {
+
+            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy/FreedomFiveLegacyCharacter", "Unity", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            //start of turn, draw a card
+
+            PlayCard("RockstarRoar");
+
+            QuickHandStorage(rockstar);
+            GoToStartOfTurn(rockstar);
+            QuickHandCheck(1);
+        }
 
 
-       
+
         [Test()]
         public void TestRoar_DestroyEffect()
         {
@@ -346,6 +347,91 @@ namespace ChasejydTests
             //resets at next turn
             DestroyCard(ongoing, baron.CharacterCard);
             AssertInPlayArea(rockstar, toPlay);
+
+        }
+
+        [Test()]
+        public void TestRockstarInnate()
+        {
+
+            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy/FreedomFiveLegacyCharacter", "Unity", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            DecisionSelectTarget = baron.CharacterCard;
+
+            QuickHPStorage(baron);
+            UsePower(rockstar);
+            QuickHPCheck(-1);
+
+            //when a stage presence is in play, increase this damage by 2
+            PlayCard("FrontWoman");
+            QuickHPUpdate();
+            UsePower(rockstar);
+            QuickHPCheck(-3);
+
+        }
+
+        [Test()]
+        public void TestIntermission()
+        {
+
+            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy/FreedomFiveLegacyCharacter", "Unity", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            SetHitPoints(rockstar, 20);
+
+            Card stage = PutInHand("FrontWoman");
+
+            //{Rockstar} gains 1 HP and draws 2 Cards. {Rockstar} may Play a Stage Presence Card.
+            QuickHPStorage(rockstar);
+            DecisionSelectCardToPlay = stage;
+            QuickHandStorage(rockstar);
+
+            PlayCard("Intermission");
+
+            QuickHPCheck(1);
+            AssertInPlayArea(rockstar, stage);
+            QuickHandCheck(1); // +2 from draws, -1 from playing stage presence
+
+
+        }
+
+        [Test()]
+        public void TestEncore()
+        {
+
+            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy/FreedomFiveLegacyCharacter", "Unity", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card otherPowerCard = PlayCard("WickedSolo");
+
+            Card card1 = PutInTrash("Diva");
+            Card card2 = PutInTrash("OwnTheStage");
+            Card card3 = PutInTrash("SoWhat");
+
+            //Rockstar takes up to 2 Cards from her Trash and puts them in her hand.
+            //Then Rockstar may use a Power.
+            DecisionSelectCards = new Card[] { card2, card3 , baron.CharacterCard};
+            DecisionSelectPower = otherPowerCard;
+            QuickHPStorage(baron.CharacterCard);
+
+            PlayCard("Encore");
+
+            AssertInHand(card2, card3);
+            AssertInTrash(card1);
+            QuickHPCheck(-2);
+
+
+
+            
+            
+
+
+
+
 
         }
     }

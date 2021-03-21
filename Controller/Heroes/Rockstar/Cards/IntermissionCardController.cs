@@ -16,8 +16,8 @@ namespace Chasejyd.Rockstar
 
         public override IEnumerator Play()
         {
-            //{Rockstar} gains 2 HP. 
-            IEnumerator coroutine = GameController.GainHP(CharacterCard, 2, cardSource: GetCardSource());
+            //{Rockstar} gains 1 HP. 
+            IEnumerator coroutine = GameController.GainHP(CharacterCard, 1, cardSource: GetCardSource());
             if (UseUnityCoroutines)
             {
                 yield return GameController.StartCoroutine(coroutine);
@@ -27,15 +27,26 @@ namespace Chasejyd.Rockstar
                 GameController.ExhaustCoroutine(coroutine);
             }
 
-            //Search your deck or your trash for a Stage Presence card and put it into play or into your hand. If you searched your deck, shuffle your deck.
-            coroutine = SearchForCards(DecisionMaker, searchDeck: true, searchTrash: true, 1, 1, new LinqCardCriteria((Card c) => IsStagePresence(c), "stage presence"), putIntoPlay: true, putInHand: true, putOnDeck: false);
-            if (base.UseUnityCoroutines)
+            //Rockstar Draws 2 cards
+            coroutine = DrawCards(HeroTurnTakerController, 2);
+            if (UseUnityCoroutines)
             {
-                yield return base.GameController.StartCoroutine(coroutine);
+                yield return GameController.StartCoroutine(coroutine);
             }
             else
             {
-                base.GameController.ExhaustCoroutine(coroutine);
+                GameController.ExhaustCoroutine(coroutine);
+            }
+
+            //Rockstar may Play a Stage Presence Card.
+            coroutine = GameController.SelectAndPlayCardFromHand(DecisionMaker, optional: true, cardCriteria: new LinqCardCriteria(c => IsStagePresence(c), "stage presence"), cardSource: GetCardSource());
+            if (UseUnityCoroutines)
+            {
+                yield return GameController.StartCoroutine(coroutine);
+            }
+            else
+            {
+                GameController.ExhaustCoroutine(coroutine);
             }
 
             yield break;

@@ -16,12 +16,11 @@
             "hitpointColor": "EA7527",
             "character": true,
             "powers": [
-                "{Rockstar} deals 1 target 2 melee damage. Until the start of your next turn, increase HP recovery by {Rockstar} by 1."
+                "{Rockstar} deals one Target 1 Melee Damage. Increase this Damage by 2 if she has a Stage Presence Card in Play."
             ],
             "icons": [
                 "HasPower",
-                "DealDamageMelee",
-                "IncreaseGainHP"
+                "DealDamageMelee"
             ],
             "hitpoints": 31,
             "nemesisIdentifiers": [
@@ -130,7 +129,7 @@
                 "Manipulate"
             ],
             "body": [
-                "{Rockstar} gains 2 HP. Search your deck or your trash for a Stage Presence card and put it into play or into your hand. If you searched your deck, shuffle your deck."
+                "{Rockstar} gains 1 HP and draws 2 Cards. {Rockstar} may Play a Stage Presence Card."
             ],
             "flavorQuotes": [
                 {
@@ -267,7 +266,7 @@
                 "Destroy"
             ],
             "body": [
-                "Non-Hero cards cannot prevent {Rockstar} from using Powers.",
+                "At the Start of her Turn, {Rockstar} gains 1 HP.",
                 "The first time per turn, outside of her own, a card allows {Rockstar} to play a card or use a power , {Rockstar} may first destroy an Ongoing, non-Character Card Device, or Environment Card."
             ],
             "flavorQuotes": [
@@ -334,11 +333,12 @@
                 "ongoing"
             ],
             "icons": [
+                "DrawCardNow",
                 "DealDamageMelee",
                 "GainHP"
             ],
             "body": [
-                "Non-Hero Cards cannot prevent {Rockstar} from playing cards.",
+                "At the Start of her Turn, {Rockstar} draws a Card.",
                 "The first time each turn that {Rockstar} destroys a Non-Hero card she may deal 1 Target 2 Melee Damage and gain 1 HP."
             ],
             "flavorQuotes": [
@@ -434,7 +434,7 @@
                 "Manipulate"
             ],
             "body": [
-                "{Rockstar} gains 2 HP. You may take an Ongoing from your Trash and put it on top of your deck."
+                "{Rockstar} takes up to 2 Cards from her Trash and puts them in her hand. Then {Rockstar} may use a Power."
             ],
             "flavorQuotes": [
                 {
