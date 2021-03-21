@@ -38,7 +38,7 @@
 				"Manipulate"
 			],
 			"openingLines": {
-				"default": "Headlong placeholder opening line!"
+				"default": "A villain attack? Time to get moving!"
 			},
 			"complexity": 2
 		  },
@@ -430,7 +430,7 @@
 			  "PlayCardNow"
 		  ],
 		  "openingLines": {
-			  "default": "Daybreak Headlong placeholder opening line!"
+			  "default": "Follow my lead, team. We hit them fast and hard."
 		  },
 		  "complexity": 2
 	  }]
