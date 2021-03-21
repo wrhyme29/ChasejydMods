@@ -334,5 +334,31 @@ namespace ChasejydTests
             QuickHPCheck(-3);
 
         }
+
+        [Test()]
+        public void TestIntermission()
+        {
+
+            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy/FreedomFiveLegacyCharacter", "Unity", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            SetHitPoints(rockstar, 20);
+
+            Card stage = PutInHand("FrontWoman");
+
+            //{Rockstar} gains 1 HP and draws 2 Cards. {Rockstar} may Play a Stage Presence Card.
+            QuickHPStorage(rockstar);
+            DecisionSelectCardToPlay = stage;
+            QuickHandStorage(rockstar);
+
+            PlayCard("Intermission");
+
+            QuickHPCheck(1);
+            AssertInPlayArea(rockstar, stage);
+            QuickHandCheck(1); // +2 from draws, -1 from playing stage presence
+
+
+        }
     }
 }

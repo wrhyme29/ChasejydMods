@@ -20,8 +20,7 @@
             ],
             "icons": [
                 "HasPower",
-                "DealDamageMelee",
-                "IncreaseGainHP"
+                "DealDamageMelee"
             ],
             "hitpoints": 31,
             "nemesisIdentifiers": [
@@ -130,7 +129,7 @@
                 "Manipulate"
             ],
             "body": [
-                "{Rockstar} gains 2 HP. Search your deck or your trash for a Stage Presence card and put it into play or into your hand. If you searched your deck, shuffle your deck."
+                "{Rockstar} gains 1 HP and draws 2 Cards. {Rockstar} may Play a Stage Presence Card."
             ],
             "flavorQuotes": [
                 {
