@@ -16,7 +16,7 @@
             "hitpointColor": "EA7527",
             "character": true,
             "powers": [
-                "{Rockstar} deals 1 target 2 melee damage. Until the start of your next turn, increase HP recovery by {Rockstar} by 1."
+                "{Rockstar} deals one Target 1 Melee Damage. Increase this Damage by 2 if she has a Stage Presence Card in Play."
             ],
             "icons": [
                 "HasPower",

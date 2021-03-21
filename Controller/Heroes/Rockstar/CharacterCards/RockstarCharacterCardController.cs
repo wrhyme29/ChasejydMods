@@ -13,10 +13,32 @@ namespace Chasejyd.Rockstar
 		}
 		public override IEnumerator UsePower(int index = 0)
 		{
-			//{Rockstar} deals 1 target 2 melee damage.
-			int powerNumeral = GetPowerNumeral(0, 1);
-			int powerNumeral2 = GetPowerNumeral(1, 2);
-			IEnumerator coroutine = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, CharacterCard), powerNumeral2, DamageType.Melee, powerNumeral, false, powerNumeral, cardSource: GetCardSource());
+			//{Rockstar} deals 1 target 1 melee damage.
+
+			//Increase this Damage by 2 if she has a Stage Presence Card in Play.
+			int targets = GetPowerNumeral(0, 1);
+			int dmg = GetPowerNumeral(1, 1);
+			int boost = GetPowerNumeral(2, 2);
+
+			ITrigger previewBoost = null;
+			bool isStagePresenceInPlay = GetNumberOfStagePresenceInPlay() > 0;
+			if (isStagePresenceInPlay)
+			{
+				previewBoost = AddIncreaseDamageTrigger((DealDamageAction dd) => !IsRealAction() && dd.CardSource != null && dd.CardSource.Card == Card && dd.CardSource.PowerSource != null, dd => boost);
+			}
+			//select the targets
+			var targetDecision = new SelectTargetsDecision(GameController,
+											DecisionMaker,
+											(Card c) => c.IsInPlayAndHasGameText && c.IsTarget && GameController.IsCardVisibleToCardSource(c, GetCardSource()),
+											targets,
+											false,
+											targets,
+											false,
+											new DamageSource(GameController, CharacterCard),
+											dmg,
+											DamageType.Melee,
+											cardSource: GetCardSource());
+			IEnumerator coroutine = GameController.SelectCardsAndDoAction(targetDecision, _ => DoNothing());
 			if (base.UseUnityCoroutines)
 			{
 				yield return base.GameController.StartCoroutine(coroutine);
@@ -26,11 +48,26 @@ namespace Chasejyd.Rockstar
 				base.GameController.ExhaustCoroutine(coroutine);
 			}
 
-			//Until the start of your next turn, increase HP recovery by {Rockstar} by 1.
-			IncreaseGainHPStatusEffect effect = new IncreaseGainHPStatusEffect(1);
-			effect.TargetCriteria.IsSpecificCard = CharacterCard;
-			effect.UntilStartOfNextTurn(TurnTaker);
-			coroutine = AddStatusEffect(effect);
+			if (isStagePresenceInPlay)
+			{
+				RemoveTrigger(previewBoost);
+			}
+
+			var selectedTargets = targetDecision.SelectCardDecisions.Select(scd => scd.SelectedCard).Where((Card c) => c != null);
+			if (selectedTargets.Count() == 0)
+			{
+				yield break;
+			}
+
+			ITrigger boostTrigger = null;
+			if (isStagePresenceInPlay)
+			{	
+				boostTrigger = new IncreaseDamageTrigger(GameController, (DealDamageAction dd) => dd.DamageSource != null && dd.DamageSource.Card != null && dd.DamageSource.IsCard && dd.DamageSource.Card == CharacterCard && dd.CardSource != null && dd.CardSource.Card == this.Card && dd.CardSource.PowerSource != null, dd => GameController.IncreaseDamage(dd, boost, false, GetCardSource()), null, TriggerPriority.Medium, false, GetCardSource());
+				AddToTemporaryTriggerList(AddTrigger(boostTrigger));	
+			}
+
+			//actually deal the damage
+			coroutine = GameController.DealDamage(DecisionMaker, CharacterCard, (Card c) => selectedTargets.Contains(c), dmg, DamageType.Melee, cardSource: GetCardSource());
 			if (base.UseUnityCoroutines)
 			{
 				yield return base.GameController.StartCoroutine(coroutine);
@@ -38,6 +75,24 @@ namespace Chasejyd.Rockstar
 			else
 			{
 				base.GameController.ExhaustCoroutine(coroutine);
+			}
+
+			if (targets > 1)
+			{
+				coroutine = GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(GameController, CharacterCard), dmg, DamageType.Melee, targets - 1, false, targets - 1, additionalCriteria: (Card c) => !selectedTargets.Contains(c), cardSource: GetCardSource());
+				if (base.UseUnityCoroutines)
+				{
+					yield return base.GameController.StartCoroutine(coroutine);
+				}
+				else
+				{
+					base.GameController.ExhaustCoroutine(coroutine);
+				}
+			}
+
+			if (isStagePresenceInPlay)
+			{
+				RemoveTemporaryTrigger(boostTrigger);
 			}
 			yield break;
 		}

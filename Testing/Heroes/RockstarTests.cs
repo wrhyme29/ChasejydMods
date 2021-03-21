@@ -34,43 +34,7 @@ namespace ChasejydTests
             Assert.AreEqual(31, rockstar.CharacterCard.HitPoints);
         }
 
-        [Test()]
-        public void TestRockstarInnatePower()
-        {
-
-            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy", "Bunker", "TheScholar", "Megalopolis");
-            StartGame();
-            DestroyNonCharacterVillainCards();
-
-            //{Rockstar} deals 1 target 2 melee damage.
-
-            GoToUsePowerPhase(rockstar);
-            QuickHPStorage(baron);
-            UsePower(rockstar);
-            QuickHPCheck(-2);
-
-            //Until the start of your next turn, increase HP recovery by {Rockstar} by 1.
-            SetHitPoints(new TurnTakerController[] { rockstar, legacy, bunker, scholar }, 10);
-            QuickHPStorage(rockstar, legacy, bunker, scholar);
-            Card hpGain = PlayCard("InspiringPresence");
-            QuickHPCheck(2, 1, 1, 1);
-            DestroyCard(hpGain, legacy.CharacterCard);
-
-            //should stil apply on the next turn
-            GoToNextTurn();
-            QuickHPUpdate();
-            hpGain = PlayCard("InspiringPresence");
-            QuickHPCheck(2, 1, 1, 1);
-            DestroyCard(hpGain, legacy.CharacterCard);
-
-            //should expire by the next turn
-            GoToStartOfTurn(rockstar);
-            QuickHPUpdate();
-            hpGain = PlayCard("InspiringPresence");
-            QuickHPCheck(1, 1, 1, 1);
-            DestroyCard(hpGain, legacy.CharacterCard);
-        }
-
+       
 
         [Test()]
         public void TestRockstarIncap1()
@@ -346,6 +310,28 @@ namespace ChasejydTests
             //resets at next turn
             DestroyCard(ongoing, baron.CharacterCard);
             AssertInPlayArea(rockstar, toPlay);
+
+        }
+
+        [Test()]
+        public void TestRockstarInnate()
+        {
+
+            SetupGameController("BaronBlade", "Chasejyd.Rockstar", "Legacy/FreedomFiveLegacyCharacter", "Unity", "TheScholar", "Megalopolis");
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            DecisionSelectTarget = baron.CharacterCard;
+
+            QuickHPStorage(baron);
+            UsePower(rockstar);
+            QuickHPCheck(-1);
+
+            //when a stage presence is in play, increase this damage by 2
+            PlayCard("FrontWoman");
+            QuickHPUpdate();
+            UsePower(rockstar);
+            QuickHPCheck(-3);
 
         }
     }
