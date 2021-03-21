@@ -198,7 +198,7 @@
 			  "title": "Bowl Over",
 			  "count": 2,
 			  "body": [
-				  "{Headlong} deals up to X Targets 3 Melee Damage, where X is equal to the number of Environment Cards in play +1."
+				  "{Headlong} deals up to X Targets 2 Melee Damage, where X is equal to the number of Environment Cards in play +1."
 			  ],
 			  "icons": [
 				  "DealDamageMelee"
