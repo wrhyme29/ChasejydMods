@@ -34,7 +34,7 @@ namespace Chasejyd.Headlong
 
             //Execute
             var options = new Function[] { op1, op2 };
-            var selectFunctionDecision = new SelectFunctionDecision(base.GameController, DecisionMaker, options, optional: false, cardSource: base.GetCardSource());
+            var selectFunctionDecision = new SelectFunctionDecision(base.GameController, DecisionMaker, options, optional: true, cardSource: base.GetCardSource());
             coroutine = base.GameController.SelectAndPerformFunction(selectFunctionDecision);
             if (base.UseUnityCoroutines)
             {
