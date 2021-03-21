@@ -288,7 +288,7 @@
 			  "title": "Spin Out",
 			  "count": 2,
 			  "body": [
-				  "{Headlong} deals 1 Non-Hero Target 4 Melee Damage. Then he may deal a second Non-Hero Target 3 Projectile Damage."
+				  "{Headlong} deals 1 Non-Hero Target 3 Melee Damage. Then he may deal a second Non-Hero Target 3 Projectile Damage."
 			  ],
 			  "icons": [
 				  "DealDamageMelee",

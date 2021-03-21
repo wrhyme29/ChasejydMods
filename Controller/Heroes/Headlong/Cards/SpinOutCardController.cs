@@ -15,10 +15,10 @@ namespace Chasejyd.Headlong
 
         public override IEnumerator Play()
         {
-            //{Headlong} deals 1 Non-Hero Target 4 Melee Damage. Then he may deal a second Non-Hero Target 3 Projectile Damage.
+            //{Headlong} deals 1 Non-Hero Target 3 Melee Damage. Then he may deal a second Non-Hero Target 3 Projectile Damage.
 
             List<DealDamageAction> storedResults = new List<DealDamageAction>();
-            IEnumerator coroutine = GameController.SelectTargetsAndDealDamage(HeroTurnTakerController, new DamageSource(GameController, CharacterCard), 4, DamageType.Melee, 1, false, 1, additionalCriteria: (Card c) => !c.IsHero && c.IsTarget, storedResultsDamage: storedResults, cardSource: GetCardSource());
+            IEnumerator coroutine = GameController.SelectTargetsAndDealDamage(HeroTurnTakerController, new DamageSource(GameController, CharacterCard), 3, DamageType.Melee, 1, false, 1, additionalCriteria: (Card c) => !c.IsHero && c.IsTarget, storedResultsDamage: storedResults, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)
             {
                 yield return base.GameController.StartCoroutine(coroutine);

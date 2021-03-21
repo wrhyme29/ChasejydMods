@@ -856,12 +856,12 @@ namespace ChasejydTests
             DestroyNonCharacterVillainCards();
             Card battalion = PlayCard("BladeBattalion");
 
-            //{Headlong} deals 1 Non-Hero Target 4 Melee Damage. Then he may deal a second Non-Hero Target 3 Projectile Damage.
+            //{Headlong} deals 1 Non-Hero Target 3 Melee Damage. Then he may deal a second Non-Hero Target 3 Projectile Damage.
 
             DecisionSelectTargets = new Card[] { baron.CharacterCard, battalion };
             QuickHPStorage(baron.CharacterCard, battalion, headlong.CharacterCard, legacy.CharacterCard, bunker.CharacterCard, scholar.CharacterCard);
             PlayCard("SpinOut");
-            QuickHPCheck(-4, -3, 0, 0, 0, 0);
+            QuickHPCheck(-3, -3, 0, 0, 0, 0);
 
         }
 
