@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Chasejyd.DeeprootTeam
 {
-    public class CantStopTheBeatdownCardController : DeeprootCardController
+    public class CantStopTheBeatdownCardController : DeeprootTeamCardController
     {
 
         public CantStopTheBeatdownCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)

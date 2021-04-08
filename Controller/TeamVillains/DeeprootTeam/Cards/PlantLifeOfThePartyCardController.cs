@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Chasejyd.DeeprootTeam
 {
-    public class PlantLifeOfThePartyCardController : DeeprootCardController
+    public class PlantLifeOfThePartyCardController : DeeprootTeamCardController
     {
 
         public PlantLifeOfThePartyCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
