@@ -322,5 +322,29 @@ namespace ChasejydTests
 
         }
 
+
+        [Test()]
+        public void TestStranglevines()
+        {
+            SetupGameController(new string[] { "ErmineTeam", "Haka", "Chasejyd.DeeprootTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            //Play this card next to the Hero Character with the highest HP. 
+            Card vines = PlayCard("Stranglevines");
+            AssertNextToCard(vines, haka.CharacterCard);
+
+            //Redirect all damage dealt by that target to {Deeproot}
+            QuickHPStorage(ermineTeam, deeprootTeam, operativeTeam);
+            DealDamage(haka, c => c.IsVillainCharacterCard, 4, DamageType.Projectile);
+            QuickHPCheck(0, -12, 0);
+
+
+            //At the Start of {Deeproot}'s Turn, this Card deals the Hero Character it is next to 1 Melee and 1 Toxic Damage.
+            QuickHPStorage(haka);
+            GoToStartOfTurn(deeprootTeam);
+            QuickHPCheck(-2);
+        }
+
     }
 }

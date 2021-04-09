@@ -12,12 +12,33 @@ namespace Chasejyd.DeeprootTeam
 
         public StranglevinesCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-
+            SpecialStringMaker.ShowHeroCharacterCardWithHighestHP().Condition = () => !Card.IsInPlayAndHasGameText;
         }
 
         public override void AddTriggers()
         {
-            base.AddTriggers();
+            //Redirect all damage dealt by that target to {Deeproot}
+            AddRedirectDamageTrigger((DealDamageAction dd) => GetCardThisCardIsNextTo() != null && dd.DamageSource.IsSameCard(GetCardThisCardIsNextTo()), () => CharacterCard);
+
+            //At the Start of {Deeproot}'s Turn, this Card deals the Hero Character it is next to 1 Melee and 1 Toxic Damage.
+            AddStartOfTurnTrigger((TurnTaker tt) => tt == TurnTaker, StartOfTurnResponse, TriggerType.DealDamage, additionalCriteria: pca => GetCardThisCardIsNextTo() != null);
+
+        }
+
+        private IEnumerator StartOfTurnResponse(PhaseChangeAction pca)
+        {
+            List<DealDamageAction> list = new List<DealDamageAction>();
+            list.Add(new DealDamageAction(GetCardSource(), new DamageSource(base.GameController, base.Card), GetCardThisCardIsNextTo(), 1, DamageType.Melee));
+            list.Add(new DealDamageAction(GetCardSource(), new DamageSource(base.GameController, base.Card), GetCardThisCardIsNextTo(), 1, DamageType.Toxic));
+            IEnumerator coroutine = SelectTargetsAndDealMultipleInstancesOfDamage(list, targetCriteria: c => c == GetCardThisCardIsNextTo());
+            if (base.UseUnityCoroutines)
+            {
+                yield return base.GameController.StartCoroutine(coroutine);
+            }
+            else
+            {
+                base.GameController.ExhaustCoroutine(coroutine);
+            }
         }
 
         public override IEnumerator DeterminePlayLocation(List<MoveCardDestination> storedResults, bool isPutIntoPlay, List<IDecision> decisionSources, Location overridePlayArea = null, LinqTurnTakerCriteria additionalTurnTakerCriteria = null)
