@@ -416,6 +416,25 @@ namespace ChasejydTests
             AssertNumberOfCardsInTrash(deeprootTeam, 2);
             QuickHPCheck(3);
         }
+        [Test()]
+        public void TestWrithingFlora()
+        {
+            SetupGameController(new string[] { "ErmineTeam", "Haka", "Chasejyd.DeeprootTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" });
+            StartGame();
+            DestroyNonCharacterVillainCards();
 
+            Card flora = PlayCard("WrithingFlora");
+
+            //Reduce Damage dealt by Hero Targets by 1.
+            QuickHPStorage(ermineTeam);
+            DealDamage(haka, ermineTeam, 3, DamageType.Melee);
+            QuickHPCheck(-2);
+
+            //When this card is destroyed shuffle {Deeproot}'s Trash into his deck.
+            MoveAllCards(deeprootTeam, deeprootTeam.TurnTaker.Deck, deeprootTeam.TurnTaker.Trash);
+            DestroyCard(flora, haka.CharacterCard);
+            AssertNumberOfCardsInTrash(deeprootTeam, 1);
+
+        }
     }
 }
