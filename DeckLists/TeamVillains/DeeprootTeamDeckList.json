@@ -1,0 +1,300 @@
+{
+	"name": "Deeproot",
+	"kind": "VillainTeam",
+	"initialCardIdentifiers": [
+		"DeeprootTeamCharacter"
+	],
+	"cards": [{
+			"identifier": "DeeprootTeamCharacter",
+			"count": 1,
+			"title": "Deeproot",
+			"keywords": [
+				"villain"
+			],
+			"icons": [
+				"GainHP",
+				"DealDamageToxic"
+			],
+			"body": "Overgrown Menace",
+			"backgroundColor": "3b531f",
+			"character": true,
+			"hitpoints": 31,
+			"nemesisIdentifiers": [
+				"Muerto"
+			],
+			"setup": [
+				"{Deeproot} starts the game 'Overgrown Menace' side up.",
+				"Put Plant Life of the Party into play and the villain deck is shuffled."
+			],
+			"gameplay": [
+				"At the end of {Deeproot}'s turn, the 2 Villain or Environment Targets with the lowest HP gain 1 HP.",
+				"Then {Deeproot} deals the X Hero Targets with the highest HP 2 Toxic Damage each where X is equal to the number of Plant Growth Cards in play."
+			],
+			"advanced": "The first time each turn a Villain Ongoing or Plant Growth enters play, {Deeproot} gains 2 HP.",
+			"flippedShowHitpoints": false,
+			"flippedBody": "Incapacitated",
+			"flippedKeywords": [],
+			"flippedGameplay": [
+				"Reduce Damage dealt to Environment Targets by 1. At the start of {Deeproot}'s turn, play the top card of the Environment deck."
+			],
+			"flippedIcons": [
+				"ReduceDamageTaken",
+				"PlayCardNow"
+			],
+			"difficulty": 2,
+			"challengeTitle": "Environmental Attunement",
+			"challengeText": "Villain Character Cards are Immune to Damage from environment cards",
+			"challengeIcons": [
+				"ImmuneToDamage"
+			],
+			"openingLines": {
+				"default": "Deeproot placeholder opening!",
+				"MuertoCharacter": "Deeproot to Muerto placeholder opening!",
+				"DaybreakMuertoCharacter": "Deeproot to Daybreak Muerto placeholder opening!"
+			}
+		},
+		{
+			"identifier": "PlantLifeOfTheParty",
+			"count": 1,
+			"title": "Plant Life of the Party",
+			"keywords": [
+				"ongoing",
+				"plant growth"
+			],
+			"icons": [
+				"ReduceDamageTaken",
+				"IncreaseDamageTaken",
+				"GainHP"
+			],
+			"body": [
+				"Reduce Non-Fire Damage dealt to {Deeproot} by 1.",
+				"Increase Fire Damage dealt to {Deeproot} by 1.",
+				"At the end of {Deeproot}'s turn, he gains 1 HP for each Plant Growth Card in play."
+			],
+			"flavorQuotes": [{
+				"identifier": "Deeproot",
+				"text": "-"
+			}],
+			"flavorReference": "Deeproot"
+		},
+		{
+			"identifier": "BarkShield",
+			"count": 2,
+			"title": "Bark Shield",
+			"keywords": [
+				"plant growth"
+			],
+			"hitpoints": 5,
+			"icons": [
+				"RedirectDamage",
+				"ReduceDamageTaken"
+			],
+			"body": [
+				"Play this card next to the Villain character card with the lowest HP. Redirect damage that Target would take to this card.",
+				"Reduce non-Fire Damage dealt to this card by 1."
+			],
+			"flavorQuotes": [{
+				"identifier": "Deeproot",
+				"text": "-"
+			}],
+			"flavorReference": "Deeproot"
+		},
+		{
+			"identifier": "WrithingFlora",
+			"count": 2,
+			"title": "Writhing Flora",
+			"keywords": [
+				"plant growth"
+			],
+			"hitpoints": 5,
+			"icons": [
+				"ReduceDamageDealt",
+				"Manipulate"
+			],
+			"body": [
+				"Reduce Damage dealt by Hero Targets by 1.",
+				"When this card is destroyed shuffle {Deeproot}'s Trash into his deck."
+			],
+			"flavorQuotes": [{
+				"identifier": "Deeproot",
+				"text": "-"
+			}],
+			"flavorReference": "Deeproot"
+		},
+		{
+			"identifier": "DeepRoots",
+			"count": 2,
+			"title": "Deep Roots",
+			"keywords": [
+				"plant growth"
+			],
+			"hitpoints": 5,
+			"icons": [
+				"ReduceDamageDealt",
+				"ImmuneToDamage",
+				"Manipulate"
+			],
+			"body": [
+				"Reduce Damage dealt to Environment Targets by 1.",
+				"{Deeproot} is Immune to Damage dealt by Environment Cards.",
+				"At the end of {Deeproot}'s turn, shuffle the Environment Trash into its deck."
+			],
+			"flavorQuotes": [{
+				"identifier": "Deeproot",
+				"text": "-"
+			}],
+			"flavorReference": "Deeproot"
+		},
+		{
+			"identifier": "WildGrowth",
+			"count": 2,
+			"title": "Wild Growth",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"GainHP",
+				"Manipulate",
+				"PlayCardNow"
+			],
+			"body": [
+				"{Deeproot} gains 1 HP.",
+				"Shuffle {Deeproot}'s trash into his deck and reveal the top card of his deck. If it is a Plant Growth, put it into play. If it is not a Plant Growth, discard it and {Deeproot} gains 2 more HP."
+			],
+			"flavorQuotes": [{
+				"identifier": "Deeproot",
+				"text": "-"
+			}],
+			"flavorReference": "Deeproot"
+		},
+		{
+			"identifier": "Stranglevines",
+			"count": 1,
+			"title": "Stranglevines",
+			"keywords": [
+				"plant growth"
+			],
+			"hitpoints": 5,
+			"icons": [
+				"RedirectDamage",
+				"StartOfTurnAction",
+				"DealDamageToxic",
+				"DealDamageMelee"
+			],
+			"body": [
+				"Play this card next to the Hero Character with the highest HP. Redirect all damage dealt by that target to {Deeproot}.",
+				"At the Start of {Deeproot}'s Turn, this Card deals the Hero Character it is next to 1 Melee and 1 Toxic Damage."
+			],
+			"flavorQuotes": [{
+				"identifier": "Deeproot",
+				"text": "-"
+			}],
+			"flavorReference": "Deeproot"
+		},
+		{
+			"identifier": "CantStopTheBeatdown",
+			"count": 2,
+			"title": "Can't Stop the Beatdown",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"DealDamageMelee",
+				"RedirectDamage",
+				"ReduceDamageTaken"
+			],
+			"body": [
+				"{Deeproot} Deals the Hero Target with the second highest HP 3 Melee Damage. Redirect the next damage that Target would deal to {Deeproot} and reduce it by 2."
+			],
+			"flavorQuotes": [{
+				"identifier": "Deeproot",
+				"text": "-"
+			}],
+			"flavorReference": "Deeproot"
+		},
+		{
+			"identifier": "Photosynthestrike",
+			"count": 2,
+			"title": "Photosynthestrike",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"DealDamageToxic"
+			],
+			"body": [
+				"{Deeproot} deals the Hero Target with the Highest HP X+1 toxic Damage, where X equals the number of Environment Cards in play."
+			],
+			"flavorQuotes": [{
+				"identifier": "Deeproot",
+				"text": "-"
+			}],
+			"flavorReference": "Deeproot"
+		},
+		{
+			"identifier": "Wildbond",
+			"count": 2,
+			"title": "Wildbond",
+			"keywords": [
+				"ongoing"
+			],
+			"icons": [
+				"ReduceDamageTaken",
+				"RedirectDamage",
+				"GainHP"
+			],
+			"body": [
+				"Reduce Damage dealt to Environment Targets by 2.",
+				"Redirect Damage that would be Dealt to {Deeproot} by Environment Cards to the Hero Target with the highest HP.",
+				"When this Card is Destroyed, {Deeproot} gains 2 HP."
+			],
+			"flavorQuotes": [{
+				"identifier": "Deeproot",
+				"text": "-"
+			}],
+			"flavorReference": "Deeproot"
+		},
+		{
+			"identifier": "SteadyRhythm",
+			"count": 2,
+			"title": "Steady Rhythm",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"DealDamageMelee",
+				"ImmuneToDamage"
+			],
+			"body": [
+				"{Deeproot} Deals the  X Hero Targets with the Highest HP 2 Melee Damage, where X is equal to the number of Environment Cards in Play.",
+				"Until the start of {Deeproot}'s next turn, Villain cards are Immune to damage from Villain and Environment cards."
+			],
+			"flavorQuotes": [{
+				"identifier": "Deeproot",
+				"text": "-"
+			}],
+			"flavorReference": "Deeproot"
+		},
+		{
+			"identifier": "HeartOfTheTeam",
+			"count": 2,
+			"title": "Heart of the Team",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"GainHP",
+				"RedirectDamage"
+			],
+			"body": [
+				"All Villain and Environment Targets gain 2 HP.",
+				"Redirect the next damage that would be dealt to a Villain Character Card to {Deeproot}."
+			],
+			"flavorQuotes": [{
+				"identifier": "Deeproot",
+				"text": "-"
+			}],
+			"flavorReference": "Deeproot"
+		}
+	]
+}
