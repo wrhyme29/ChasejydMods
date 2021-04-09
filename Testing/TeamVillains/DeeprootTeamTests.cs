@@ -135,5 +135,27 @@ namespace ChasejydTests
 
         }
 
+        [Test()]
+        public void TestBarkShield()
+        {
+            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            StartGame();
+
+            SetHitPoints(operativeTeam.CharacterCard, 10);
+
+            //Play this card next to the Villain character card with the lowest HP. Redirect damage that Target would take to this card.
+            //Reduce non-Fire Damage dealt to this card by 1.
+            Card bark = PlayCard("BarkShield");
+            AssertNextToCard(bark, operativeTeam.CharacterCard);
+
+            QuickHPStorage(operativeTeam.CharacterCard, bark);
+            DealDamage(haka, operativeTeam, 2, DamageType.Melee);
+            QuickHPCheck(0, -1);
+
+            QuickHPUpdate();
+            DealDamage(bunker, operativeTeam, 2, DamageType.Fire);
+            QuickHPCheck(0, -2);
+        }
+
     }
 }
