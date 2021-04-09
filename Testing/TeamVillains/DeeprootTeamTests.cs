@@ -210,5 +210,32 @@ namespace ChasejydTests
 
         }
 
+        [Test()]
+        public void TestHeartOfTheTeam()
+        {
+            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            StartGame();
+
+
+            Card traffic = PlayCard("TrafficPileup");
+
+            SetHitPoints(new Card[] { traffic, deeprootTeam.CharacterCard, ermineTeam.CharacterCard, operativeTeam.CharacterCard }, 5);
+
+            //All Villain and Environment Targets gain 2 HP.
+            QuickHPStorage(deeprootTeam.CharacterCard, ermineTeam.CharacterCard, operativeTeam.CharacterCard, haka.CharacterCard, bunker.CharacterCard, tachyon.CharacterCard, traffic);
+            PlayCard("HeartOfTheTeam");
+            QuickHPCheck(2, 2, 2, 0, 0, 0, 2);
+
+            //Redirect the next damage that would be dealt to a Villain Character Card to {Deeproot}.
+            QuickHPStorage(operativeTeam, deeprootTeam);
+            DealDamage(bunker, operativeTeam, 3, DamageType.Projectile);
+            QuickHPCheck(0, -3);
+
+            QuickHPUpdate();
+            DealDamage(bunker, operativeTeam, 3, DamageType.Projectile);
+            QuickHPCheck(-3, 0);
+
+        }
+
     }
 }
