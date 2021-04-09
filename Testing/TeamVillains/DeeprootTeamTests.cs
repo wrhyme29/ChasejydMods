@@ -374,5 +374,48 @@ namespace ChasejydTests
             QuickHPCheck(2);
         }
 
+        [Test()]
+        public void TestWildGrowth_PlantGrowthOnTop()
+        {
+            SetupGameController(new string[] { "ErmineTeam", "Haka", "Chasejyd.DeeprootTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" });
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            MoveAllCards(deeprootTeam, deeprootTeam.TurnTaker.Deck, deeprootTeam.TurnTaker.Trash);
+
+            SetHitPoints(deeprootTeam, 10);
+            StackAfterShuffle(deeprootTeam.TurnTaker.Deck, new string[] { "BarkShield" });
+
+            //{Deeproot} gains 1 HP.",
+            //Shuffle {Deeproot}'s trash into his deck and reveal the top card of his deck. If it is a Plant Growth, put it into play. If it is not a Plant Growth, discard it and {Deeproot} gains 2 more HP."
+
+            QuickHPStorage(deeprootTeam);
+            PlayCard("WildGrowth");
+            AssertNumberOfCardsInTrash(deeprootTeam, 1);
+            QuickHPCheck(1);
+            AssertIsInPlay("BarkShield");
+        }
+
+        [Test()]
+        public void TestWildGrowth_NonPlantGrowthOnTop()
+        {
+            SetupGameController(new string[] { "ErmineTeam", "Haka", "Chasejyd.DeeprootTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" });
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            MoveAllCards(deeprootTeam, deeprootTeam.TurnTaker.Deck, deeprootTeam.TurnTaker.Trash);
+
+            SetHitPoints(deeprootTeam, 10);
+            StackAfterShuffle(deeprootTeam.TurnTaker.Deck, new string[] { "CantStopTheBeatdown" });
+
+            //{Deeproot} gains 1 HP.",
+            //Shuffle {Deeproot}'s trash into his deck and reveal the top card of his deck. If it is a Plant Growth, put it into play. If it is not a Plant Growth, discard it and {Deeproot} gains 2 more HP."
+
+            QuickHPStorage(deeprootTeam);
+            PlayCard("WildGrowth");
+            AssertNumberOfCardsInTrash(deeprootTeam, 2);
+            QuickHPCheck(3);
+        }
+
     }
 }
