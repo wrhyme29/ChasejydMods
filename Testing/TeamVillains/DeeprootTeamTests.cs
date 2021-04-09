@@ -179,5 +179,36 @@ namespace ChasejydTests
             QuickHPCheck(-3, 0);
         }
 
+        [Test()]
+        public void TestDeepRoots()
+        {
+            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            StartGame();
+
+            Card traffic = PlayCard("TrafficPileup");
+
+            Card roots = PlayCard("DeepRoots");
+
+            //Reduce Damage dealt to Environment Targets by 1.
+            QuickHPStorage(traffic);
+            DealDamage(haka, traffic, 3, DamageType.Melee);
+            QuickHPCheck(-2);
+
+            //{Deeproot} is Immune to Damage from the Environment.
+            QuickHPStorage(deeprootTeam);
+            DealDamage(traffic, deeprootTeam, 3, DamageType.Melee);
+            QuickHPCheckZero();
+
+            MoveAllCards(env, env.TurnTaker.Deck, env.TurnTaker.Trash);
+
+            //At the end of {Deeproot}'s turn, shuffle the Environment Trash into its deck
+            QuickShuffleStorage(env);
+            GoToEndOfTurn(deeprootTeam);
+            QuickShuffleCheck(1);
+
+            AssertNumberOfCardsInTrash(env, 0);
+
+        }
+
     }
 }

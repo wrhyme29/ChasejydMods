@@ -136,7 +136,7 @@
 			],
 			"body": [
 				"Reduce Damage dealt to Environment Targets by 1.",
-				"{Deeproot} is Immune to Damage from the Environment.",
+				"{Deeproot} is Immune to Damage dealt by Environment Cards.",
 				"At the end of {Deeproot}'s turn, shuffle the Environment Trash into its deck."
 			],
 			"flavorQuotes": [{
