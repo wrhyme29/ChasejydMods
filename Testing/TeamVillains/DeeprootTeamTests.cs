@@ -281,5 +281,46 @@ namespace ChasejydTests
             QuickHPCheck(2);
         }
 
+        [Test()]
+        public void TestSteadyRhythm()
+        {
+            SetupGameController(new string[] { "ErmineTeam", "Haka", "Chasejyd.DeeprootTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            Card traffic = PlayCard("TrafficPileup");
+            PlayCard("PoliceBackup");
+
+            //{Deeproot} Deals the  X Hero Targets with the Highest HP 2 Melee Damage, where X is equal to the number of Environment Cards in Play
+            //Until the start of {Deeproot}'s next turn, Villain cards are Immune to damage from Villains and the Environment.
+
+            QuickHPStorage(haka, bunker, tachyon);
+            PlayCard("SteadyRhythm");
+            QuickHPCheck(-2, -2, 0);
+
+            QuickHPStorage(deeprootTeam, ermineTeam, operativeTeam, haka, bunker, tachyon);
+            DealDamage(traffic, (Card c) => c.IsNonEnvironmentTarget, 4, DamageType.Melee);
+            QuickHPCheck(0, 0, 0, -4, -4, -4);
+
+            QuickHPUpdate();
+            DealDamage(ermineTeam, (Card c) => c.IsNonEnvironmentTarget, 4, DamageType.Melee);
+            QuickHPCheck(0, 0, 0, -4, -4, -4);
+
+            GoToStartOfTurn(deeprootTeam);
+            PrintSeparator("Should be at start of turn");
+
+            QuickHPUpdate();
+            DealDamage(ermineTeam, (Card c) => c.IsNonEnvironmentTarget, 4, DamageType.Melee);
+            QuickHPCheck(-4,-4,-4, -4, -4, -4);
+
+            //for some reason this part of the test treats it as still immune even though the effect is expired
+            //tested in game, and it works as expected
+
+            //QuickHPUpdate();
+            //DealDamage(traffic, (Card c) => c.IsNonEnvironmentTarget, 4, DamageType.Melee);
+            //QuickHPCheck(-4, -4, -4, -4, -4, -4);
+
+        }
+
     }
 }

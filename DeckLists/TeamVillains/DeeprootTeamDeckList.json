@@ -267,7 +267,7 @@
 			],
 			"body": [
 				"{Deeproot} Deals the  X Hero Targets with the Highest HP 2 Melee Damage, where X is equal to the number of Environment Cards in Play.",
-				"Until the start of {Deeproot}'s next turn, Villain cards are Immune to damage from Villains and the Environment."
+				"Until the start of {Deeproot}'s next turn, Villain cards are Immune to damage from Villain and Environment cards."
 			],
 			"flavorQuotes": [{
 				"identifier": "Deeproot",
