@@ -157,5 +157,27 @@ namespace ChasejydTests
             QuickHPCheck(0, -2);
         }
 
+        [Test()]
+        public void TestCantStopTheBeatdown()
+        {
+            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            StartGame();
+
+            //{Deeproot} Deals the Hero Target with the second highest HP 3 Melee Damage. 
+            //Redirect the next damage that Target would deal to {Deeproot} and reduce it by 2.
+
+            QuickHPStorage(haka, bunker, tachyon);
+            PlayCard("CantStopTheBeatdown");
+            QuickHPCheck(0, -3, 0);
+
+            QuickHPStorage(operativeTeam, deeprootTeam);
+            DealDamage(bunker, operativeTeam, 3, DamageType.Toxic);
+            QuickHPCheck(0, -1);
+
+            QuickHPUpdate();
+            DealDamage(bunker, operativeTeam, 3, DamageType.Toxic);
+            QuickHPCheck(-3, 0);
+        }
+
     }
 }
