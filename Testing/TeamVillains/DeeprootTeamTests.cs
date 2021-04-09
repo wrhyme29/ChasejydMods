@@ -162,6 +162,7 @@ namespace ChasejydTests
         {
             SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
             StartGame();
+            DestroyNonCharacterVillainCards();
 
             //{Deeproot} Deals the Hero Target with the second highest HP 3 Melee Damage. 
             //Redirect the next damage that Target would deal to {Deeproot} and reduce it by 2.
@@ -215,7 +216,7 @@ namespace ChasejydTests
         {
             SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
             StartGame();
-
+            DestroyNonCharacterVillainCards();
 
             Card traffic = PlayCard("TrafficPileup");
 
@@ -251,6 +252,33 @@ namespace ChasejydTests
             PlayCard("Photosynthestrike");
             QuickHPCheck(-3, 0, 0);
             
+        }
+
+        [Test()]
+        public void TestPlantLifeOfTheParty()
+        {
+            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            StartGame();
+
+            PlayCard("BarkShield");
+
+            //Reduce Non-Fire Damage dealt to {Deeproot} by 1
+            QuickHPStorage(deeprootTeam);
+            DealDamage(haka, deeprootTeam, 3, DamageType.Melee);
+            QuickHPCheck(-2);
+
+            //Increase Fire Damage dealt to {Deeproot} by 1.
+            QuickHPUpdate();
+            DealDamage(haka, deeprootTeam, 3, DamageType.Fire);
+            QuickHPCheck(-4);
+
+            //At the end of {Deeproot}'s turn, he gains 1 HP for each Plant Growth Card in play."
+
+            PreventEndOfTurnEffects(deeprootTeam, deeprootTeam.CharacterCard);
+
+            QuickHPUpdate();
+            GoToEndOfTurn(deeprootTeam);
+            QuickHPCheck(2);
         }
 
     }

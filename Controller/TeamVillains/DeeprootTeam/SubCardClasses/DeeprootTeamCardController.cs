@@ -26,6 +26,10 @@ namespace Chasejyd.DeeprootTeam
             return FindCardsWhere(c => c.IsEnvironment && c.IsInPlayAndHasGameText && c.IsRealCard).Count();
         }
 
+        protected int GetNumberOfPlantGrowthCardsInPlay()
+        {
+            return FindCardsWhere(c => IsPlantGrowth(c) && c.IsInPlayAndHasGameText).Count();
+        }
 
     }
 }
