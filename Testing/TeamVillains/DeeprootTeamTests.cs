@@ -138,7 +138,7 @@ namespace ChasejydTests
         [Test()]
         public void TestBarkShield()
         {
-            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" });
             StartGame();
 
             SetHitPoints(operativeTeam.CharacterCard, 10);
@@ -160,7 +160,7 @@ namespace ChasejydTests
         [Test()]
         public void TestCantStopTheBeatdown()
         {
-            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" });
             StartGame();
             DestroyNonCharacterVillainCards();
 
@@ -183,7 +183,7 @@ namespace ChasejydTests
         [Test()]
         public void TestDeepRoots()
         {
-            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" });
             StartGame();
 
             Card traffic = PlayCard("TrafficPileup");
@@ -257,7 +257,7 @@ namespace ChasejydTests
         [Test()]
         public void TestPlantLifeOfTheParty()
         {
-            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" });
             StartGame();
 
             PlayCard("BarkShield");
@@ -284,7 +284,7 @@ namespace ChasejydTests
         [Test()]
         public void TestSteadyRhythm()
         {
-            SetupGameController(new string[] { "ErmineTeam", "Haka", "Chasejyd.DeeprootTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            SetupGameController(new string[] { "ErmineTeam", "Haka", "Chasejyd.DeeprootTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" });
             StartGame();
             DestroyNonCharacterVillainCards();
 
@@ -313,12 +313,10 @@ namespace ChasejydTests
             DealDamage(ermineTeam, (Card c) => c.IsNonEnvironmentTarget, 4, DamageType.Melee);
             QuickHPCheck(-4,-4,-4, -4, -4, -4);
 
-            //for some reason this part of the test treats it as still immune even though the effect is expired
-            //tested in game, and it works as expected
 
-            //QuickHPUpdate();
-            //DealDamage(traffic, (Card c) => c.IsNonEnvironmentTarget, 4, DamageType.Melee);
-            //QuickHPCheck(-4, -4, -4, -4, -4, -4);
+            QuickHPUpdate();
+            DealDamage(traffic, (Card c) => c.IsNonEnvironmentTarget, 4, DamageType.Melee);
+            QuickHPCheck(-4, -4, -4, -4, -4, -4);
 
         }
 
@@ -326,7 +324,7 @@ namespace ChasejydTests
         [Test()]
         public void TestStranglevines()
         {
-            SetupGameController(new string[] { "ErmineTeam", "Haka", "Chasejyd.DeeprootTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            SetupGameController(new string[] { "ErmineTeam", "Haka", "Chasejyd.DeeprootTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" });
             StartGame();
             DestroyNonCharacterVillainCards();
 
@@ -339,11 +337,41 @@ namespace ChasejydTests
             DealDamage(haka, c => c.IsVillainCharacterCard, 4, DamageType.Projectile);
             QuickHPCheck(0, -12, 0);
 
+            GoToEndOfTurn(haka);
 
             //At the Start of {Deeproot}'s Turn, this Card deals the Hero Character it is next to 1 Melee and 1 Toxic Damage.
             QuickHPStorage(haka);
             GoToStartOfTurn(deeprootTeam);
             QuickHPCheck(-2);
+        }
+
+        [Test()]
+        public void TestWildbond()
+        {
+            SetupGameController(new string[] { "ErmineTeam", "Haka", "Chasejyd.DeeprootTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" });
+            StartGame();
+            DestroyNonCharacterVillainCards();
+
+            SetHitPoints(deeprootTeam.CharacterCard, 10);
+
+            Card traffic = PlayCard("TrafficPileup");
+
+            Card wild = PlayCard("Wildbond");
+
+            //Reduce Damage dealt to Environment Targets by 2.",
+            QuickHPStorage(traffic);
+            DealDamage(haka, traffic, 5, DamageType.Melee);
+            QuickHPCheck(-3);
+
+            //Redirect Damage that would be Dealt to {Deeproot} by Environment Cards to the Hero Target with the highest HP.
+            QuickHPStorage(deeprootTeam, haka);
+            DealDamage(traffic, deeprootTeam, 4, DamageType.Melee, isIrreducible: true);
+            QuickHPCheck(0, -4);
+
+            //When this Card is Destroyed, {Deeproot} gains 2 HP."
+            QuickHPStorage(deeprootTeam);
+            DestroyCard(wild, haka.CharacterCard);
+            QuickHPCheck(2);
         }
 
     }
