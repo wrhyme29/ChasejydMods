@@ -237,5 +237,21 @@ namespace ChasejydTests
 
         }
 
+        [Test()]
+        public void TestPhotosynthestrike()
+        {
+            SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
+            StartGame();
+
+            PlayCard("PoliceBackup");
+            PlayCard("TrafficPileup");
+
+            //{Deeproot} deals the Hero Target with the Highest HP X+1 toxic Damage, where X equals the number of Environment Cards in play.
+            QuickHPStorage(haka, bunker, tachyon);
+            PlayCard("Photosynthestrike");
+            QuickHPCheck(-3, 0, 0);
+            
+        }
+
     }
 }
