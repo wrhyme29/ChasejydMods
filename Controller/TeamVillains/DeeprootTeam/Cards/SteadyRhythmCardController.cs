@@ -11,7 +11,8 @@ namespace Chasejyd.DeeprootTeam
 
         public SteadyRhythmCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-
+            SpecialStringMaker.ShowNumberOfCardsInPlay(new LinqCardCriteria(c => c.IsEnvironment, "environment"));
+            SpecialStringMaker.ShowHeroTargetWithHighestHP(numberOfTargets: GetNumberOfEnvironmentCardsInPlay()).Condition = () => GetNumberOfEnvironmentCardsInPlay() > 0;
         }
 
 
