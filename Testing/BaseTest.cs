@@ -5025,15 +5025,15 @@ namespace Handelabra.Sentinels.UnitTest
         /// Creates a new game object from an existing one, copying its decision answers so it can be replayed.
         /// </summary>
         /// <param name="game">Game.</param>
-        private Game MakeReplayableGame(Game existingGame)
+        protected Game MakeReplayableGame(Game existingGame)
         {
             // Get the information from the copied game, but not the state of it.
-            var turnTakerIds = existingGame.TurnTakers.Select(tt => tt.Identifier);
+            var turnTakerIds = existingGame.TurnTakers.Select(tt => tt.QualifiedIdentifier);
             var isAdvanced = existingGame.IsAdvanced;
             var promoIds = new Dictionary<string, string>();
             foreach (var ttWithPromo in existingGame.TurnTakers.Where(tt => tt.PromoIdentifier != null))
             {
-                promoIds.Add(ttWithPromo.Identifier, ttWithPromo.PromoIdentifier);
+                promoIds.Add(ttWithPromo.PromoIdentifier, ttWithPromo.PromoIdentifier);
             }
             var randomSeed = existingGame.RandomSeed.Value;
             var isMultiplayer = existingGame.IsMultiplayer;
