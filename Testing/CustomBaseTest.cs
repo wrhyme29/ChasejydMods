@@ -21,6 +21,7 @@ namespace ChasejydTests
 
         //team villains
         protected TurnTakerController blisterTeam { get { return FindVillainTeamMember("Blister"); } }
+        protected TurnTakerController deeprootTeam { get { return FindVillainTeamMember("Deeproot"); } }
 
         protected void AddImmuneToDamageTrigger(TurnTakerController ttc, bool heroesImmune, bool villainsImmune)
         {
