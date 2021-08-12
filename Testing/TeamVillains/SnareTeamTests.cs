@@ -348,7 +348,7 @@ namespace ChasejydTests
         [Test()]
         public void TestEncapsulate_MultipleCC()
         {
-            SetupGameController("ErmineTeam", "Chasejyd.Rockstar", "Chasejyd.SnareTeam", "TheSentinels", "TheOperativeTeam", "Tachyon", "Megalopolis");
+            SetupGameController("TheOperativeTeam", "Tachyon", "Chasejyd.SnareTeam", "TheSentinels", "ErminTeam", "Chasejyd.Rockstar", "Megalopolis");
             StartGame();
             DestroyNonCharacterVillainCards();
 
@@ -362,7 +362,7 @@ namespace ChasejydTests
             //The hero next to this card cannot play cards.
             AssertCannotPlayCards(sentinels);
 
-            GoToEndOfTurn(rockstar);
+            GoToEndOfTurn(tachyon);
 
             //At the start of {Snare}’s turn, she deals the hero character next to this card 2 toxic damage.
             QuickHPStorage(rockstar.CharacterCard, medico, mainstay, idealist, writhe, tachyon.CharacterCard);
