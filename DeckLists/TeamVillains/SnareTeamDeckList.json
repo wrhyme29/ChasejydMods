@@ -1,0 +1,368 @@
+{
+	"name": "Snare",
+	"kind": "VillainTeam",
+	"initialCardIdentifiers": [
+		"SnareTeamCharacter"
+	],
+	"cards": [
+		{
+			"identifier": "SnareTeamCharacter",
+			"count": 1,
+			"title": "Snare",
+			"keywords": [
+				"villain"
+			],
+			"icons": [
+				"DealDamageEnergy",
+				"ReduceDamageDealt"
+			],
+			"body": "Behind the Shield",
+			"backgroundColor": "530101",
+			"character": true,
+			"hitpoints": 19,
+			"nemesisIdentifiers": [
+				"Headlong"
+			],
+			"setup": [
+				"{Snare} starts the game 'Behind the Shield' side up.",
+				"Put Crimson Shield and Giger Mobility Chair into play, then shuffle the villain deck."
+			],
+			"gameplay": [
+				"At the end of {Snare}'s turn, {Snare} deals the hero character with the second lowest HP 2 energy Damage. Reduce the next damage dealt by that target by 2.",
+				"When a barrier card is destroyed, {Snare} deals the hero target with the second highest HP 3 energy damage, then deals herself 2 irreducible psychic Damage."
+			],
+			"advanced": "When {Snare} deals a target energy damage, she also deals them 1 irreducible sonic damage.",
+			"advancedIcons": [
+				"DealDamageSonic"
+			],
+			"flippedShowHitpoints": false,
+			"flippedBody": "Incapacitated",
+			"flippedKeywords": [],
+			"flippedGameplay": [
+				"Reduce damage to villain character cards by 1."
+			],
+			"flippedIcons": [
+				"ReduceDamageTaken"
+			],
+			"difficulty": 2,
+			"challengeTitle": "Equipped for Success",
+			"challengeText": "Giger Mobility Chair is indestructible.",
+			"challengeIcons": [
+				"Indestructible"
+			],
+			"openingLines": {
+				"default": "Snare placeholder opening!",
+				"HeadlongCharacter": "Snare to Headlong placeholder opening!",
+				"DaybreakHeadlongCharacter": "Snare to Daybreak Headlong placeholder opening!"
+			}
+		},
+		{
+			"identifier": "CrimsonShield",
+			"count": 1,
+			"title": "Crimson Shield",
+			"keywords": [
+				"barrier"
+			],
+			"icons": [
+				"Indestructible",
+				"ReduceDamageTaken"
+			],
+			"body": [
+				"This card is indestructible",
+				"Reduce damage dealt to {Snare} by 2."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Snare",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Snare"
+		},
+		{
+			"identifier": "Reinforced",
+			"count": 1,
+			"title": "Reinforced",
+			"keywords": [
+				"ongoing",
+				"barrier"
+			],
+			"icons": [
+				"CancelledDamageRed",
+				"IncreaseDamageDealt"
+			],
+			"body": [
+				"Prevent the first damage that would be dealt to {Snare} each turn.",
+				"Increase damage dealt by {Snare} by 1."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Snare",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Snare"
+		},
+		{
+			"identifier": "Extended",
+			"count": 1,
+			"title": "Extended",
+			"keywords": [
+				"ongoing",
+				"barrier"
+			],
+			"icons": [
+				"ReduceDamageTaken",
+				"GainHP"
+			],
+			"body": [
+				"Reduce damage dealt to the villain target with the lowest HP, other than {Snare}, by 2.",
+				"At the end of {Snare}'s turn, each villain character card gains 1 HP."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Snare",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Snare"
+		},
+		{
+			"identifier": "Barricade",
+			"count": 2,
+			"title": "Barricade",
+			"keywords": [
+				"ongoing",
+				"barrier"
+			],
+			"icons": [
+				"IncreaseDamageDealt",
+				"ReduceDamageTaken",
+				"DestroySelf"
+			],
+			"body": [
+				"Increase damage dealt by villain character cards other than {Snare} by 1.",
+				"Reduce damage dealt to villain character cards other than {Snare} by 1.",
+				"At the start of {Snare}’s turn, destroy this card."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Snare",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Snare"
+		},
+		{
+			"identifier": "Resonant",
+			"count": 1,
+			"title": "Resonant",
+			"keywords": [
+				"ongoing",
+				"barrier"
+			],
+			"icons": [
+				"IncreaseDamageDealt",
+				"ReduceDamageTaken",
+				"DestroySelf"
+			],
+			"body": [
+				"When a hero target deals damage to {Snare}, {Snare} then deals that target 2 energy damage."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Snare",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Snare"
+		},
+		{
+			"identifier": "Encapsulate",
+			"count": 2,
+			"title": "Encapsulate",
+			"keywords": [
+				"ongoing",
+				"barrier"
+			],
+			"icons": [
+				"CannotPlayCards",
+				"DealDamageToxic"
+			],
+			"body": [
+				"Play this card next to the hero character with the most cards in play.",
+				"The hero next to this card cannot play cards.",
+				"At the start of {Snare}’s turn, she deals the hero character next to this card 2 toxic damage."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Snare",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Snare"
+		},
+		{
+			"identifier": "DriveTheBeatHome",
+			"count": 2,
+			"title": "Drive the Beat Home",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"DealDamageSonic",
+				"DealDamageEnergy",
+				"CannotUsePowers"
+			],
+			"body": [
+				"{Snare} deals the hero target with the second highest HP 2 sonic and 2 energy damage. A hero character card dealt damage this way cannot use powers until the start of {Snare}'s next turn."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Snare",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Snare"
+		},
+		{
+			"identifier": "SwitchUpTheTiming",
+			"count": 2,
+			"title": "Switch Up the Timing",
+			"keywords": [
+				"ongoing"
+			],
+			"icons": [
+				"DestroySelf",
+				"DealDamagePsychic"
+			],
+			"body": [
+				"Heroes may not play cards, use powers, or draw Cards outside of their own turn.",
+				"At the start of {Snare}’s turn, destroy this card.",
+				"When this card is destroyed, {Snare} deals the hero target with the lowest HP 3 psychic damage."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Snare",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Snare"
+		},
+		{
+			"identifier": "DoubleDown",
+			"count": 1,
+			"title": "Double Down",
+			"keywords": [
+				"ongoing"
+			],
+			"icons": [
+				"DestroyOngoing",
+				"DealDamageEnergy"
+			],
+			"body": [
+				"The first time each turn that a villain ongoing is destroyed, {Snare} destroys a hero ongoing and deals the hero target with the second highest HP 2 energy damage."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Snare",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Snare"
+		},
+		{
+			"identifier": "TimedAssault",
+			"count": 2,
+			"title": "Timed Assault",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"PlayCardNow",
+				"DealDamageSonic"
+			],
+			"body": [
+				"Play the top card of the villain character with the highest HP, other than {Snare}. Then that villain character deals the hero target with the highest HP 2 sonic damage."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Snare",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Snare"
+		},
+		{
+			"identifier": "Synchronicity",
+			"count": 2,
+			"title": "Synchronicity ",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"PlayCardNow",
+				"GainHP"
+			],
+			"body": [
+				"Play the top card of the villain character with the lowest HP, other than {Snare}. Then that villain character gains 2 HP."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Snare",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Snare"
+		},
+		{
+			"identifier": "GigerMobilityChair",
+			"count": 1,
+			"title": "Giger Mobility Chair",
+			"keywords": [
+				"device"
+			],
+			"icons": [
+				"ReduceDamageTaken",
+				"ImmuneToDamage",
+				"GainHP"
+			],
+			"body": [
+				"Reduce damage dealt to Giger Mobility Chair by 1.",
+				"{Snare} and Giger Mobility Chair are immune to damage from environment cards.",
+				"At the end of {Snare}’s turn, {Snare} gains 1 HP."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Snare",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Snare",
+			"hitpoints": 12
+		},
+		{
+			"identifier": "BuyingTime",
+			"count": 1,
+			"title": "Buying Time",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"GainHP",
+				"PlayCardNow"
+			],
+			"body": [
+				"The X villain targets with the lowest HP gain 2 HP, where X is equal to the number of Barrier cards in play.",
+				"Play the top card of {Snare}'s deck."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Snare",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Snare"
+		}
+	]
+}

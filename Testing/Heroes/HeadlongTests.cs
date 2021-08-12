@@ -928,12 +928,6 @@ namespace ChasejydTests
 
         }
 
-        [Test()]
-        public void TestLoadGame()
-        {
-            string path = @"C: \Users\jdfie\Downloads\save-undo-258-DeeprootTeam-End.dat";
-            ReplayGameFromPath(path);
-
-        }
+       
     }
 }
