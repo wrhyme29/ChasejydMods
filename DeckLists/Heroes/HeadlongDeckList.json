@@ -26,7 +26,7 @@
 			"backgroundColor": "00d2fe",
 			"foilBackgroundColor": "00d2fe",
 			"hitpointColor": "00d2fe",
-			"incapicitatedAbilities": [
+			"incapacitatedAbilities": [
 				"Each Player may Discard a Card. Any Player who does so may Draw a Card.",
 				"Until the start of Headlong's next turn, Hero Targets are Immune to Damage from the Environment.",
 				"You may look at the top card of a deck, then replace it or Discard it."

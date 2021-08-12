@@ -90,6 +90,8 @@ namespace Handelabra.Sentinels.UnitTest
         protected int DecisionSelectLocationsIndex { get; set; }
         protected bool DecisionAutoDecideIfAble { get; set; }
         protected TurnPhase DecisionSelectTurnPhase { get; set; }
+        protected TurnPhase[] DecisionSelectTurnPhases { get; set; }
+        protected int DecisionSelectTurnPhasesIndex { get; set; }
         protected string[] DecisionSelectFromBoxIdentifiers { get; set; }
         protected string DecisionSelectFromBoxTurnTakerIdentifier { get; set; }
         protected int DecisionSelectFromBoxIndex { get; set; }
@@ -111,7 +113,7 @@ namespace Handelabra.Sentinels.UnitTest
         private int? _numberOfChoicesInNextDecision;
         private SelectionType? _numberOfChoicesInNextDecisionSelectionType;
 
-        private Dictionary<Card, int> _quickHPStorage;
+        protected Dictionary<Card, int> _quickHPStorage;
         private Dictionary<HeroTurnTakerController, int> _quickHandStorage;
         private Dictionary<TurnTakerController, Card> _quickTopCardStorage;
         private Dictionary<TokenPool, int> _quickTokenPoolStorage;
@@ -379,6 +381,8 @@ namespace Handelabra.Sentinels.UnitTest
             DecisionAutoDecideIfAble = false;
             NumberOfDecisionsAnswered = 0;
             DecisionSelectTurnPhase = null;
+            DecisionSelectTurnPhases = null;
+            DecisionSelectTurnPhasesIndex = 0;
             DecisionSelectFromBoxIdentifiers = null;
             DecisionSelectFromBoxTurnTakerIdentifier = null;
             DecisionSelectFromBoxIndex = 0;
@@ -457,7 +461,9 @@ namespace Handelabra.Sentinels.UnitTest
 
         protected GameController SetupGameController(Game game)
         {
+#pragma warning disable IDE0017 // Simplify object initialization
             GameController gameController = new GameController(game);
+#pragma warning restore IDE0017 // Simplify object initialization
             gameController.StartCoroutine = StartCoroutine;
             gameController.ExhaustCoroutine = RunCoroutine;
             gameController.OnMakeDecisions -= this.MakeDecisions;
@@ -518,9 +524,13 @@ namespace Handelabra.Sentinels.UnitTest
 
         protected T GetPersistentValueFromView<T>(string key)
         {
+#pragma warning disable IDE0034 // Simplify 'default' expression
             T result = default(T);
+#pragma warning restore IDE0034 // Simplify 'default' expression
 
+#pragma warning disable IDE0038 // Use pattern matching
             if (_savedViewData.ContainsKey(key) && _savedViewData[key] is T)
+#pragma warning restore IDE0038 // Use pattern matching
             {
                 result = (T)_savedViewData[key];
             }
@@ -1554,6 +1564,16 @@ namespace Handelabra.Sentinels.UnitTest
 
                         selectPhase.SelectedPhase = this.DecisionSelectTurnPhase;
                     }
+                    if (this.DecisionSelectTurnPhases != null)
+                    {
+                        var phase = this.DecisionSelectTurnPhases[this.DecisionSelectTurnPhasesIndex];
+                        if (!selectPhase.Choices.Contains(phase))
+                        {
+                            Assert.Fail("The SelectTurnPhaseDecision does not contain the phase: " + phase);
+                        }
+                        selectPhase.SelectedPhase = phase;
+                        this.DecisionSelectTurnPhasesIndex++;
+                    }
                     else
                     {
                         Log.Warning("Automatically first phase: " + selectPhase.Choices.Select(tp => tp.Phase).FirstOrDefault());
@@ -2439,21 +2459,21 @@ namespace Handelabra.Sentinels.UnitTest
             RunCoroutine(this.GameController.ShuffleLocation(location, null));
         }
 
-        protected IEnumerable<Card> DiscardTopCards(TurnTaker tt, int amount)
+        protected IEnumerable<Card> DiscardTopCards(TurnTaker tt, int amount, CardSource cardSource = null)
         {
             var cards = tt.Deck.GetTopCards(amount);
-            RunCoroutine(this.GameController.DiscardTopCards(null, tt.Deck, amount));
+            RunCoroutine(this.GameController.DiscardTopCards(null, tt.Deck, amount, cardSource: cardSource));
             return cards;
         }
 
-        protected void DiscardTopCards(Location location, int amount)
+        protected void DiscardTopCards(Location location, int amount, CardSource cardSource = null)
         {
-            RunCoroutine(this.GameController.DiscardTopCards(null, location, amount));
+            RunCoroutine(this.GameController.DiscardTopCards(null, location, amount, cardSource: cardSource));
         }
 
-        protected IEnumerable<Card> DiscardTopCards(TurnTakerController ttc, int amount)
+        protected IEnumerable<Card> DiscardTopCards(TurnTakerController ttc, int amount, CardSource cardSource = null)
         {
-            return DiscardTopCards(ttc.TurnTaker, amount);
+            return DiscardTopCards(ttc.TurnTaker, amount, cardSource);
         }
 
         protected Card DestroyCard(Card card, Card cardSource = null)
@@ -2607,7 +2627,7 @@ namespace Handelabra.Sentinels.UnitTest
 
         protected void GainHP(Card card, int amount)
         {
-            this.RunCoroutine(this.GameController.GainHP(card, amount));
+            this.RunCoroutine(this.GameController.GainHP(card, amount, cardSource: FindCardController(card).GetCardSource()));
         }
 
         protected void RestoreToMaxHP(TurnTakerController ttc)
@@ -3307,6 +3327,11 @@ namespace Handelabra.Sentinels.UnitTest
             Assert.IsTrue(FindCardsWhere(card => card.Location.IsDeck && card.Identifier == identifier).Count() == 0, "There are cards with identifier " + identifier + " that are in a deck.");
         }
 
+        protected void AssertNotInDeck(Card card)
+        {
+            Assert.IsTrue(FindCardsWhere(c => c.Location.IsDeck && c == card).Count() == 0, "The card " + card.Title + " is still in a deck.");
+        }
+
         protected void AssertOffToTheSide(Card card)
         {
             Assert.IsTrue(card.Location.IsOffToTheSide, card.Title + " is not off to the side.");
@@ -3649,7 +3674,7 @@ namespace Handelabra.Sentinels.UnitTest
             }
         }
 
-        protected void AssertNextDecisionChoices(IEnumerable<TurnTaker> included, IEnumerable<TurnTaker> notIncluded)
+        protected void AssertNextDecisionChoices(IEnumerable<TurnTaker> included = null, IEnumerable<TurnTaker> notIncluded = null)
         {
             if (included != null)
             {
@@ -4062,7 +4087,9 @@ namespace Handelabra.Sentinels.UnitTest
 
         protected TurnTakerController FindVillain(string identifier = null)
         {
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             TurnTakerController result = null;
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
 
             if (identifier != null)
             {
@@ -4080,7 +4107,9 @@ namespace Handelabra.Sentinels.UnitTest
 
         protected TurnTakerController FindVillainTeamMember(string identifier)
         {
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             TurnTakerController result = null;
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
 
             if (identifier.Contains("Team"))
             {
@@ -4221,6 +4250,26 @@ namespace Handelabra.Sentinels.UnitTest
             AssertNotInPlay(keeper);
         }
 
+        protected void AssertCannotDrawCards(TurnTakerController ttc)
+        {
+            Assert.IsFalse(this.GameController.CanPerformAction<DrawCardAction>(ttc, null), ttc.Name + " should not be able to draw cards.");
+        }
+
+        protected void AssertCanDrawCards(TurnTakerController ttc)
+        {
+            Assert.IsTrue(this.GameController.CanPerformAction<DrawCardAction>(ttc, null), ttc.Name + " should be able to draw cards.");
+        }
+
+        protected void AssertCanUsePowers(TurnTakerController ttc)
+        {
+            Assert.IsTrue(this.GameController.CanPerformAction<UsePowerAction>(ttc, null), ttc.Name + " should be able to use powers.");
+        }
+
+        protected void AssertCannotUsePowers(TurnTakerController ttc)
+        {
+            Assert.IsFalse(this.GameController.CanPerformAction<UsePowerAction>(ttc, null), ttc.Name + " should not be able to use powers.");
+        }
+
         protected void AssertCannotPlayCards(TurnTakerController ttc, Card testCard)
         {
             Assert.IsFalse(this.GameController.CanPerformAction<PlayCardAction>(ttc, null), ttc.Name + " should not be able to play cards.");
@@ -4310,6 +4359,8 @@ namespace Handelabra.Sentinels.UnitTest
             }
             Console.WriteLine("==============================");
         }
+
+
 
         public void PrintCardsInPlayWithGameText(Func<Card, bool> cardCriteria = null)
         {
@@ -4761,7 +4812,9 @@ namespace Handelabra.Sentinels.UnitTest
             MoveCard(FindTurnTakerController(card.Owner), card, card.NativeDeck, toBottom);
         }
 
+#pragma warning disable IDE0044 // Add readonly modifier
         Dictionary<Location, string[]> _stackAfterReshuffle = new Dictionary<Location, string[]>();
+#pragma warning restore IDE0044 // Add readonly modifier
 
         private IEnumerator StackCardsResponse(ShuffleCardsAction action)
         {
@@ -4809,7 +4862,9 @@ namespace Handelabra.Sentinels.UnitTest
         {
             Assert.AreEqual(cards.Count(), hpChanges.Count(), "AssertHPAtEndOfTurn: The number of cards provided and the number of expected results do not match up: " + cards.Count() + " and " + hpChanges.Count());
             int index = this.GameController.TurnTakerControllers.IndexOf(ttc).Value;
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             TurnTakerController previousTTC = null;
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
             if (index > 0)
             {
                 previousTTC = this.GameController.TurnTakerControllers.ElementAt(index - 1);
@@ -4850,7 +4905,9 @@ namespace Handelabra.Sentinels.UnitTest
                 controller = this.GameController;
             }
 
+#pragma warning disable IDE0017 // Simplify object initialization
             BinaryFormatter formatter = new BinaryFormatter();
+#pragma warning restore IDE0017 // Simplify object initialization
             formatter.AssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple;
             FileStream stream = null;
             try
@@ -4889,7 +4946,9 @@ namespace Handelabra.Sentinels.UnitTest
         {
             if (File.Exists(path))
             {
+#pragma warning disable IDE0017 // Simplify object initialization
                 BinaryFormatter formatter = new BinaryFormatter();
+#pragma warning restore IDE0017 // Simplify object initialization
                 formatter.AssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple;
                 FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
                 try
@@ -5025,11 +5084,12 @@ namespace Handelabra.Sentinels.UnitTest
         /// Creates a new game object from an existing one, copying its decision answers so it can be replayed.
         /// </summary>
         /// <param name="game">Game.</param>
-        private Game MakeReplayableGame(Game existingGame)
+        protected Game MakeReplayableGame(Game existingGame)
         {
             // Get the information from the copied game, but not the state of it.
-            var turnTakerIds = existingGame.TurnTakers.Select(tt => tt.Identifier);
+            var turnTakerIds = existingGame.TurnTakers.Select(tt => tt.QualifiedIdentifier);
             var isAdvanced = existingGame.IsAdvanced;
+            var isChallenge = existingGame.IsChallenge;
             var promoIds = new Dictionary<string, string>();
             foreach (var ttWithPromo in existingGame.TurnTakers.Where(tt => tt.PromoIdentifier != null))
             {
@@ -5039,7 +5099,7 @@ namespace Handelabra.Sentinels.UnitTest
             var isMultiplayer = existingGame.IsMultiplayer;
             var randomizer = existingGame.InitialRNG;
 
-            var game = new Game(turnTakerIds, isAdvanced, promoIds, randomSeed, isMultiplayer, randomizer);
+            var game = new Game(turnTakerIds, isAdvanced: isAdvanced, promoIdentifiers: promoIds, randomSeed: randomSeed, isMultiplayer: isMultiplayer, randomizer: randomizer, isChallenge: isChallenge);
             this.ReplayDecisionAnswers = existingGame.Journal.DecisionAnswerEntries(e => true).ToList();
             Console.WriteLine("# of saved replay decision answers: " + this.ReplayDecisionAnswers.Count());
 
@@ -5078,7 +5138,8 @@ namespace Handelabra.Sentinels.UnitTest
         protected void ActivateAbility(string key, Card card)
         {
             var cc = this.GameController.FindCardController(card);
-            var ability = new ActivatableAbility(this.GameController.FindTurnTakerController(card.Owner), cc, key, cc.Card.GetActivatableAbilityDescription(key), cc.ActivateAbility(key), 0, null, null, new CardSource(cc));
+            var abilityDef = cc.GetActivatableAbilities(key).Select(a => a.Definition).First(); ;
+            var ability = new ActivatableAbility(this.GameController.FindTurnTakerController(card.Owner), cc, abilityDef, cc.ActivateAbilityEx(abilityDef), 0, null, null, new CardSource(cc));
             this.RunCoroutine(this.GameController.ActivateAbility(ability, new CardSource(cc)));
         }
 
@@ -5110,7 +5171,7 @@ namespace Handelabra.Sentinels.UnitTest
             Assert.IsTrue(card.IsTarget, card.Title + " should be a target.");
             if (maxHitPoints.HasValue)
             {
-                Assert.AreEqual(maxHitPoints.Value, card.HitPoints.Value);
+                Assert.AreEqual(maxHitPoints.Value, card.MaximumHitPoints.Value);
             }
         }
 
@@ -5441,7 +5502,9 @@ namespace Handelabra.Sentinels.UnitTest
 
         protected void SelectTurnTakerControllersForNextDecision(params TurnTakerController[] ttcs)
         {
+#pragma warning disable IDE0031 // Use null propagation
             var tts = ttcs.Select(ttc => ttc == null ? null : ttc.TurnTaker);
+#pragma warning restore IDE0031 // Use null propagation
             SelectTurnTakersForNextDecision(tts.ToArray());
         }
 
@@ -5892,7 +5955,9 @@ namespace Handelabra.Sentinels.UnitTest
             }
         }
 
+#pragma warning disable IDE0051 // Remove unused private members
         private void PrintReplayDecisionAnswers()
+#pragma warning restore IDE0051 // Remove unused private members
         {
             Console.WriteLine(this.ReplayDecisionAnswers.Select(d => d.DecisionIdentifier).ToCommaList());
         }

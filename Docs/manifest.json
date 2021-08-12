@@ -4,7 +4,7 @@
 	"description":[
 		"These decks are designed by Chasejyd and implemented by wrhyme29",
 	],
-	"version": "v1.5",
+	"version": "v1.6",
 	"credits": "",
 	"namespace": "Chasejyd",
 	"dll": "ChasejydMods.dll",
@@ -16,8 +16,9 @@
 		"villains": [
 		],
 		"teamVillains":[
-         "BlisterTeam",
-		 "DeeprootTeam"
+			"BlisterTeam",
+			"DeeprootTeam",
+			"SnareTeam"
 		],
 		"environments": [
 		]

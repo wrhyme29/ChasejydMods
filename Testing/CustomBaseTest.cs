@@ -6,7 +6,9 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace ChasejydTests
 {
@@ -20,6 +22,8 @@ namespace ChasejydTests
         //team villains
         protected TurnTakerController blisterTeam { get { return FindVillainTeamMember("Blister"); } }
         protected TurnTakerController deeprootTeam { get { return FindVillainTeamMember("Deeproot"); } }
+        protected TurnTakerController snareTeam { get { return FindVillainTeamMember("Snare"); } }
+
 
         protected void AddImmuneToDamageTrigger(TurnTakerController ttc, bool heroesImmune, bool villainsImmune)
         {
@@ -163,6 +167,51 @@ namespace ChasejydTests
             Func<DealDamageAction, bool> criteria = (DealDamageAction dd) => dd.Target == target;
             Func<DealDamageAction, IEnumerator> response = (DealDamageAction dd) => this.GameController.DestroyCards(decisionMaker, new LinqCardCriteria(c => c.IsEnvironment, "environment"), autoDecide: true, cardSource: cardsource);
             GameController.AddTrigger<DealDamageAction>(new Trigger<DealDamageAction>(this.GameController, criteria, response, new TriggerType[] { TriggerType.DestroyCard }, TriggerTiming.After, cardsource));
+        }
+
+        protected GameController ReplayGameFromPath(string path)
+        {
+            try
+            {
+                var savedGame = LoadGamePath(path);
+
+                if (savedGame != null)
+                {
+                    var newGame = MakeReplayableGame(savedGame);
+                    SetupGameController(newGame);
+
+                    Console.WriteLine("Successfully created game to replay...");
+
+                    StartGame();
+                    this.ReplayingGame = true;
+
+                    // Keep moving the game forward until we have reached the stopping point.
+                    int sanity = 1000;
+                    while (this.ReplayingGame)
+                    {
+                        RunActiveTurnPhase();
+                        EnterNextTurnPhase();
+                        sanity--;
+
+                        if (sanity == 0)
+                        {
+                            Log.Error("Save game never seemed to end: " + path);
+                            this.ReplayingGame = false;
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Failed to load and replay game.");
+                }
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Failed to load and replay game. Reason: " + e.Message);
+                throw;
+            }
+
+            return this.GameController;
         }
 
     }

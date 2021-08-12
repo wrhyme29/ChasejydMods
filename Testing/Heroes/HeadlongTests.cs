@@ -85,6 +85,7 @@ namespace ChasejydTests
             SetupIncap(baron);
 
             GoToUseIncapacitatedAbilityPhase(headlong);
+            RunActiveTurnPhase();
 
             Card legacyHand = GetRandomCardFromHand(legacy);
             Card bunkerHand = GetRandomCardFromHand(bunker);
@@ -927,6 +928,6 @@ namespace ChasejydTests
 
         }
 
-
+       
     }
 }
