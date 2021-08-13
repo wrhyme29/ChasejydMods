@@ -22,7 +22,7 @@ namespace Chasejyd.DeeprootTeam
 		{
 			if (!base.Card.IsFlipped)
 			{
-				//At the end of {Deeproot}'s turn, the 2 Villain or Environment Targets with the lowest HP gain 1 HP.
+				//At the end of {Deeproot}'s turn, the 2 Villain or Environment Targets with the lowest HP gain 2 HP.
 				//Then {Deeproot} deals the X Hero Targets with the highest HP 2 Toxic Damage each where X is equal to the number of Plant Growth Cards in play
 
 				AddSideTrigger(AddEndOfTurnTrigger((TurnTaker tt) => tt == TurnTaker, EndOfTurnFrontResponse, new TriggerType[] { TriggerType.GainHP, TriggerType.DealDamage }));
@@ -68,7 +68,7 @@ namespace Chasejyd.DeeprootTeam
         {
 			//the 2 Villain or Environment Targets with the lowest HP gain 1 HP.
 			IEnumerable<Card> foundTargets = base.GameController.FindAllTargetsWithLowestHitPoints(1, (Card c) => (IsVillainTarget(c) || c.IsEnvironmentTarget) && GameController.IsCardVisibleToCardSource(c, GetCardSource()) && c.IsInPlayAndHasGameText && !c.IsIncapacitatedOrOutOfGame, cardSource: base.GetCardSource(), numberOfTargets: 2);
-			IEnumerator coroutine = GameController.GainHP(DecisionMaker, (Card c) => foundTargets.Contains(c), 1, cardSource: GetCardSource());
+			IEnumerator coroutine = GameController.GainHP(DecisionMaker, (Card c) => foundTargets.Contains(c), 2, cardSource: GetCardSource());
 			if (base.UseUnityCoroutines)
 			{
 				yield return base.GameController.StartCoroutine(coroutine);
