@@ -24,7 +24,7 @@ namespace ChasejydTests
             Assert.IsInstanceOf(typeof(DeeprootTeamCharacterCardController), deeprootTeam.CharacterCardController);
             Assert.IsInstanceOf(typeof(DeeprootTeamTurnTakerController), deeprootTeam);
 
-            Assert.AreEqual(31, deeprootTeam.CharacterCard.HitPoints);
+            Assert.AreEqual(34, deeprootTeam.CharacterCard.HitPoints);
         }
 
         [Test()]
@@ -49,14 +49,14 @@ namespace ChasejydTests
             Card traffic = PlayCard("TrafficPileup");
             SetHitPoints(traffic, 2);
 
-            //At the end of {Deeproot}'s turn, the 2 Villain or Environment Targets with the lowest HP gain 1 HP.
+            //At the end of {Deeproot}'s turn, the 2 Villain or Environment Targets with the lowest HP gain 2 HP.
             //Then {Deeproot} deals the X Hero Targets with the highest HP 2 Toxic Damage each where X is equal to the number of Plant Growth Cards in play
 
             PrintSpecialStringsForCard(deeprootTeam.CharacterCard);
 
             QuickHPStorage(deeprootTeam.CharacterCard, ermineTeam.CharacterCard, operativeTeam.CharacterCard, haka.CharacterCard, bunker.CharacterCard, tachyon.CharacterCard, traffic);
             GoToEndOfTurn(deeprootTeam);
-            QuickHPCheck(0, 1, 0, -2, 0, 0, 1);
+            QuickHPCheck(0, 2, 0, -2, 0, 0, 2);
         }
 
 
@@ -68,7 +68,7 @@ namespace ChasejydTests
             DestroyNonCharacterVillainCards();
 
             GoToEndOfTurn(haka);
-            DealDamage(haka, deeprootTeam, 32, DamageType.Melee, isIrreducible: true);
+            DealDamage(haka, deeprootTeam, 35, DamageType.Melee, isIrreducible: true);
             AssertFlipped(deeprootTeam);
 
             Card traffic = PlayCard("TrafficPileup");
@@ -143,18 +143,31 @@ namespace ChasejydTests
 
             SetHitPoints(operativeTeam.CharacterCard, 10);
 
-            //Play this card next to the Villain character card with the lowest HP. Redirect damage that Target would take to this card.
-            //Reduce non-Fire Damage dealt to this card by 1.
+            //Play this card next to the Villain character card with the lowest HP.
+            // Reduce non-fire Damage to all Villain Targets in that Villain’s play area by 2.
+            Card mayor = PlayCard("MayorOverbrook");
             Card bark = PlayCard("BarkShield");
             AssertNextToCard(bark, operativeTeam.CharacterCard);
 
-            QuickHPStorage(operativeTeam.CharacterCard, bark);
-            DealDamage(haka, operativeTeam, 2, DamageType.Melee);
-            QuickHPCheck(0, -1);
+            QuickHPStorage(operativeTeam.CharacterCard, bark, mayor);
+            DealDamage(haka, bark, 3, DamageType.Melee);
+            QuickHPCheck(0, -1, 0);
 
             QuickHPUpdate();
-            DealDamage(bunker, operativeTeam, 2, DamageType.Fire);
-            QuickHPCheck(0, -2);
+            DealDamage(bunker, operativeTeam, 3 , DamageType.Melee);
+            QuickHPCheck(-1, 0, 0);
+
+            QuickHPUpdate();
+            DealDamage(bunker, operativeTeam, 3, DamageType.Fire);
+            QuickHPCheck(-3, 0, 0);
+
+            QuickHPUpdate();
+            DealDamage(bunker,mayor, 3, DamageType.Melee);
+            QuickHPCheck(0, 0, -1);
+
+            QuickHPStorage(ermineTeam);
+            DealDamage(bunker, ermineTeam, 3, DamageType.Melee);
+            QuickHPCheck(-3);
         }
 
         [Test()]
@@ -164,12 +177,12 @@ namespace ChasejydTests
             StartGame();
             DestroyNonCharacterVillainCards();
 
-            //{Deeproot} Deals the Hero Target with the second highest HP 3 Melee Damage. 
+            //{Deeproot} Deals the Hero Target with the second highest HP 4 Melee Damage. 
             //Redirect the next damage that Target would deal to {Deeproot} and reduce it by 2.
 
             QuickHPStorage(haka, bunker, tachyon);
             PlayCard("CantStopTheBeatdown");
-            QuickHPCheck(0, -3, 0);
+            QuickHPCheck(0, -4, 0);
 
             QuickHPStorage(operativeTeam, deeprootTeam);
             DealDamage(bunker, operativeTeam, 3, DamageType.Toxic);
@@ -195,47 +208,45 @@ namespace ChasejydTests
             DealDamage(haka, traffic, 3, DamageType.Melee);
             QuickHPCheck(-2);
 
-            //{Deeproot} is Immune to Damage from the Environment.
-            QuickHPStorage(deeprootTeam);
-            DealDamage(traffic, deeprootTeam, 3, DamageType.Melee);
-            QuickHPCheckZero();
-
-            MoveAllCards(env, env.TurnTaker.Deck, env.TurnTaker.Trash);
-
-            //At the end of {Deeproot}'s turn, shuffle the Environment Trash into its deck
-            QuickShuffleStorage(env);
-            GoToEndOfTurn(deeprootTeam);
-            QuickShuffleCheck(1);
-
-            AssertNumberOfCardsInTrash(env, 0);
+            //Increase damage from Environment Cards to Hero Targets by 1.
+            QuickHPStorage(haka, ermineTeam);
+            List<Card> targets = new List<Card>() { haka.CharacterCard, ermineTeam.CharacterCard };
+            DealDamage(traffic, targets, 2, DamageType.Melee);
+            QuickHPCheck(-3, -2);
 
         }
 
         [Test()]
-        public void TestHeartOfTheTeam()
+        public void TestHealingSalve()
         {
             SetupGameController(new string[] { "Chasejyd.DeeprootTeam", "Haka", "ErmineTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" }, challenge: true);
             StartGame();
             DestroyNonCharacterVillainCards();
 
-            Card traffic = PlayCard("TrafficPileup");
+            SetHitPoints(deeprootTeam.CharacterCard, 8);
+            SetHitPoints(haka.CharacterCard, 8);
+            SetHitPoints(ermineTeam.CharacterCard, 8);
+            SetHitPoints(bunker.CharacterCard, 8);
+            SetHitPoints(operativeTeam.CharacterCard, 8);
+            SetHitPoints(tachyon.CharacterCard, 8);
 
-            SetHitPoints(new Card[] { traffic, deeprootTeam.CharacterCard, ermineTeam.CharacterCard, operativeTeam.CharacterCard }, 5);
+            PreventEndOfTurnEffects(deeprootTeam, deeprootTeam.CharacterCard);
 
-            //All Villain and Environment Targets gain 2 HP.
-            QuickHPStorage(deeprootTeam.CharacterCard, ermineTeam.CharacterCard, operativeTeam.CharacterCard, haka.CharacterCard, bunker.CharacterCard, tachyon.CharacterCard, traffic);
-            PlayCard("HeartOfTheTeam");
-            QuickHPCheck(2, 2, 2, 0, 0, 0, 2);
+            GoToPlayCardPhase(deeprootTeam);
+            PlayCard("HealingSalve");
 
-            //Redirect the next damage that would be dealt to a Villain Character Card to {Deeproot}.
-            QuickHPStorage(operativeTeam, deeprootTeam);
-            DealDamage(bunker, operativeTeam, 3, DamageType.Projectile);
-            QuickHPCheck(0, -3);
+            //Increase HP Recovery by Non-Hero Targets by 1.
+            QuickHPStorage(deeprootTeam, haka, ermineTeam, bunker, operativeTeam, tachyon);
+            foreach(Card cc in FindCardsWhere(c => c.IsCharacter))
+            {
+                GainHP(cc, 1);
+            }
+            QuickHPCheck(2, 1, 2, 1, 2, 1);
 
+            //At the End of { Deeproot}’s Turn, all Non - Hero Targets gain 1 HP.
             QuickHPUpdate();
-            DealDamage(bunker, operativeTeam, 3, DamageType.Projectile);
-            QuickHPCheck(-3, 0);
-
+            GoToEndOfTurn(deeprootTeam);
+            QuickHPCheck(2, 0, 2, 0, 2, 0);
         }
 
         [Test()]
@@ -279,44 +290,38 @@ namespace ChasejydTests
             QuickHPUpdate();
             GoToEndOfTurn(deeprootTeam);
             QuickHPCheck(2);
-        }
+
+            DestroyNonCharacterVillainCards();
+            PlayCard("PlantLifeOfTheParty");
+            //{Deeproot} is immune to Damage from Environment Cards.
+            Card police = PlayCard("PoliceBackup");
+            QuickHPStorage(deeprootTeam, haka, ermineTeam, bunker, operativeTeam, tachyon);
+            foreach(Card target in FindCardsWhere(c => c.IsTarget))
+            {
+                DealDamage(police, target, 2, DamageType.Projectile, isIrreducible: true);
+            }
+            QuickHPCheck(0, -2, -2, -2, -2, -2)
+;        }
 
         [Test()]
-        public void TestSteadyRhythm()
+        public void TestThornwhips()
         {
             SetupGameController(new string[] { "ErmineTeam", "Haka", "Chasejyd.DeeprootTeam", "Bunker", "TheOperativeTeam", "Tachyon", "Megalopolis" });
             StartGame();
             DestroyNonCharacterVillainCards();
 
-            Card traffic = PlayCard("TrafficPileup");
-            PlayCard("PoliceBackup");
+            PlayCard("TrafficPileup");
 
-            //{Deeproot} Deals the  X Hero Targets with the Highest HP 2 Melee Damage, where X is equal to the number of Environment Cards in Play
-            //Until the start of {Deeproot}'s next turn, Villain cards are Immune to damage from Villains and the Environment.
+            GoToPlayCardPhase(deeprootTeam);
+            PreventEndOfTurnEffects(bunker, deeprootTeam.CharacterCard);
+            SetAllTargetsToMaxHP();
 
+            PlayCard("Thornwhips");
+            //At the End of Deeproot’s Turn, he deals the X + 1 Hero Targets with the highest HP 2 Melee Damage each, where X is equal to the number of Environment Cards in Play.
+            //X = 1
             QuickHPStorage(haka, bunker, tachyon);
-            PlayCard("SteadyRhythm");
+            GoToEndOfTurn(deeprootTeam);
             QuickHPCheck(-2, -2, 0);
-
-            QuickHPStorage(deeprootTeam, ermineTeam, operativeTeam, haka, bunker, tachyon);
-            DealDamage(traffic, (Card c) => c.IsNonEnvironmentTarget, 4, DamageType.Melee);
-            QuickHPCheck(0, 0, 0, -4, -4, -4);
-
-            QuickHPUpdate();
-            DealDamage(ermineTeam, (Card c) => c.IsNonEnvironmentTarget, 4, DamageType.Melee);
-            QuickHPCheck(0, 0, 0, -4, -4, -4);
-
-            GoToStartOfTurn(deeprootTeam);
-            PrintSeparator("Should be at start of turn");
-
-            QuickHPUpdate();
-            DealDamage(ermineTeam, (Card c) => c.IsNonEnvironmentTarget, 4, DamageType.Melee);
-            QuickHPCheck(-4,-4,-4, -4, -4, -4);
-
-
-            QuickHPUpdate();
-            DealDamage(traffic, (Card c) => c.IsNonEnvironmentTarget, 4, DamageType.Melee);
-            QuickHPCheck(-4, -4, -4, -4, -4, -4);
 
         }
 
@@ -332,17 +337,17 @@ namespace ChasejydTests
             Card vines = PlayCard("Stranglevines");
             AssertNextToCard(vines, haka.CharacterCard);
 
-            //Redirect all damage dealt by that target to {Deeproot}
-            QuickHPStorage(ermineTeam, deeprootTeam, operativeTeam);
-            DealDamage(haka, c => c.IsVillainCharacterCard, 4, DamageType.Projectile);
-            QuickHPCheck(0, -12, 0);
+            //Redirect all damage dealt by that target to non-hero targets to {Deeproot}
+            QuickHPStorage(ermineTeam, deeprootTeam, operativeTeam, haka, bunker, tachyon);
+            DealDamage(haka, c => c.IsTarget && c.IsCharacter, 4, DamageType.Projectile);
+            QuickHPCheck(0, -12, 0, -4, -4, -4);
 
             GoToEndOfTurn(haka);
 
-            //At the Start of {Deeproot}'s Turn, this Card deals the Hero Character it is next to 1 Melee and 1 Toxic Damage.
+            //At the Start of {Deeproot}'s Turn, this Card deals the Hero Character it is next to 2 Melee and 2 Toxic Damage.
             QuickHPStorage(haka);
             GoToStartOfTurn(deeprootTeam);
-            QuickHPCheck(-2);
+            QuickHPCheck(-4);
         }
 
         [Test()]
@@ -353,25 +358,22 @@ namespace ChasejydTests
             DestroyNonCharacterVillainCards();
 
             SetHitPoints(deeprootTeam.CharacterCard, 10);
+            SetHitPoints(haka.CharacterCard, 10);
+            SetHitPoints(bunker.CharacterCard, 16);
+            SetHitPoints(tachyon.CharacterCard, 23);
 
-            Card traffic = PlayCard("TrafficPileup");
+            PlayCard("Wildbond");
 
-            Card wild = PlayCard("Wildbond");
+            // Each time an Environment Card enters play, {Deeproot} gains 2 HP and deals the Hero Target with the highest HP 3 Melee Damage.
+            QuickHPStorage(deeprootTeam, haka, bunker, tachyon);
+            Card trafficPileup = PlayCard("TrafficPileup");
+            QuickHPCheck(2, 0, 0, -3);
 
-            //Reduce Damage dealt to Environment Targets by 2.",
-            QuickHPStorage(traffic);
-            DealDamage(haka, traffic, 5, DamageType.Melee);
-            QuickHPCheck(-3);
+            // Each time an Environment Card is Destroyed, {Deeproot} deals the Hero Target with the Lowest HP 2 Toxic Damage.
+            QuickHPUpdate();
+            DestroyCard(trafficPileup, tachyon.CharacterCard);
+            QuickHPCheck(0, -2, 0, 0);
 
-            //Redirect Damage that would be Dealt to {Deeproot} by Environment Cards to the Hero Target with the highest HP.
-            QuickHPStorage(deeprootTeam, haka);
-            DealDamage(traffic, deeprootTeam, 4, DamageType.Melee, isIrreducible: true);
-            QuickHPCheck(0, -4);
-
-            //When this Card is Destroyed, {Deeproot} gains 2 HP."
-            QuickHPStorage(deeprootTeam);
-            DestroyCard(wild, haka.CharacterCard);
-            QuickHPCheck(2);
         }
 
         [Test()]
@@ -384,15 +386,15 @@ namespace ChasejydTests
             MoveAllCards(deeprootTeam, deeprootTeam.TurnTaker.Deck, deeprootTeam.TurnTaker.Trash);
 
             SetHitPoints(deeprootTeam, 10);
-            StackAfterShuffle(deeprootTeam.TurnTaker.Deck, new string[] { "BarkShield" });
+            StackAfterShuffle(deeprootTeam.TurnTaker.Deck, new string[] { "BarkShield", "Photosynthestrike", "Wildbond" });
 
-            //{Deeproot} gains 1 HP.",
-            //Shuffle {Deeproot}'s trash into his deck and reveal the top card of his deck. If it is a Plant Growth, put it into play. If it is not a Plant Growth, discard it and {Deeproot} gains 2 more HP."
+            //Shuffle {Deeproot}'s trash into his deck.
+            //Reveal the top {H} card of {Deeproot}'s deck. Put any Plant Growth Cards into Play. Discard all other cards. {Deeproot} gains 2 HP for each card discarded this way.
 
             QuickHPStorage(deeprootTeam);
             PlayCard("WildGrowth");
-            AssertNumberOfCardsInTrash(deeprootTeam, 1);
-            QuickHPCheck(1);
+            AssertNumberOfCardsInTrash(deeprootTeam, 3);
+            QuickHPCheck(4);
             AssertIsInPlay("BarkShield");
         }
 
@@ -406,15 +408,15 @@ namespace ChasejydTests
             MoveAllCards(deeprootTeam, deeprootTeam.TurnTaker.Deck, deeprootTeam.TurnTaker.Trash);
 
             SetHitPoints(deeprootTeam, 10);
-            StackAfterShuffle(deeprootTeam.TurnTaker.Deck, new string[] { "CantStopTheBeatdown" });
+            StackAfterShuffle(deeprootTeam.TurnTaker.Deck, new string[] { "CantStopTheBeatdown", "Photosynthestrike", "Wildbond" });
 
-            //{Deeproot} gains 1 HP.",
-            //Shuffle {Deeproot}'s trash into his deck and reveal the top card of his deck. If it is a Plant Growth, put it into play. If it is not a Plant Growth, discard it and {Deeproot} gains 2 more HP."
+            //Shuffle {Deeproot}'s trash into his deck.
+            //Reveal the top {H} card of {Deeproot}'s deck. Put any Plant Growth Cards into Play. Discard all other cards. {Deeproot} gains 2 HP for each card discarded this way.
 
             QuickHPStorage(deeprootTeam);
             PlayCard("WildGrowth");
-            AssertNumberOfCardsInTrash(deeprootTeam, 2);
-            QuickHPCheck(3);
+            AssertNumberOfCardsInTrash(deeprootTeam, 4);
+            QuickHPCheck(6);
         }
         [Test()]
         public void TestWrithingFlora()

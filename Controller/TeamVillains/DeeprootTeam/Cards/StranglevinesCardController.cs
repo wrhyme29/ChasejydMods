@@ -17,10 +17,10 @@ namespace Chasejyd.DeeprootTeam
 
         public override void AddTriggers()
         {
-            //Redirect all damage dealt by that target to {Deeproot}
-            AddRedirectDamageTrigger((DealDamageAction dd) => GetCardThisCardIsNextTo() != null && dd.DamageSource.IsSameCard(GetCardThisCardIsNextTo()), () => CharacterCard);
+            //Redirect all damage that target would deal to non-Hero targets to {Deeproot}.
+            AddRedirectDamageTrigger((DealDamageAction dd) => GetCardThisCardIsNextTo() != null && dd.DamageSource.IsSameCard(GetCardThisCardIsNextTo()) && dd.Target != null && !dd.Target.IsHero, () => CharacterCard);
 
-            //At the Start of {Deeproot}'s Turn, this Card deals the Hero Character it is next to 1 Melee and 1 Toxic Damage.
+            //At the Start of {Deeproot}'s Turn, this Card deals the Hero Character it is next to 2 Melee and 2 Toxic Damage.
             AddStartOfTurnTrigger((TurnTaker tt) => tt == TurnTaker, StartOfTurnResponse, TriggerType.DealDamage, additionalCriteria: pca => GetCardThisCardIsNextTo() != null);
 
         }
@@ -28,8 +28,8 @@ namespace Chasejyd.DeeprootTeam
         private IEnumerator StartOfTurnResponse(PhaseChangeAction pca)
         {
             List<DealDamageAction> list = new List<DealDamageAction>();
-            list.Add(new DealDamageAction(GetCardSource(), new DamageSource(base.GameController, base.Card), GetCardThisCardIsNextTo(), 1, DamageType.Melee));
-            list.Add(new DealDamageAction(GetCardSource(), new DamageSource(base.GameController, base.Card), GetCardThisCardIsNextTo(), 1, DamageType.Toxic));
+            list.Add(new DealDamageAction(GetCardSource(), new DamageSource(base.GameController, base.Card), GetCardThisCardIsNextTo(), 2, DamageType.Melee));
+            list.Add(new DealDamageAction(GetCardSource(), new DamageSource(base.GameController, base.Card), GetCardThisCardIsNextTo(), 2, DamageType.Toxic));
             IEnumerator coroutine = SelectTargetsAndDealMultipleInstancesOfDamage(list, targetCriteria: c => c == GetCardThisCardIsNextTo());
             if (base.UseUnityCoroutines)
             {

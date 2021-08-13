@@ -17,11 +17,8 @@ namespace Chasejyd.DeeprootTeam
 
         public override void AddTriggers()
         {
-            //Redirect damage that Target would take to this card.
-            AddRedirectDamageTrigger((DealDamageAction dd) => GetCardThisCardIsNextTo() != null && dd.Target == GetCardThisCardIsNextTo(), () => Card);
-
-            //Reduce non-Fire Damage dealt to this card by 1.
-            AddReduceDamageTrigger((DealDamageAction dd) => dd.DamageType != DamageType.Fire && dd.Target == Card, dd => 1);
+            // Reduce non-fire Damage to all Villain Targets in that Villain’s play area by 2.
+            AddReduceDamageTrigger((DealDamageAction dd) => dd.DamageType != DamageType.Fire && dd.Target != null && IsVillainTarget(dd.Target) && GetCardThisCardIsNextTo() != null && GetCardThisCardIsNextTo().Location.HighestRecursiveLocation == dd.Target.Location.HighestRecursiveLocation, dd => 2);
         }
 
         public override IEnumerator DeterminePlayLocation(List<MoveCardDestination> storedResults, bool isPutIntoPlay, List<IDecision> decisionSources, Location overridePlayArea = null, LinqTurnTakerCriteria additionalTurnTakerCriteria = null)

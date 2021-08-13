@@ -24,6 +24,9 @@ namespace Chasejyd.DeeprootTeam
 
             //At the end of {Deeproot}'s turn, he gains 1 HP for each Plant Growth Card in play."
             AddEndOfTurnTrigger((TurnTaker tt) => tt == TurnTaker, pca => GameController.GainHP(CharacterCard, GetNumberOfPlantGrowthCardsInPlay(), cardSource: GetCardSource()), TriggerType.GainHP);
+
+            //{Deeproot} is immune to Damage from Environment Cards.
+            AddImmuneToDamageTrigger(dd => dd.Target != null && dd.Target == CharacterCard && dd.DamageSource != null && dd.DamageSource.IsEnvironmentCard);
         }
     }
 }

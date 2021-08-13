@@ -17,44 +17,43 @@ namespace Chasejyd.DeeprootTeam
 
         public override void AddTriggers()
         {
-            //Reduce Damage dealt to Environment Targets by 2.
-            AddReduceDamageTrigger((Card c) => c.IsEnvironmentTarget && GameController.IsCardVisibleToCardSource(c, GetCardSource()), 2);
+            // Each time an Environment Card enters play, {Deeproot} gains 2 HP and deals the Hero Target with the highest HP 3 Melee Damage.
+            AddTrigger((CardEntersPlayAction cep) => cep.CardEnteringPlay != null && cep.CardEnteringPlay.IsEnvironment, EnvironmentCardPlayedResponse, new TriggerType[] { TriggerType.GainHP, TriggerType.DealDamage }, TriggerTiming.After);
 
-			//Redirect Damage that would be Dealt to {Deeproot} by Environment Cards to the Hero Target with the highest HP.
-			AddTrigger((DealDamageAction dd) => dd.DamageSource.IsEnvironmentCard && dd.Target == CharacterCard, RedirectDamageToHighestHitpointsResponse, TriggerType.RedirectDamage, TriggerTiming.Before);
+            // Each time an Environment Card is Destroyed, {Deeproot} deals the Hero Target with the Lowest HP 2 Toxic Damage.
+            AddTrigger((DestroyCardAction dca) => dca.CardToDestroy != null && dca.CardToDestroy.Card.IsEnvironment && dca.WasCardDestroyed, EnvironmentCardDestroyedResponse, TriggerType.DealDamage, TriggerTiming.After);
 
-			//When this Card is Destroyed, {Deeproot} gains 2 HP."
-			AddWhenDestroyedTrigger(dca => GameController.GainHP(CharacterCard, 2, cardSource: GetCardSource()), TriggerType.GainHP);
-		}
+        }
 
-		private IEnumerator RedirectDamageToHighestHitpointsResponse(DealDamageAction dealDamage)
-		{
-			
-			List<Card> storedResults = new List<Card>();
-			IEnumerator coroutine = base.GameController.FindTargetWithHighestHitPoints(1, (Card card) => card.IsHero && card.IsTarget && GameController.IsCardVisibleToCardSource(card, GetCardSource()), storedResults, gameAction: dealDamage, cardSource: GetCardSource());
-			if (base.UseUnityCoroutines)
-			{
-				yield return base.GameController.StartCoroutine(coroutine);
-			}
-			else
-			{
-				base.GameController.ExhaustCoroutine(coroutine);
-			}
-			if (storedResults.Count() > 0)
-			{
-				Card newTarget = storedResults.FirstOrDefault();
-				coroutine = base.GameController.RedirectDamage(dealDamage, newTarget, cardSource: GetCardSource());
-				if (base.UseUnityCoroutines)
-				{
-					yield return base.GameController.StartCoroutine(coroutine);
-				}
-				else
-				{
-					base.GameController.ExhaustCoroutine(coroutine);
-				}
-			}
-		}
+        private IEnumerator EnvironmentCardDestroyedResponse(DestroyCardAction dca)
+        {
+            //{Deeproot} deals the Hero Target with the Lowest HP 2 Toxic Damage.
+            return DealDamageToLowestHP(CharacterCard, 1, c => c.IsHero && c.IsTarget && GameController.IsCardVisibleToCardSource(c, GetCardSource()), c => 2, DamageType.Toxic);
+        }
 
+        private IEnumerator EnvironmentCardPlayedResponse(CardEntersPlayAction cep)
+        {
+            //{Deeproot} gains 2 HP
+            IEnumerator coroutine = GameController.GainHP(CharacterCard, 2, cardSource: GetCardSource());
+            if (base.UseUnityCoroutines)
+            {
+                yield return base.GameController.StartCoroutine(coroutine);
+            }
+            else
+            {
+                base.GameController.ExhaustCoroutine(coroutine);
+            }
 
-	}
+            // {Deeproot} deals the Hero Target with the highest HP 3 Melee Damage.
+            coroutine = DealDamageToHighestHP(CharacterCard, 1, c => c.IsHero && c.IsTarget && GameController.IsCardVisibleToCardSource(c, GetCardSource()), c => 3, DamageType.Melee);
+            if (base.UseUnityCoroutines)
+            {
+                yield return base.GameController.StartCoroutine(coroutine);
+            }
+            else
+            {
+                base.GameController.ExhaustCoroutine(coroutine);
+            }
+        }
+    }
 }

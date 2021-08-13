@@ -17,9 +17,9 @@ namespace Chasejyd.DeeprootTeam
 
 		public override IEnumerator Play()
 		{
-			//{Deeproot} Deals the Hero Target with the second highest HP 3 Melee Damage. 
+			//{Deeproot} Deals the Hero Target with the second highest HP 4 Melee Damage. 
 			//Redirect the next damage that Target would deal to {Deeproot} and reduce it by 2.
-			IEnumerator coroutine = DealDamageToHighestHP(CharacterCard, 2, (Card c) => c.IsHero && c.IsTarget && c.IsInPlayAndHasGameText && !c.IsIncapacitated && GameController.IsCardVisibleToCardSource(c, GetCardSource()), (Card c) => 3, DamageType.Melee, addStatusEffect: ApplyStatusEffects, selectTargetEvenIfCannotDealDamage: true);
+			IEnumerator coroutine = DealDamageToHighestHP(CharacterCard, 2, (Card c) => c.IsHero && c.IsTarget && c.IsInPlayAndHasGameText && !c.IsIncapacitated && GameController.IsCardVisibleToCardSource(c, GetCardSource()), (Card c) => 4, DamageType.Melee, addStatusEffect: ApplyStatusEffects, selectTargetEvenIfCannotDealDamage: true);
 			if (base.UseUnityCoroutines)
 			{
 				yield return base.GameController.StartCoroutine(coroutine);
