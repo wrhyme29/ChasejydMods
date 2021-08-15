@@ -11,7 +11,7 @@ namespace Chasejyd.SnareTeam
 
         public EncapsulateCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-
+			SpecialStringMaker.ShowHeroWithMostCards(false);
         }
 
 		public override IEnumerator DeterminePlayLocation(List<MoveCardDestination> storedResults, bool isPutIntoPlay, List<IDecision> decisionSources, Location overridePlayArea = null, LinqTurnTakerCriteria additionalTurnTakerCriteria = null)

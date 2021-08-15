@@ -11,7 +11,7 @@ namespace Chasejyd.SnareTeam
 
         public DriveTheBeatHomeCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-
+            SpecialStringMaker.ShowHeroTargetWithHighestHP(ranking: 2);
         }
 
         public override IEnumerator Play()
