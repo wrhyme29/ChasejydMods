@@ -2595,20 +2595,22 @@ namespace Handelabra.Sentinels.UnitTest
             DealDamage(source.CharacterCard, target, amount, type, ignoreBattleZone: ignoreBattleZone);
         }
 
-        protected void DealDamage(TurnTakerController source, Func<Card, bool> targetCriteria, int amount, DamageType type)
+        protected void DealDamage(TurnTakerController source, Func<Card, bool> targetCriteria, int amount, DamageType type, bool isIrreducible=false)
         {
-            this.RunCoroutine(this.GameController.DealDamage(source.FindDecisionMaker(), source.CharacterCard, targetCriteria, amount, type, cardSource: new CardSource(source.CharacterCardController)));
+            this.RunCoroutine(this.GameController.DealDamage(source.FindDecisionMaker(), source.CharacterCard, targetCriteria, amount, type, isIrreducible: isIrreducible, cardSource: new CardSource(source.CharacterCardController)));
         }
 
-        protected void DealDamage(Card source, Func<Card, bool> targetCriteria, int amount, DamageType type)
+        protected void DealDamage(Card source, Func<Card, bool> targetCriteria, int amount, DamageType type, bool isIrreducible=false)
         {
-            this.RunCoroutine(this.GameController.DealDamage(null, source, targetCriteria, amount, type, cardSource: new CardSource(this.GameController.FindCardController(source))));
+            this.RunCoroutine(this.GameController.DealDamage(null, source, targetCriteria, amount, type, isIrreducible: isIrreducible, cardSource: new CardSource(this.GameController.FindCardController(source))));
         }
 
-        protected void DealDamage(Card source, IEnumerable<Card> targets, int amount, DamageType type)
+        protected void DealDamage(Card source, IEnumerable<Card> targets, int amount, DamageType type, bool isIrreducible=false)
         {
-            this.RunCoroutine(this.GameController.DealDamage(null, source, c => targets.Contains(c), amount, type, cardSource: new CardSource(this.GameController.FindCardController(source))));
+            this.RunCoroutine(this.GameController.DealDamage(null, source, c => targets.Contains(c), amount, type, isIrreducible: isIrreducible, cardSource: new CardSource(this.GameController.FindCardController(source))));
         }
+
+     
 
         protected void DealDamage(Card source, Card target, int amount, DamageType type, bool isIrreducible = false, bool ignoreBattleZone = false)
         {
