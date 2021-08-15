@@ -11,7 +11,7 @@ namespace Chasejyd.SnareTeam
 
         public ReinforcedCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-            SpecialStringMaker.ShowHasBeenUsedThisTurn(FirstTimeDamageDealtToSnareKey).Condition = () => Card.IsInPlayAndHasGameText;
+            SpecialStringMaker.ShowHasBeenUsedThisTurn(FirstTimeDamageDealtToSnareKey, $"{CharacterCard.Title} has been dealt damage this turn.", $"{CharacterCard.Title} has not been dealt damage this turn.").Condition = () => Card.IsInPlayAndHasGameText;
         }
 
         public static readonly string FirstTimeDamageDealtToSnareKey = "FirstTimeDamageDealtToSnare";

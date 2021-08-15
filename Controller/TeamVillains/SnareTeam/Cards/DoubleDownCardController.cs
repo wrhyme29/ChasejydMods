@@ -11,7 +11,8 @@ namespace Chasejyd.SnareTeam
 
         public DoubleDownCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-            SpecialStringMaker.ShowHasBeenUsedThisTurn(FirstTimeVillainOngoingDestroyedKey);
+            SpecialStringMaker.ShowHasBeenUsedThisTurn(FirstTimeVillainOngoingDestroyedKey, "A villain ongoing has already been destroyed this turn", "A villain ongoing has not been destroyed this turn");
+            SpecialStringMaker.ShowHeroTargetWithHighestHP(ranking: 2);
         }
 
         public static readonly string FirstTimeVillainOngoingDestroyedKey = "FirstTimeVillainOngoingDestroyed";

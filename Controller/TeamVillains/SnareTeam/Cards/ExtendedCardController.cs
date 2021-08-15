@@ -12,7 +12,7 @@ namespace Chasejyd.SnareTeam
 
         public ExtendedCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-
+            SpecialStringMaker.ShowLowestHP(cardCriteria: new LinqCardCriteria(c => IsVillainTarget(c) && c != CharacterCard, "", useCardsSuffix: false, singular: "other villain target", plural: "other villain targets"));
         }
 
         private ITrigger _reduceDamageTrigger;

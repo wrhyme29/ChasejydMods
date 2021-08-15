@@ -11,7 +11,7 @@ namespace Chasejyd.SnareTeam
 
         public SynchronicityCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-
+            SpecialStringMaker.ShowLowestHP(cardCriteria: new LinqCardCriteria(c => c.IsVillainTeamCharacter && c != CharacterCard, "other villain character"));
         }
 
         public override IEnumerator Play()

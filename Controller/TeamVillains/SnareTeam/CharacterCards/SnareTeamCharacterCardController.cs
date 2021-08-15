@@ -12,6 +12,8 @@ namespace Chasejyd.SnareTeam
 		public SnareTeamCharacterCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
 		{
 			AddThisCardControllerToList(CardControllerListType.MakesIndestructible);
+			SpecialStringMaker.ShowHeroCharacterCardWithLowestHP(ranking: 2).Condition = () => !Card.IsFlipped;
+			SpecialStringMaker.ShowHeroTargetWithHighestHP(ranking: 2).Condition = () => !Card.IsFlipped;
 		}
 
 		public static readonly string BarrierKeyword = "barrier";

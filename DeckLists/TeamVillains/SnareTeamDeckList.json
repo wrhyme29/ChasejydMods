@@ -17,7 +17,7 @@
 				"ReduceDamageDealt"
 			],
 			"body": "Behind the Shield",
-			"backgroundColor": "530101",
+			"backgroundColor": "dd2528",
 			"character": true,
 			"hitpoints": 19,
 			"nemesisIdentifiers": [

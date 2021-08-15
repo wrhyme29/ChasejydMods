@@ -12,13 +12,14 @@ namespace Chasejyd.SnareTeam
 
         public BuyingTimeCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
-
+            SpecialStringMaker.ShowVillainTargetWithLowestHP(numberOfTargets: X);
         }
 
+        private int X => FindCardsWhere(c => IsBarrier(c) && c.IsInPlayAndHasGameText).Count();
         public override IEnumerator Play()
         {
             //Find the X villain targets with the lowest HP, where X is equal to the number of Barrier cards in play.
-            int X =  FindCardsWhere(c => IsBarrier(c) && c.IsInPlayAndHasGameText).Count();
+            
             List<Card> storedResults = new List<Card>();
             IEnumerator coroutine = GameController.FindTargetsWithLowestHitPoints(1, X, c => c.IsVillainTarget && c.IsInPlayAndHasGameText && GameController.IsCardVisibleToCardSource(c, GetCardSource()), storedResults, cardSource: GetCardSource());
             if (base.UseUnityCoroutines)

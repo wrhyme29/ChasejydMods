@@ -11,6 +11,7 @@ namespace Chasejyd.SnareTeam
 
         public TimedAssaultCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
         {
+            SpecialStringMaker.ShowHighestHP(cardCriteria: new LinqCardCriteria(c => c.IsVillainTeamCharacter && c != CharacterCard, "other villain character"));
 
         }
 

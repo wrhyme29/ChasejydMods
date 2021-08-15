@@ -1,0 +1,386 @@
+{
+	"name": "Screech",
+	"kind": "VillainTeam",
+	"initialCardIdentifiers": [
+		"ScreechTeamCharacter"
+	],
+	"cards": [
+		{
+			"identifier": "ScreechTeamCharacter",
+			"count": 1,
+			"title": "Screech",
+			"keywords": [
+				"villain"
+			],
+			"icons": [
+				"DealDamageSonic",
+				"Discard",
+				"ImmuneToDamageSonic"
+			],
+			"body": "El Screamo",
+			"backgroundColor": "0184b0",
+			"character": true,
+			"hitpoints": 23,
+			"nemesisIdentifiers": [
+				"AeonGirl"
+			],
+			"setup": [
+				"{Screech} starts the game 'El Screamo' side up.",
+				"Put Total Chaos into play, then shuffle the villain deck."
+			],
+			"gameplay": [
+				"At the end of {Screech}'s turn, he deals the Hero Target with the highest HP 3 Sonic Damage. Then one player must discard a card.",
+				"{Screech} is Immune to Sonic Damage."
+			],
+			"advanced": "When {Screech} deals a Hero Character 3 or more Sonic damage, that player must discard a card.",
+			"advancedIcons": [
+			],
+			"flippedShowHitpoints": false,
+			"flippedBody": "Incapacitated",
+			"flippedKeywords": [],
+			"flippedGameplay": [
+				"At the start of each of {Screech}'s turns, the Hero Characters with the highest and lowest HP must discard 1 card."
+			],
+			"flippedIcons": [
+				"Discard"
+			],
+			"difficulty": 2,
+			"challengeTitle": "Raise the Roof",
+			"challengeText": "Increase Sonic Damage by 1.",
+			"challengeIcons": [
+				"IncreaseDamageDealtSonic"
+			],
+			"openingLines": {
+				"default": "Screech placeholder opening!",
+				"AeonGirlCharacter": "Screech to Aeon Girl placeholder opening!",
+				"DaybreakAeonGirlCharacter": "Screech to Daybreak Aeon Girl placeholder opening!"
+			}
+		},
+		{
+			"identifier": "TotalChaos",
+			"count": 1,
+			"title": "Total Chaos",
+			"keywords": [
+				"ongoing",
+				"discord"
+			],
+			"icons": [
+				"DestroyOngoing",
+				"DealDamageSonic",
+				"DealDamageProjectile",
+				"IncreaseDamageTaken"
+			],
+			"body": [
+				"At the end of {Screech}'s turn, destroy a Hero Ongoing, then {Screech} deals the Hero Target with the highest HP 1 Sonic damage and 1 Projectile damage.",
+				"Increase Damage dealt to Screech by other Villain Targets by 1."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		},
+		{
+			"identifier": "Earworm",
+			"count": 1,
+			"title": "Earworm",
+			"keywords": [
+				"ongoing",
+				"discord"
+			],
+			"icons": [
+				"DealDamageSonic"
+			],
+			"body": [
+				"At the end of {Screech}'s turn, {Screech} deals each Hero Target 1 Sonic Damage."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		},
+		{
+			"identifier": "ShoutItOut",
+			"count": 2,
+			"title": "Shout It Out",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"DealDamageSonic",
+				"DealDamageProjectile"
+			],
+			"body": [
+				"{Screech} deals the Hero Target with the highest HP X Sonic Damage, where X is equal to the number of Discord cards in play. Then {Screech} deals each other Hero Target 1 Projectile Damage."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		},
+		{
+			"identifier": "Shatter",
+			"count": 2,
+			"title": "Shatter",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"DestroyEquipment",
+				"DealDamageSonic",
+				"DealDamageProjectile"
+			],
+			"body": [
+				"Destroy a hero equipment card. Then {Screech} Deals all Targets in the play area the Equipment card was in 1 Sonic Damage and 1 Projectile Damage."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		},
+		{
+			"identifier": "RingTheirEars",
+			"count": 2,
+			"title": "Ring Their Ears",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"DealDamageSonic",
+				"DealDamageMelee"
+			],
+			"body": [
+				"{Screech} deals the Hero Target with the second lowest HP 2 Sonic Damage. That Target then deals the Hero Target with the highest HP 3 Melee Damage."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		},
+		{
+			"identifier": "ScreamOfAnger",
+			"count": 2,
+			"title": "Scream of Anger",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"DealDamageSonic",
+				"ReduceDamageDealt"
+			],
+			"body": [
+				"{Screech} deals the Non-Villain Target with the highest HP 3 Sonic Damage. If a Target takes damage this way, reduce Damage dealt by that Target by 1 until the start of {Screech}'s next turn."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		},
+		{
+			"identifier": "MaximumDecibels",
+			"count": 1,
+			"title": "Maximum Decibels",
+			"keywords": [
+				"ongoing",
+				"discord"
+			],
+			"icons": [
+				"IncreaseDamageDealtSonic",
+				"DestroySelf"
+			],
+			"body": [
+				"Increase Sonic Damage dealt by Screech by 2.",
+				"At the end of {Screech}'s turn, if there are no other Discord cards in play, destroy this card."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		},
+		{
+			"identifier": "NoSelfControl",
+			"count": 1,
+			"title": "No Self Control",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"DealDamageToxic",
+				"DealDamageSonic",
+				"Discard"
+			],
+			"body": [
+				"{Screech} deals himself 3 Irreducible Toxic Damage. Then {Screech} deals the {H - 2} Hero Targets with the highest HP 3 Sonic Damage each. Any Hero Characters Dealt Damage this way must Discard a Card."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		},
+		{
+			"identifier": "MaximumDisruption",
+			"count": 1,
+			"title": "Maximum Disruption",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"DestroyEnvironment",
+				"DestroyOngoing",
+				"DestroyEquipment",
+				"DealDamageProjectile"
+			],
+			"body": [
+				"Destroy 1 Environment Card, 1 Villain Ongoing, and 3 Hero Ongoings or Equipment Cards.",
+				"{Screech} deals each Hero Target 1 Projectile Damage."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		},
+		{
+			"identifier": "LeadSinger",
+			"count": 1,
+			"title": "Lead 'Singer'",
+			"keywords": [
+				"ongoing",
+				"discord"
+			],
+			"icons": [
+				"GainHP",
+				"DestroySelf"
+			],
+			"body": [
+				"At the Start of {Screech}'s turn, he gains X HP, where X is equal to the number of Villain Character cards in play.",
+				"If a Villain Character deals damage to {Screech}, Destroy this card."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		},
+		{
+			"identifier": "ShakeTheirNerves",
+			"count": 2,
+			"title": "Shake Their Nerves",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"Manipulate",
+				"DealDamageSonic",
+				"CannotDrawCards"
+			],
+			"body": [
+				"Discard the top Card of each Deck.",
+				"{Screech} deals each Hero Target 1 Sonic Damage. Heroes dealt Damage this way cannot Draw cards until the start of {Screech}'s next turn."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		},
+		{
+			"identifier": "RattleTheirBrains",
+			"count": 2,
+			"title": "Rattle Their Brains",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"Discard",
+				"DealDamageSonic",
+				"DealDamagePsychic"
+			],
+			"body": [
+				"Each player must Discard 1 Card.",
+				"{Screech} deals each hero target 1 Sonic Damage. Any targets dealt damage this way then deals themselves 1 Psychic Damage."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		},
+		{
+			"identifier": "TurnItUp",
+			"count": 1,
+			"title": "Turn It Up",
+			"keywords": [
+				"ongoing",
+				"discord"
+			],
+			"icons": [
+				"DealDamageSonic"
+			],
+			"body": [
+				"The first time each turn that a Hero discards a card, {Screech} deals that Target 1 Irreducible Sonic Damage."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		},
+		{
+			"identifier": "BringTheNoise",
+			"count": 1,
+			"title": "Bring the Noise!",
+			"keywords": [
+				"ongoing",
+				"discord"
+			],
+			"icons": [
+				"DealDamageToxic",
+				"Manipulate"
+			],
+			"body": [
+				"At the start of {Screech}'s turn, {Screech} deals himself 2 Irreducible Toxic Damage. Then reveal cards from his deck until a Discord card is revealed and put it into play. Shuffle the other revealed cards back into {Screech}'s deck."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Screech",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Screech"
+		}
+	]
+}
