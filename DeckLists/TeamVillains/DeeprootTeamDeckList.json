@@ -23,19 +23,19 @@
 				"Muerto"
 			],
 			"setup": [
-				"{Deeproot} starts the game 'Overgrown Menace' side up.",
+				"{DeeprootTeam} starts the game 'Overgrown Menace' side up.",
 				"Put Plant Life of the Party into play and the villain deck is shuffled."
 			],
 			"gameplay": [
-				"At the end of {Deeproot}'s turn, the 2 Villain or Environment Targets with the lowest HP gain 2 HP.",
-				"Then {Deeproot} deals the X Hero Targets with the highest HP 2 Toxic Damage each where X is equal to the number of Plant Growth Cards in play."
+				"At the end of {DeeprootTeam}'s turn, the 2 Villain or Environment Targets with the lowest HP gain 2 HP.",
+				"Then {DeeprootTeam} deals the X Hero Targets with the highest HP 2 Toxic Damage each where X is equal to the number of Plant Growth Cards in play."
 			],
-			"advanced": "The first time each turn a Villain Ongoing or Plant Growth enters play, {Deeproot} gains 2 HP.",
+			"advanced": "The first time each turn a Villain Ongoing or Plant Growth enters play, {DeeprootTeam} gains 2 HP.",
 			"flippedShowHitpoints": false,
 			"flippedBody": "Incapacitated",
 			"flippedKeywords": [],
 			"flippedGameplay": [
-				"Reduce Damage dealt to Environment Targets by 1. At the start of {Deeproot}'s turn, play the top card of the Environment deck."
+				"Reduce Damage dealt to Environment Targets by 1. At the start of {DeeprootTeam}'s turn, play the top card of the Environment deck."
 			],
 			"flippedIcons": [
 				"ReduceDamageTaken",
@@ -67,10 +67,10 @@
 				"ImmuneToDamage"
 			],
 			"body": [
-				"Reduce Non-Fire Damage dealt to {Deeproot} by 1.",
-				"Increase Fire Damage dealt to {Deeproot} by 1.",
-				"At the end of {Deeproot}'s turn, he gains 1 HP for each Plant Growth Card in play.",
-				"{Deeproot} is immune to Damage from Environment Cards."
+				"Reduce Non-Fire Damage dealt to {DeeprootTeam} by 1.",
+				"Increase Fire Damage dealt to {DeeprootTeam} by 1.",
+				"At the end of {DeeprootTeam}'s turn, he gains 1 HP for each Plant Growth Card in play.",
+				"{DeeprootTeam} is immune to Damage from Environment Cards."
 			],
 			"flavorQuotes": [{
 				"identifier": "Deeproot",
@@ -114,7 +114,7 @@
 			],
 			"body": [
 				"Reduce Damage dealt by Hero Targets by 1.",
-				"When this card is destroyed shuffle {Deeproot}'s Trash into his deck."
+				"When this card is destroyed shuffle {DeeprootTeam}'s Trash into his deck."
 			],
 			"flavorQuotes": [{
 				"identifier": "Deeproot",
@@ -156,8 +156,8 @@
 				"PlayCardNow"
 			],
 			"body": [
-				"Shuffle {Deeproot}'s trash into his deck.",
-				"Reveal the top {H} card of {Deeproot}'s deck. Put any Plant Growth Cards into Play. Discard all other cards. {Deeproot} gains 2 HP for each card discarded this way."
+				"Shuffle {DeeprootTeam}'s trash into his deck.",
+				"Reveal the top {H} card of {DeeprootTeam}'s deck. Put any Plant Growth Cards into Play. Discard all other cards. {DeeprootTeam} gains 2 HP for each card discarded this way."
 			],
 			"flavorQuotes": [{
 				"identifier": "Deeproot",
@@ -180,8 +180,8 @@
 				"DealDamageMelee"
 			],
 			"body": [
-				"Play this card next to the Hero Character with the highest HP. Redirect all damage that target would deal to non-Hero targets to {Deeproot}.",
-				"At the Start of {Deeproot}'s Turn, this Card deals the Hero Character it is next to 2 Melee and 2 Toxic Damage."
+				"Play this card next to the Hero Character with the highest HP. Redirect all damage that target would deal to non-Hero targets to {DeeprootTeam}.",
+				"At the Start of {DeeprootTeam}'s Turn, this Card deals the Hero Character it is next to 2 Melee and 2 Toxic Damage."
 			],
 			"flavorQuotes": [{
 				"identifier": "Deeproot",
@@ -202,7 +202,7 @@
 				"ReduceDamageTaken"
 			],
 			"body": [
-				"{Deeproot} Deals the Hero Target with the second highest HP 4 Melee Damage. Redirect the next damage that Target would deal to {Deeproot} and reduce it by 2."
+				"{DeeprootTeam} Deals the Hero Target with the second highest HP 4 Melee Damage. Redirect the next damage that Target would deal to {DeeprootTeam} and reduce it by 2."
 			],
 			"flavorQuotes": [{
 				"identifier": "Deeproot",
@@ -221,7 +221,7 @@
 				"DealDamageToxic"
 			],
 			"body": [
-				"{Deeproot} deals the Hero Target with the Highest HP X+1 toxic Damage, where X equals the number of Environment Cards in play."
+				"{DeeprootTeam} deals the Hero Target with the Highest HP X+1 toxic Damage, where X equals the number of Environment Cards in play."
 			],
 			"flavorQuotes": [{
 				"identifier": "Deeproot",
@@ -242,8 +242,8 @@
 				"DealDamageToxic"
 			],
 			"body": [
-				"Each time an Environment Card enters play, {Deeproot} gains 2 HP and deals the Hero Target with the highest HP 3 Melee Damage.",
-				"Each time an Environment Card is Destroyed, {Deeproot} deals the Hero Target with the Lowest HP 2 Toxic Damage."
+				"Each time an Environment Card enters play, {DeeprootTeam} gains 2 HP and deals the Hero Target with the highest HP 3 Melee Damage.",
+				"Each time an Environment Card is Destroyed, {DeeprootTeam} deals the Hero Target with the Lowest HP 2 Toxic Damage."
 			],
 			"flavorQuotes": [{
 				"identifier": "Deeproot",
@@ -262,7 +262,7 @@
 				"DealDamageMelee"
 			],
 			"body": [
-				"At the End of {Deeproot}’s Turn he deals the X + 1 Hero Targets with the highest HP 2 Melee Damage each, where X is equal to the number of Environment Cards in Play."
+				"At the End of {DeeprootTeam}’s Turn he deals the X + 1 Hero Targets with the highest HP 2 Melee Damage each, where X is equal to the number of Environment Cards in Play."
 			],
 			"flavorQuotes": [
 				{
@@ -286,7 +286,7 @@
 			],
 			"body": [
 				"Increase HP Recovery by Non-Hero Targets by 1.",
-				"At the End of {Deeproot}’s Turn, all Non-Hero Targets gain 1 HP."
+				"At the End of {DeeprootTeam}’s Turn, all Non-Hero Targets gain 1 HP."
 			],
 			"flavorQuotes": [
 				{
