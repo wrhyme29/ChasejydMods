@@ -22,6 +22,7 @@ namespace ChasejydTests
         //team villains
         protected TurnTakerController blisterTeam { get { return FindVillainTeamMember("Blister"); } }
         protected TurnTakerController deeprootTeam { get { return FindVillainTeamMember("Deeproot"); } }
+        protected TurnTakerController drudgeTeam { get { return FindVillainTeamMember("Drudge"); } }
         protected TurnTakerController screechTeam { get { return FindVillainTeamMember("Screech"); } }
         protected TurnTakerController snareTeam { get { return FindVillainTeamMember("Snare"); } }
 

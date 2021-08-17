@@ -127,6 +127,7 @@ namespace Handelabra.Sentinels.UnitTest
         private string _expectedDecisionSourceOutput;
 
         private Card _notDamageSource;
+        private Card _damageSource;
         private SelectionType? _assertDecisionOptional;
 
         protected int NumberOfDecisionsAnswered { get; private set; }
@@ -363,6 +364,7 @@ namespace Handelabra.Sentinels.UnitTest
             _numberOfChoicesInNextDecision = null;
             _numberOfChoicesInNextDecisionSelectionType = null;
             _notDamageSource = null;
+            _damageSource = null;
             DecisionSelectTargetFriendly = null;
             DecisionMoveCardDestinations = null;
             DecisionMoveCardDestinationsIndex = 0;
@@ -5237,6 +5239,11 @@ namespace Handelabra.Sentinels.UnitTest
                 Assert.AreNotEqual(_notDamageSource, (gameAction as DealDamageAction).DamageSource, _notDamageSource.Title + " was not expected to be a damage source.");
             }
 
+            if (gameAction is DealDamageAction && _damageSource != null)
+            {
+                Assert.AreEqual(_damageSource, (gameAction as DealDamageAction).DamageSource.Card, _damageSource.Title + " was expected to be a damage source, but it was not.");
+            }
+
             if (_decisionSourceCriteria != null)
             {
                 if (gameAction.DecisionSources != null)
@@ -5967,6 +5974,11 @@ namespace Handelabra.Sentinels.UnitTest
         public void AssertNotDamageSource(Card card)
         {
             _notDamageSource = card;
+        }
+
+        public void AssertDamageSource(Card card)
+        {
+            _damageSource = card;
         }
 
         public void AssertDecisionIsOptional(SelectionType type)

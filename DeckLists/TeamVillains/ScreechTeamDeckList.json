@@ -25,21 +25,21 @@
 				"AeonGirl"
 			],
 			"setup": [
-				"{Screech} starts the game 'El Screamo' side up.",
+				"{ScreechTeam} starts the game 'El Screamo' side up.",
 				"Put Total Chaos into play, then shuffle the villain deck."
 			],
 			"gameplay": [
-				"At the end of {Screech}'s turn, he deals the Hero Target with the highest HP 3 Sonic Damage. Then one player must discard a card.",
-				"{Screech} is Immune to Sonic Damage."
+				"At the end of {ScreechTeam}'s turn, he deals the Hero Target with the highest HP 3 Sonic Damage. Then one player must discard a card.",
+				"{ScreechTeam} is Immune to Sonic Damage."
 			],
-			"advanced": "When {Screech} deals a Hero Character 3 or more Sonic damage, that player must discard a card.",
+			"advanced": "When {ScreechTeam} deals a Hero Character 3 or more Sonic damage, that player must discard a card.",
 			"advancedIcons": [
 			],
 			"flippedShowHitpoints": false,
 			"flippedBody": "Incapacitated",
 			"flippedKeywords": [],
 			"flippedGameplay": [
-				"At the start of each of {Screech}'s turns, the Hero Characters with the highest and lowest HP must discard 1 card."
+				"At the start of each of {ScreechTeam}'s turns, the Hero Characters with the highest and lowest HP must discard 1 card."
 			],
 			"flippedIcons": [
 				"Discard"
@@ -71,7 +71,7 @@
 				"IncreaseDamageTaken"
 			],
 			"body": [
-				"At the end of {Screech}'s turn, destroy a Hero Ongoing, then {Screech} deals the Hero Target with the highest HP 1 Sonic damage and 1 Projectile damage.",
+				"At the end of {ScreechTeam}'s turn, destroy a Hero Ongoing, then {ScreechTeam} deals the Hero Target with the highest HP 1 Sonic damage and 1 Projectile damage.",
 				"Increase Damage dealt to Screech by other Villain Targets by 1."
 			],
 			"flavorQuotes": [
@@ -94,7 +94,7 @@
 				"DealDamageSonic"
 			],
 			"body": [
-				"At the end of {Screech}'s turn, {Screech} deals each Hero Target 1 Sonic Damage."
+				"At the end of {ScreechTeam}'s turn, {ScreechTeam} deals each Hero Target 1 Sonic Damage."
 			],
 			"flavorQuotes": [
 				{
@@ -116,7 +116,7 @@
 				"DealDamageProjectile"
 			],
 			"body": [
-				"{Screech} deals the Hero Target with the highest HP X Sonic Damage, where X is equal to the number of Discord cards in play. Then {Screech} deals each other Hero Target 1 Projectile Damage."
+				"{ScreechTeam} deals the Hero Target with the highest HP X Sonic Damage, where X is equal to the number of Discord cards in play. Then {ScreechTeam} deals each other Hero Target 1 Projectile Damage."
 			],
 			"flavorQuotes": [
 				{
@@ -139,7 +139,7 @@
 				"DealDamageProjectile"
 			],
 			"body": [
-				"Destroy a hero equipment card. Then {Screech} Deals all Targets in the play area the Equipment card was in 1 Sonic Damage and 1 Projectile Damage."
+				"Destroy a hero equipment card. Then {ScreechTeam} Deals all Targets in the play area the Equipment card was in 1 Sonic Damage and 1 Projectile Damage."
 			],
 			"flavorQuotes": [
 				{
@@ -161,7 +161,7 @@
 				"DealDamageMelee"
 			],
 			"body": [
-				"{Screech} deals the Hero Target with the second lowest HP 2 Sonic Damage. That Target then deals the Hero Target with the highest HP 3 Melee Damage."
+				"{ScreechTeam} deals the Hero Target with the second lowest HP 2 Sonic Damage. That Target then deals the Hero Target with the highest HP 3 Melee Damage."
 			],
 			"flavorQuotes": [
 				{
@@ -183,7 +183,7 @@
 				"ReduceDamageDealt"
 			],
 			"body": [
-				"{Screech} deals the Non-Villain Target with the highest HP 3 Sonic Damage. If a Target takes damage this way, reduce Damage dealt by that Target by 1 until the start of {Screech}'s next turn."
+				"{ScreechTeam} deals the Non-Villain Target with the highest HP 3 Sonic Damage. If a Target takes damage this way, reduce Damage dealt by that Target by 1 until the start of {ScreechTeam}'s next turn."
 			],
 			"flavorQuotes": [
 				{
@@ -207,7 +207,7 @@
 			],
 			"body": [
 				"Increase Sonic Damage dealt by Screech by 2.",
-				"At the end of {Screech}'s turn, if there are no other Discord cards in play, destroy this card."
+				"At the end of {ScreechTeam}'s turn, if there are no other Discord cards in play, destroy this card."
 			],
 			"flavorQuotes": [
 				{
@@ -230,7 +230,7 @@
 				"Discard"
 			],
 			"body": [
-				"{Screech} deals himself 3 Irreducible Toxic Damage. Then {Screech} deals the {H - 2} Hero Targets with the highest HP 3 Sonic Damage each. Any Hero Characters Dealt Damage this way must Discard a Card."
+				"{ScreechTeam} deals himself 3 Irreducible Toxic Damage. Then {ScreechTeam} deals the {H - 2} Hero Targets with the highest HP 3 Sonic Damage each. Any Hero Characters Dealt Damage this way must Discard a Card."
 			],
 			"flavorQuotes": [
 				{
@@ -255,7 +255,7 @@
 			],
 			"body": [
 				"Destroy 1 Environment Card, 1 Villain Ongoing, and 3 Hero Ongoings or Equipment Cards.",
-				"{Screech} deals each Hero Target 1 Projectile Damage."
+				"{ScreechTeam} deals each Hero Target 1 Projectile Damage."
 			],
 			"flavorQuotes": [
 				{
@@ -278,8 +278,8 @@
 				"DestroySelf"
 			],
 			"body": [
-				"At the Start of {Screech}'s turn, he gains X HP, where X is equal to the number of Villain Character cards in play.",
-				"If a Villain Character deals damage to {Screech}, Destroy this card."
+				"At the Start of {ScreechTeam}'s turn, he gains X HP, where X is equal to the number of Villain Character cards in play.",
+				"If a Villain Character deals damage to {ScreechTeam}, Destroy this card."
 			],
 			"flavorQuotes": [
 				{
@@ -303,7 +303,7 @@
 			],
 			"body": [
 				"Discard the top Card of each Deck.",
-				"{Screech} deals each Hero Target 1 Sonic Damage. Heroes dealt Damage this way cannot Draw cards until the start of {Screech}'s next turn."
+				"{ScreechTeam} deals each Hero Target 1 Sonic Damage. Heroes dealt Damage this way cannot Draw cards until the start of {ScreechTeam}'s next turn."
 			],
 			"flavorQuotes": [
 				{
@@ -327,7 +327,7 @@
 			],
 			"body": [
 				"Each player must Discard 1 Card.",
-				"{Screech} deals each hero target 1 Sonic Damage. Any targets dealt damage this way then deals themselves 1 Psychic Damage."
+				"{ScreechTeam} deals each hero target 1 Sonic Damage. Any targets dealt damage this way then deals themselves 1 Psychic Damage."
 			],
 			"flavorQuotes": [
 				{
@@ -349,7 +349,7 @@
 				"DealDamageSonic"
 			],
 			"body": [
-				"The first time each turn that a Hero discards a card, {Screech} deals that Target 1 Irreducible Sonic Damage."
+				"The first time each turn that a Hero discards a card, {ScreechTeam} deals that Target 1 Irreducible Sonic Damage."
 			],
 			"flavorQuotes": [
 				{
@@ -372,7 +372,7 @@
 				"Manipulate"
 			],
 			"body": [
-				"At the start of {Screech}'s turn, {Screech} deals himself 2 Irreducible Toxic Damage. Then reveal cards from his deck until a Discord card is revealed and put it into play. Shuffle the other revealed cards back into {Screech}'s deck."
+				"At the start of {ScreechTeam}'s turn, {ScreechTeam} deals himself 2 Irreducible Toxic Damage. Then reveal cards from his deck until a Discord card is revealed and put it into play. Shuffle the other revealed cards back into {ScreechTeam}'s deck."
 			],
 			"flavorQuotes": [
 				{

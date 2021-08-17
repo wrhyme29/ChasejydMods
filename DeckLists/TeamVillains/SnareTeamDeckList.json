@@ -24,14 +24,14 @@
 				"Headlong"
 			],
 			"setup": [
-				"{Snare} starts the game 'Behind the Shield' side up.",
+				"{SnareTeam} starts the game 'Behind the Shield' side up.",
 				"Put Crimson Shield and Giger Mobility Chair into play, then shuffle the villain deck."
 			],
 			"gameplay": [
-				"At the end of {Snare}'s turn, {Snare} deals the hero character with the second lowest HP 2 energy Damage. Reduce the next damage dealt by that target by 2.",
-				"When a barrier card is destroyed, {Snare} deals the hero target with the second highest HP 3 energy damage, then deals herself 2 irreducible psychic Damage."
+				"At the end of {SnareTeam}'s turn, {SnareTeam} deals the hero character with the second lowest HP 2 energy Damage. Reduce the next damage dealt by that target by 2.",
+				"When a barrier card is destroyed, {SnareTeam} deals the hero target with the second highest HP 3 energy damage, then deals herself 2 irreducible psychic Damage."
 			],
-			"advanced": "When {Snare} deals a target energy damage, she also deals them 1 irreducible sonic damage.",
+			"advanced": "When {SnareTeam} deals a target energy damage, she also deals them 1 irreducible sonic damage.",
 			"advancedIcons": [
 				"DealDamageSonic"
 			],
@@ -69,7 +69,7 @@
 			],
 			"body": [
 				"This card is indestructible",
-				"Reduce damage dealt to {Snare} by 2."
+				"Reduce damage dealt to {SnareTeam} by 2."
 			],
 			"flavorQuotes": [
 				{
@@ -92,8 +92,8 @@
 				"IncreaseDamageDealt"
 			],
 			"body": [
-				"Prevent the first damage that would be dealt to {Snare} each turn.",
-				"Increase damage dealt by {Snare} by 1."
+				"Prevent the first damage that would be dealt to {SnareTeam} each turn.",
+				"Increase damage dealt by {SnareTeam} by 1."
 			],
 			"flavorQuotes": [
 				{
@@ -116,8 +116,8 @@
 				"GainHP"
 			],
 			"body": [
-				"Reduce damage dealt to the villain target with the lowest HP, other than {Snare}, by 2.",
-				"At the end of {Snare}'s turn, each villain character card gains 1 HP."
+				"Reduce damage dealt to the villain target with the lowest HP, other than {SnareTeam}, by 2.",
+				"At the end of {SnareTeam}'s turn, each villain character card gains 1 HP."
 			],
 			"flavorQuotes": [
 				{
@@ -141,9 +141,9 @@
 				"DestroySelf"
 			],
 			"body": [
-				"Increase damage dealt by villain character cards other than {Snare} by 1.",
-				"Reduce damage dealt to villain character cards other than {Snare} by 1.",
-				"At the start of {Snare}’s turn, destroy this card."
+				"Increase damage dealt by villain character cards other than {SnareTeam} by 1.",
+				"Reduce damage dealt to villain character cards other than {SnareTeam} by 1.",
+				"At the start of {SnareTeam}’s turn, destroy this card."
 			],
 			"flavorQuotes": [
 				{
@@ -167,7 +167,7 @@
 				"DestroySelf"
 			],
 			"body": [
-				"When a hero target deals damage to {Snare}, {Snare} then deals that target 2 energy damage."
+				"When a hero target deals damage to {SnareTeam}, {SnareTeam} then deals that target 2 energy damage."
 			],
 			"flavorQuotes": [
 				{
@@ -192,7 +192,7 @@
 			"body": [
 				"Play this card next to the hero character with the most cards in play.",
 				"The hero next to this card cannot play cards.",
-				"At the start of {Snare}’s turn, she deals the hero character next to this card 2 toxic damage."
+				"At the start of {SnareTeam}’s turn, she deals the hero character next to this card 2 toxic damage."
 			],
 			"flavorQuotes": [
 				{
@@ -215,7 +215,7 @@
 				"CannotUsePowers"
 			],
 			"body": [
-				"{Snare} deals the hero target with the second highest HP 2 sonic and 2 energy damage. A hero character card dealt damage this way cannot use powers until the start of {Snare}'s next turn."
+				"{SnareTeam} deals the hero target with the second highest HP 2 sonic and 2 energy damage. A hero character card dealt damage this way cannot use powers until the start of {SnareTeam}'s next turn."
 			],
 			"flavorQuotes": [
 				{
@@ -238,8 +238,8 @@
 			],
 			"body": [
 				"Heroes may not play cards, use powers, or draw Cards outside of their own turn.",
-				"At the start of {Snare}’s turn, destroy this card.",
-				"When this card is destroyed, {Snare} deals the hero target with the lowest HP 3 psychic damage."
+				"At the start of {SnareTeam}’s turn, destroy this card.",
+				"When this card is destroyed, {SnareTeam} deals the hero target with the lowest HP 3 psychic damage."
 			],
 			"flavorQuotes": [
 				{
@@ -261,7 +261,7 @@
 				"DealDamageEnergy"
 			],
 			"body": [
-				"The first time each turn that a villain ongoing is destroyed, {Snare} destroys a hero ongoing and deals the hero target with the second highest HP 2 energy damage."
+				"The first time each turn that a villain ongoing is destroyed, {SnareTeam} destroys a hero ongoing and deals the hero target with the second highest HP 2 energy damage."
 			],
 			"flavorQuotes": [
 				{
@@ -283,7 +283,7 @@
 				"DealDamageSonic"
 			],
 			"body": [
-				"Play the top card of the villain character with the highest HP, other than {Snare}. Then that villain character deals the hero target with the highest HP 2 sonic damage."
+				"Play the top card of the villain character with the highest HP, other than {SnareTeam}. Then that villain character deals the hero target with the highest HP 2 sonic damage."
 			],
 			"flavorQuotes": [
 				{
@@ -305,7 +305,7 @@
 				"GainHP"
 			],
 			"body": [
-				"Play the top card of the villain character with the lowest HP, other than {Snare}. Then that villain character gains 2 HP."
+				"Play the top card of the villain character with the lowest HP, other than {SnareTeam}. Then that villain character gains 2 HP."
 			],
 			"flavorQuotes": [
 				{
@@ -329,8 +329,8 @@
 			],
 			"body": [
 				"Reduce damage dealt to Giger Mobility Chair by 1.",
-				"{Snare} and Giger Mobility Chair are immune to damage from environment cards.",
-				"At the end of {Snare}’s turn, {Snare} gains 1 HP."
+				"{SnareTeam} and Giger Mobility Chair are immune to damage from environment cards.",
+				"At the end of {SnareTeam}’s turn, {SnareTeam} gains 1 HP."
 			],
 			"flavorQuotes": [
 				{
@@ -354,7 +354,7 @@
 			],
 			"body": [
 				"The X villain targets with the lowest HP gain 2 HP, where X is equal to the number of Barrier cards in play.",
-				"Play the top card of {Snare}'s deck."
+				"Play the top card of {SnareTeam}'s deck."
 			],
 			"flavorQuotes": [
 				{
