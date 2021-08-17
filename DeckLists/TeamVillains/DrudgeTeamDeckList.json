@@ -1,0 +1,395 @@
+{
+	"name": "Drudge",
+	"kind": "VillainTeam",
+	"initialCardIdentifiers": [
+		"DrudgeTeamCharacter"
+	],
+	"cards": [
+		{
+			"identifier": "DrudgeTeamCharacter",
+			"count": 1,
+			"title": "Drudge",
+			"keywords": [
+				"villain",
+				"vampire"
+			],
+			"icons": [
+				"DealDamageInfernal",
+				"IncreaseDamageTakenRadiant"
+			],
+			"body": "Renegade Vampire",
+			"backgroundColor": "851c18",
+			"character": true,
+			"hitpoints": 27,
+			"nemesisIdentifiers": [
+				"Muse"
+			],
+			"setup": [
+				"{DrudgeTeam} starts the game 'Renegade Vampire' side up.",
+				"Put Immortal Form and Consume Lifeforce into play, then shuffle the villain deck."
+			],
+			"gameplay": [
+				"At the end of {DrudgeTeam}'s turn, {DrudgeTeam} deals the hero target with the lowest HP 2 infernal Damage.",
+				"Increase radiant damage dealt to {DrudgeTeam} by 1.",
+				"Increase damage dealt by other vampire targets to {DrudgeTeam} by 1.",
+				"Increase damage dealt by {DrudgeTeam} to other vampire targets by 1."
+			],
+			"advanced": "Whenever a Villain Target is destroyed, {DrudgeTeam} gains 3 HP.",
+			"advancedIcons": [
+				"GainHP"
+			],
+			"flippedShowHitpoints": false,
+			"flippedBody": "Incapacitated",
+			"flippedKeywords": [],
+			"flippedGameplay": [
+				"At the start of each of {DrudgeTeam}'s turns, the Hero Target with the lowest HP deals the Hero Target with the highest HP 1 Psychic and 1 Infernal Damage."
+			],
+			"flippedIcons": [
+				"DealDamagePsychic",
+				"DealDamageInfernal"
+			],
+			"difficulty": 2,
+			"challengeTitle": "Persuade The Weak",
+			"challengeText": "The first time per turn that {DrudgeTeam} would take 2 or less damage, redirect that damage to the Hero Target with the second highest HP.",
+			"challengeIcons": [
+				"RedirectDamage"
+			],
+			"openingLines": {
+				"default": "Drudge placeholder opening!",
+				"MuseCharacter": "Drudge to Muse placeholder opening!",
+				"DaybreakMuseCharacter": "Drudge to Daybreak Muse placeholder opening!"
+			}
+		},
+		{
+			"identifier": "ImmortalForm",
+			"count": 1,
+			"title": "Immortal Form",
+			"keywords": [
+				"ongoing",
+				"vampiric"
+			],
+			"icons": [
+				"GainHP",
+				"DestroySelf"
+			],
+			"body": [
+				"When {DrudgeTeam} drops to 0 or fewer HP, restore {DrudgeTeam} to 5 HP. Then, destroy this card."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge"
+		},
+		{
+			"identifier": "ConsumeLifeforce",
+			"count": 1,
+			"title": "Consume Lifeforce",
+			"keywords": [
+				"ongoing",
+				"vampiric"
+			],
+			"icons": [
+				"GainHP",
+				"Search"
+			],
+			"body": [
+				"The first time each turn that {DrudgeTeam} deals Infernal Damage, he gains 2 HP.",
+				"When {DrudgeTeam} destroys a Target, reveal cards from the top of his deck until Thrall is revealed. Put Thrall into play. Shuffle all other cards revealed back into his deck."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge"
+		},
+		{
+			"identifier": "EnthrallingTarget",
+			"count": 1,
+			"title": "Enthralling Target",
+			"keywords": [
+				"ongoing",
+				"vampiric"
+			],
+			"icons": [
+				"ReduceDamageTaken",
+				"ImmuneToDamage"
+			],
+			"body": [
+				"Reduce Non-Radiant Damage dealt to {DrudgeTeam} by 1",
+				"{DrudgeTeam} is Immune to damage from the Hero Target with the lowest HP."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge"
+		},
+		{
+			"identifier": "BloodSacrifice",
+			"count": 1,
+			"title": "Blood Sacrifice",
+			"keywords": [
+				"ongoing",
+				"vampiric"
+			],
+			"icons": [
+				"DealDamageInfernal",
+				"Search"
+			],
+			"body": [
+				"At the start of {DrudgeTeam}'s turn, {DrudgeTeam} deals 2 Infernal Damage to the non-Villain Target with the lowest HP. Then reveal cards from the top of his deck until Thrall is revealed. Put Thrall into play. Shuffle all other cards revealed back into his deck."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge"
+		},
+		{
+			"identifier": "FiendishGuidance",
+			"count": 1,
+			"title": "Fiendish Guidance",
+			"keywords": [
+				"ongoing",
+				"vampiric"
+			],
+			"icons": [
+				"GainHP",
+				"ImmuneToDamage"
+			],
+			"body": [
+				"At the start of {DrudgeTeam}'s turn, each Villain Character gains 1 HP and all Thralls in play gain 2 HP.",
+				"{DrudgeTeam} is Immune to damage from Villain cards."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge"
+		},
+		{
+			"identifier": "MysticTraining",
+			"count": 1,
+			"title": "Mystic Training",
+			"keywords": [
+				"ongoing",
+				"vampiric"
+			],
+			"icons": [
+				"IncreaseDamageDealtInfernal",
+				"IncreaseDamageDealtPsychic"
+			],
+			"body": [
+				"Increase Infernal and Psychic Damage dealt by {DrudgeTeam} by 1."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge"
+		},
+		{
+			"identifier": "FeastOnTheLiving",
+			"count": 2,
+			"title": "Feast on the Living",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"DealDamageMelee",
+				"DealDamageInfernal",
+				"GainHP",
+				"Manipulate"
+			],
+			"body": [
+				"{DrudgeTeam} deals the Hero Target with the second highest HP 2 Melee and 2 Infernal Damage. Then {DrudgeTeam} gains 3 HP.",
+				"Shuffle all Thralls in {DrudgeTeam}'s trash into his deck."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge"
+		},
+		{
+			"identifier": "InciteHysteria",
+			"count": 2,
+			"title": "Incite Hysteria",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"DealDamagePsychic",
+				"DealDamageMelee",
+				"Manipulate"
+			],
+			"body": [
+				"{DrudgeTeam} deals the 3 non-Villain Targets with the lowest HP 2 Psychic Damage each.",
+				"Each Thrall in play deals the Hero Target with the highest HP 2 Melee Damage.",
+				"Shuffle all Thralls in {DrudgeTeam}'s trash into his deck."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge"
+		},
+		{
+			"identifier": "VampiricCunning",
+			"count": 2,
+			"title": "Vampiric Cunning",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"DestroyOngoing"
+			],
+			"body": [
+				"Destroy a Hero Ongoing. If there are 3 or more Vampiric Cards in play, destroy a second Hero Ongoing."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge"
+		},
+		{
+			"identifier": "RisingDarkness",
+			"count": 2,
+			"title": "Rising Darkness",
+			"keywords": [
+				"one-shot"
+			],
+			"icons": [
+				"CannotGainHP",
+				"Manipulate"
+			],
+			"body": [
+				"Until the start of {DrudgeTeam}'s next turn, Non-Villain cards cannot gain HP.",
+				"If Immortal Form is in {DrudgeTeam}'s trash, shuffle it back into his deck."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge"
+		},
+		{
+			"identifier": "Thrall",
+			"count": 4,
+			"title": "Thrall",
+			"keywords": [
+				"minion"
+			],
+			"icons": [
+				"DealDamageMelee",
+				"RedirectDamage"
+			],
+			"body": [
+				"At the end of {DrudgeTeam}'s turn, Thrall deals the Hero Target with the highest HP 2 Melee Damage.",
+				"The first time each turn that {DrudgeTeam} would be dealt non-Radiant Damage, redirect that Damage to the Thrall with the lowest HP."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge",
+			"hitpoints": 4
+		},
+		{
+			"identifier": "FanaticalLoyalty",
+			"count": 1,
+			"title": "Fanatical Loyalty",
+			"keywords": [
+				"ongoing",
+				"vampiric"
+			],
+			"icons": [
+				"IncreaseDamageDealt",
+				"ReduceDamageDealt"
+			],
+			"body": [
+				"Increase Damage dealt by Thralls by 1.",
+				"Reduce Damage dealt to Thralls by 1."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge"
+		},
+		{
+			"identifier": "VampiricAura",
+			"count": 1,
+			"title": "Vampiric Aura",
+			"keywords": [
+				"ongoing",
+				"vampiric"
+			],
+			"icons": [
+				"CannotGainHP"
+			],
+			"body": [
+				"Hero Targets damaged by {DrudgeTeam} cannot gain HP until the start of {DrudgeTeam}'s next turn."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge"
+		},
+		{
+			"identifier": "InfernalRites",
+			"count": 1,
+			"title": "Infernal Rites",
+			"keywords": [
+				"ongoing",
+				"vampiric"
+			],
+			"icons": [
+				"DealDamageInfernal",
+				"DealDamagePsychic",
+				"GainHP",
+				"PlayCardNow"
+			],
+			"body": [
+				"At the start of {DrudgeTeam}'s turn, he deals the X Non-Villain Targets with the highest HP 1 Irreducible Infernal and 1 Irreducible Psychic Damage each, where X is equal to the number of Vampiric cards in play. If Drudge destroys a Target with this damage he gain 2 HP and then play the top Card of his Deck.",
+				"If {DrudgeTeam} takes 3 or more radiant damage, destroy this card."
+			],
+			"flavorQuotes": [
+				{
+					"identifier": "Drudge",
+					"text": "-"
+				}
+			],
+			"flavorReference": "Drudge"
+		}
+	]
+}
